@@ -1,0 +1,446 @@
+\documentclass[12pt,openany,leqno,twocolumn]{book}
+%Principia package requirements
+\usepackage{pifont} %This loads the eight-pointed asterisk.
+\usepackage{marvosym} %This loads the male and female symbol.
+\usepackage{graphicx} %This loads commands that flip iota for definite descriptions, Lambda for the universal class, and so on. The (superseded) graphics package should also work here, but is not recommended.
+\usepackage{amssymb} 
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{perpage}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+\usepackage[hidelinks,pdfencoding=unicode]{hyperref}
+\usepackage{enumitem}
+\usepackage{moreenum}
+\usepackage[normalem]{ulem}
+\usepackage[perpage,symbol]{footmisc}
+\usepackage{setspace}
+
+%Meta-logical symbols
+\newcommand{\pmdem}{\textit{Dem}.} %This notation begins a proof.
+\newcommand{\pmsub}[2]{\bigg \lbrack \small \begin{array}{c} #1 \\ \hline #2 \end{array} \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSub}[3]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c} #2 \\ \hline #3 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsubb}[4]{\bigg \lbrack \small \begin{array}{c c} #1, & #3 \\ \hline #2, & #4 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubb}[5]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c} #2, & #4 \\ \hline #3, & #5 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsubbb}[6]{\bigg \lbrack \small \begin{array}{c c c} #1, & #3, & #5 \\ \hline #2, & #4, & #6 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubbb}[7]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c} #2, & #4, & #6 \\ \hline #3, & #5, & #7 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsubbbb}[8]{\bigg \lbrack \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubbbb}[9]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmthm}{\text{\scalebox{.5}[1]{$\boldsymbol\vdash$}}} %This is the theorem sign.
+\newcommand{\pmast}{\text{\resizebox{!}{.75\height}{\ding{107}}}} %This is the sign introducing a theorem number.
+\newcommand{\pmcdot}{\text{\raisebox{.05cm}{$\boldsymbol\cdot$}}} %This is a sign introducing a theorem sub-number.
+\newcommand{\pmdf}{=_\text{Df}}
+\newcommand{\pmpp}{\text{Pp}}
+
+%Square dots for scope, defined for up to six dots
+\newcommand{\pmdot}{\mathop{\hbox{\rule{.3ex}{.3ex}}}}
+\newcommand{\pmdott}{\mathop{\overset{\pmdot}{\pmdot}}}
+\newcommand{\pmdottt}{\pmdott \pmdot}
+\newcommand{\pmdotttt}{\pmdott\pmdott}
+\newcommand{\pmdottttt}{\pmdott\pmdott\pmdot}
+\newcommand{\pmdotttttt}{\pmdott\pmdott\pmdott}
+
+%Logical connectives
+\newcommand{\pmnot}{\mathord{\sim}}
+\newcommand{\pmimp}{\boldsymbol{\supset}}
+\newcommand{\pmiff}{\equiv}
+\newcommand{\pmor}{\boldsymbol{\vee}}
+\newcommand{\pmall}[1]{(#1)}
+\newcommand{\pmsome}[1]{(\text{\raisebox{.5em}{\rotatebox{180}{E}}}#1)}
+\newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{E}}}}
+\newcommand{\pmand}{\mathrel{\hbox{\rule{.3ex}{.3ex}}}}
+\newcommand{\pmandd}{\overset{\pmand}{\pmand}}
+\newcommand{\pmanddd}{\pmandd\hspace{.1em}\pmand}
+\newcommand{\pmandddd}{\pmandd\hspace{.1em}\pmandd}
+\newcommand{\pmanddddd}{\pmandd\hspace{.1em}\pmandd\hspace{.1em}\pmand}
+\newcommand{\pmandddddd}{\pmandd\hspace{.1em}\pmandd\hspace{.1em}\pmandd}
+
+%Additional defined logic signs
+\newcommand{\pmhat}[1]{\mathbf{\hat{\text{$#1$}}}}
+\newcommand{\pmpf}[2]{#1#2} %for propositional functions of one variable
+\newcommand{\pmpff}[3]{#1(#2, #3)} %for propositional functions of two variables
+\newcommand{\pmpfff}[4]{#1(#2, #3, #4)} %for propositional functions of three variables
+\newcommand{\pmshr}{\textbf{!}} %*12.1 and *12.11, used for predicative propositional functions
+\newcommand{\pmpred}[2]{#1\pmshr#2} %for predicates (``predicative functions'') of one variable
+\newcommand{\pmpredd}[3]{#1\pmshr(#2, #3)} %for predicates (``predicative functions'') of two variables
+\newcommand{\pmpreddd}[4]{#1\pmshr(#2, #3, #4)} %for predicates (``predicative functions'') of three variables
+\newcommand{\pmnid}{\mathrel{\ooalign{$=$\cr\hidewidth\footnotesize\rotatebox[origin=c]{210}{\textbf{/}}\hidewidth\cr}}} %*13.01
+\newcommand{\pmiota}{\rotatebox[origin=c]{180}{$\iota$}} %the rotated Greek iota used in definite descriptions
+\newcommand{\pmdsc}[1]{(\pmiota#1)} %*14.01
+\newcommand{\pmDsc}{\pmiota} %*14.01
+\newcommand{\pmexists}{\text{E}\pmshr} %*14.02
+
+%Class signs
+\newcommand{\pmcuni}{\text{\rotatebox[origin=c]{180}{$\Lambda$}}}
+\newcommand{\pmcnull}{\Lambda}
+\newcommand{\pmcls}[2]{\pmhat{#1}(#2)}
+\newcommand{\pmCls}{\text{Cls}}
+\newcommand{\pmClsn}[1]{\text{Cls}^{#1}}
+\newcommand{\pmcexists}{\text{\raisebox{.5em}{\rotatebox{180}{E}}}\mathop{\pmshr}}
+\newcommand{\pmccmp}[1]{\boldsymbol{-}#1}
+\newcommand{\pmcmin}[2]{#1\boldsymbol{-}#2}
+\newcommand{\pmcin}{\mathop{\epsilon}}
+\newcommand{\pmccup}{\mathop{\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}}}
+\newcommand{\pmccap}{\mathop{\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}}}
+\newcommand{\pmcinc}{\mathop{\boldsymbol{\subset}}}
+
+%Relation signs
+\newcommand{\pmruni}{\dot{\text{\rotatebox[origin=c]{180}{$\Lambda$}}}}
+\newcommand{\pmrnull}{\dot{\Lambda}}
+\newcommand{\pmdscf}[2]{#1\textbf{`}#2}
+\newcommand{\pmdscff}[2]{#1\textbf{`}\textbf{`}#2}
+\newcommand{\pmdscfff}[2]{#1\textbf{`}\textbf{`}\textbf{`}#2}
+\newcommand{\pmdscfr}[2]{#1_{\pmcin}\textbf{`}#2}
+\newcommand{\pmdscfR}[1]{#1_{\pmcin}}
+\newcommand{\pmdscfe}[2]{\mathop{\text{E}}\mathop{\pmshr\pmshr}\pmdscff{#1}{#2}}
+\newcommand{\pmdm}[1]{\text{D}\textbf{`}#1}
+\newcommand{\pmDm}{\text{D}}
+\newcommand{\pmcdm}[1]{\text{\rotatebox[origin=c]{180}{D}}\textbf{`}#1}
+\newcommand{\pmCdm}{\text{\rotatebox[origin=c]{180}{D}}}
+\newcommand{\pmcmp}[1]{C\textbf{`}#1}
+\newcommand{\pmCmp}{C}
+\newcommand{\pmfld}[1]{F\textbf{`}#1}
+\newcommand{\pmFld}{F}
+\newcommand{\pmrel}[3]{\pmhat{#1}\pmhat{#2}#3}
+\newcommand{\pmrele}[5]{#1\{\pmhat{#2}\pmhat{#3}#4(#2, #3)\}#5}
+\newcommand{\pmrelep}[3]{#1\{#2\}#3}
+\newcommand{\pmrcmp}[1]{\ooalign{$\hidewidth\raisebox{.25em}{$\cdot$}\hidewidth$\cr$\mathbf{\pmccmp}$}#1}
+\newcommand{\pmrmin}[2]{#1\mathrel{\ooalign{$\hidewidth\raisebox{.25em}{$\cdot$}\hidewidth$\cr$\mathbf{\pmccmp}$}}#2}
+\newcommand{\pmrexists}{\dot{\mathop{\text{\raisebox{.5em}{\rotatebox{180}{E}}}}}\mathop{\pmshr}}
+\newcommand{\pmcrel}[1]{\breve{#1}}
+\newcommand{\pmCnv}{\text{Cnv}}
+\newcommand{\pmcnv}[1]{\breve{#1}}
+\newcommand{\pmcnvr}[1]{\text{Cnv}\textbf{`}#1}
+\newcommand{\pmrcup}{\mathrel{\ooalign{$\hidewidth\cdot\hidewidth$\cr$\mathbf{\pmccup}$}}}
+\newcommand{\pmrcap}{\mathrel{\ooalign{$\hidewidth\raisebox{.3em}{$\cdot$}\hidewidth$\cr$\mathbf{\pmccap}$}}}
+\newcommand{\pmrinc}{\mathrel{\ooalign{$\hidewidth\cdot\hidewidth$\cr$\mathbf{\pmcinc}$}}}
+\newcommand{\pmrrf}[2]{\overset{\boldsymbol{\rightarrow}}{#1\textbf{`}}#2}
+\newcommand{\pmRrf}[1]{\overset{\boldsymbol{\rightarrow}}{#1}}
+\newcommand{\pmrrl}[2]{\overset{\boldsymbol{\leftarrow}}{#1\textbf{`}}#2}
+\newcommand{\pmRrl}[1]{\overset{\boldsymbol{\leftarrow}}{#1}}
+\newcommand{\pmsg}[1]{\text{sg}\textbf{`}#1}
+\newcommand{\pmgs}[1]{\text{gs}\textbf{`}#1}
+\newcommand{\pmSg}{\text{sg}}
+\newcommand{\pmGs}{\text{gs}}
+\newcommand{\pmRprd}{\mathop{|}}
+\newcommand{\pmrprd}[2]{{#1}\mathop{|}{#2}}
+\newcommand{\pmrprdn}[2]{#1^{#2}}
+\newcommand{\pmrld}[2]{#1 \boldsymbol{\upharpoonleft} #2}
+\newcommand{\pmrlcd}[2]{#1 \boldsymbol{\upharpoonright} #2}
+\newcommand{\pmrlf}[3]{#1 \boldsymbol{\upharpoonleft} #2 \boldsymbol{\upharpoonright} #3}
+\newcommand{\pmrl}[2]{#1 \boldsymbol{\uparrow} #2}
+\newcommand{\pmrlF}[2]{#1 \mathbin{\ooalign{$\upharpoonright$\cr\hidewidth\rotatebox[origin=c]{180}{\text{$\upharpoonleft$}}\hidewidth\cr}} #2}
+\newcommand{\pmop}{\mathop{\text{\Female}}}
+\newcommand{\pmopc}[2]{#1 \mathop{\underset{\textbf{''}}{\text{\Female}}} #2}
+
+%Products and sums of classes of classes or relations
+\newcommand{\pmccsum}[1]{p\textbf{`}#1}
+\newcommand{\pmccprd}[1]{s\textbf{`}#1}
+\newcommand{\pmcrsum}[1]{\dot{p}\textbf{`}#1}
+\newcommand{\pmcrprd}[1]{\dot{s}\textbf{`}#1}
+\newcommand{\pmRprdd}{\mathop{||}}
+\newcommand{\pmrprdd}[2]{{#1}\mathop{||}{#2}}
+
+%Identity and Diversity
+\newcommand{\pmrid}{I}
+\newcommand{\pmrdiv}{J}
+\newcommand{\pmcunit}[1]{\iota\textbf{`}#1}
+\newcommand{\pmcUnit}{\iota}
+\newcommand{\pmcunits}[1]{\breve{\iota}\textbf{`}#1}
+
+%Cardinal numbers
+\newcommand{\pmcn}[1]{#1}
+
+%Ordinal numbers
+\newcommand{\pmrn}[1]{#1_r}
+\newcommand{\pmdn}[1]{\dot{#1}}
+\newcommand{\pmoc}[2]{#1 \boldsymbol{\downarrow} #2}
+
+%Subclasses and subrelations
+\newcommand{\pmscl}[1]{\text{Cl}\textbf{`}#1}
+\newcommand{\pmsCl}{\text{Cl}}
+\newcommand{\pmscle}[1]{\text{Cl ex}\textbf{`}#1}
+\newcommand{\pmsCle}{\text{Cl ex}}
+\newcommand{\pmscls}[1]{\text{Cls}\textbf{`}#1}
+\newcommand{\pmsrl}[1]{\text{Rl}\textbf{`}#1}
+\newcommand{\pmsRl}{\text{Rl}}
+\newcommand{\pmsrle}[1]{\text{Rl ex}\textbf{`}#1}
+\newcommand{\pmsRle}{\text{Rl ex}}
+\newcommand{\pmsrel}[1]{\text{Rel}\textbf{`}#1}
+\newcommand{\pmRel}{\text{Rel}}
+\newcommand{\pmReln}[1]{\text{Rel}^{#1}}
+\newcommand{\pmrin}{\mathop{\epsilon}}
+
+%Relative type symbols
+\newcommand{\pmrt}[1]{t\textbf{`}#1}
+\newcommand{\pmrti}[2]{t^{#1}\textbf{`}#2}
+\newcommand{\pmrtc}[2]{t_{#1}\textbf{`}#2}
+\newcommand{\pmrtri}[2]{t^{#1}\textbf{`}#2}
+\newcommand{\pmrtrc}[2]{t_{#1}\textbf{`}#2}
+\newcommand{\pmrtrci}[3]{t_{#1}^{\text{ }#2}\textbf{`}#3}
+\newcommand{\pmrtric}[3]{^{#1}t_{#2}\textbf{`}#3}
+\newcommand{\pmrtdi}[2]{#1_{#2}}
+\newcommand{\pmrtdc}[2]{#1(#2)}
+\newcommand{\pmrtdri}[2]{#1_{#2}}
+\newcommand{\pmrtdrc}[2]{#1(#2)}
+
+%Similarity relation signs
+\newcommand{\pmrdc}[2]{#1\boldsymbol{\to}#2}
+\newcommand{\pmsm}{\mathrel{\text{sm}}}
+\newcommand{\pmsmbar}{\mathrel{\overline{\text{sm}}}}
+\newcommand{\pmsmarr}{\overrightarrow{{\pmsm}}}
+\newcommand{\pmonemany}{1\boldsymbol{\to}\pmCls}
+\newcommand{\pmmanyone}{\pmCls\boldsymbol{\to}1}
+\newcommand{\pmoneone}{1\boldsymbol{\to}1}
+
+%Selections
+\newcommand{\pmselp}[1]{P_{\small\Delta}\mathbf{`}#1}
+\newcommand{\pmSelp}{P_{\Delta}}
+\newcommand{\pmsele}[1]{\pmcin_{\small\Delta}\mathbf{`}#1}
+\newcommand{\pmSele}{\pmcin_{\Delta}}
+\newcommand{\pmself}[1]{F_{\small\Delta}\mathbf{`}#1}
+\newcommand{\pmSelf}{F_{\Delta}}
+\newcommand{\pmexc}{\text{Cls}^2 \mathop{\text{excl}}}
+\newcommand{\pmexcc}[1]{\text{Cl} \mathop{\text{excl}}\textbf{`}#1}
+\newcommand{\pmexcn}{\text{Cls} \mathop{\text{ex}}^2 \mathop{\text{excl}}}
+\newcommand{\pmselc}[2]{#1 \mathrel{\rotatebox[origin=c]{270}{$\boldsymbol{\mapsto}$}} #2}
+\newcommand{\pmmultr}{\mathop{\text{Rel}} \mathop{\text{Mult}}}
+\newcommand{\pmmultc}{\mathop{\text{Cls}^2} \mathop{\text{Mult}}}
+\newcommand{\pmmultax}{\mathop{\text{Mult}} \mathop{\text{ax}}}
+
+%Inductive relations
+\newcommand{\pmanc}[1]{#1_\pmast}
+\newcommand{\pmancc}[1]{\pmcnv{#1}_\pmast}
+\newcommand{\pmrst}[1]{#1_\text{st}}
+\newcommand{\pmrts}[1]{#1_\text{ts}}
+\newcommand{\pmpot}[1]{\text{Pot}\mathbf{`}#1}
+\newcommand{\pmpotid}[1]{\text{Potid}\mathbf{`}#1}
+\newcommand{\pmpo}[1]{#1_\text{po}}
+\newcommand{\pmB}{B}
+\newcommand{\pmmin}[1]{\text{min}_{#1}}
+\newcommand{\pmmax}[1]{\text{max}_{#1}}
+\newcommand{\pmMin}{\text{min}}
+\newcommand{\pmMax}{\text{max}}
+\newcommand{\pmgen}[1]{\text{gen}\mathbf{`}#1}
+\newcommand{\pmGen}{\text{gen}}
+\newcommand{\pmefr}[2]{#1\pmast#2}
+\newcommand{\pmipr}[2]{I_{#1}\textbf{`}#2}
+\newcommand{\pmjpr}[2]{J_{#1}\textbf{`}#2}
+\newcommand{\pmfr}[2]{\overset{\boldsymbol{\leftrightarrow}}{#1}\textbf{`}#2}
+
+%Cardinality 
+\newcommand{\pmnc}[1]{\text{Nc}\textbf{`}#1}
+\newcommand{\pmNc}{\text{Nc}}
+\newcommand{\pmNC}{\text{NC}}
+\newcommand{\pmnoc}[1]{\text{N}_0\text{c}\textbf{`}#1}
+\newcommand{\pmNoc}{\text{N}_0\text{c}}
+
+\begin{document}
+	
+\chapter*{\centering LIST OF DEFINITIONS}
+\onehalfspacing
+\begin{tabular}{l l}
+	\text{ }$\pmast1\pmcdot01$. & $p \pmimp q$ \\
+	\text{ }$\pmast2\pmcdot33$. & $p \pmor q \pmor r$ \\
+	\text{ }$\pmast3\pmcdot01$. & $p \pmand q$ \\
+	\text{ }$\pmast3\pmcdot02$. & $p \pmimp q \pmimp r$ \\
+	\text{ }$\pmast4\pmcdot01$. & $p \pmiff q$ \\
+	\text{ }$\pmast4\pmcdot02$. & $p \pmiff q \pmiff r$ \\
+	\text{ }$\pmast4\pmcdot34$. & $p \pmand q \pmand r$ \\
+	\text{ }$\pmast9\pmcdot01$. & $\pmnot\{(\pmall{x})\pmdot \phi x\}$ \\
+	\text{ }$\pmast9\pmcdot011$. & $\pmnot(\pmall{x})\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot02$. & $\pmnot\{(\pmsome{x})\pmdot \phi x\}$ \\
+	\text{ }$\pmast9\pmcdot021$. & $\pmnot(\pmsome{x})\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot03$. & $(\pmall{x})\pmdot \phi x \pmdot \pmor \pmdot p$ \\
+	\text{ }$\pmast9\pmcdot04$. & $p \pmdot \pmor \pmdot (\pmall{x})\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot05$. & $(\pmsome{x})\pmdot \phi x \pmdot \pmor \pmdot p$ \\
+	\text{ }$\pmast9\pmcdot06$. & $p \pmdot \pmor \pmdot (\pmsome{x})\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot07$. & $(\pmall{x})\pmdot \phi x \pmdot \pmor \pmdot (\pmsome{x})\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot08$. & $(\pmsome{x})\pmdot \phi x \pmdot \pmor \pmdot (\pmall{x})\pmdot \phi x$ \\
+	$\pmast10\pmcdot01$. & $(\pmsome{x})\pmdot \phi x$ \\
+	$\pmast10\pmcdot02$. & $\phi x \pmimp_x \psi x$ \\
+	$\pmast10\pmcdot03$. & $\phi x \pmiff_x \psi x$ \\
+	$\pmast11\pmcdot01$. & $(\pmall{x,y})\pmdot \phi(x, y)$ \\
+	$\pmast11\pmcdot02$. & $(\pmall{x,y,z})\pmdot \phi(x, y, z)$ \\
+	$\pmast11\pmcdot03$. & $(\pmsome{x,y})\pmdot \phi(x, y)$ \\
+	$\pmast11\pmcdot04$. & $(\pmsome{x,y,z})\pmdot \phi(x, y, z)$ \\
+	$\pmast11\pmcdot05$. & $\phi(x, y) \pmimp_{x, y} \psi(x, y)$ \\
+	$\pmast11\pmcdot06$. & $\phi(x, y) \pmiff_{x, y} \psi(x, y)$ \\
+	$\pmast13\pmcdot01$. & $x = y$ \\
+	$\pmast13\pmcdot02$. & $x \pmnid y$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast13\pmcdot03$. & $x = y = z$ \\
+	$\pmast14\pmcdot01$. & $[(\pmdsc{x})(\phi x)]\pmdot \psi(\pmdsc{x})(\phi x)$ \\
+	$\pmast14\pmcdot02$. & $\pmexists(\pmdsc{x})(\phi x)$ \\
+	$\pmast14\pmcdot03$. & $[(\pmdsc{x})(\phi x), (\pmdsc{x})(\psi x)]\pmdot f\{(\pmdsc{x})(\phi x),$\\
+		& \indent $(\pmdsc{x})(\psi x)\}$ \\
+	$\pmast14\pmcdot04$. & $[(\pmdsc{x})(\psi x)]\pmdot f\{(\pmdsc{x})(\phi x), (\pmdsc{x})(\psi x)\}$ \\
+	$\pmast20\pmcdot01$. & $f\{\pmcls{z}{\psi z}\}$ \\
+	$\pmast20\pmcdot02$. & $x \pmcin \pmpred{\phi}{\pmhat{z}}$ \\
+	$\pmast20\pmcdot03$. & $\pmsCl$ \\
+	$\pmast20\pmcdot04$. & $x, y \pmcin \alpha$ \\
+	$\pmast20\pmcdot05$. & $x, y, z \pmcin \alpha$ \\
+	$\pmast20\pmcdot06$. & $x \pmnot \pmcin \alpha$ \\
+	$\pmast20\pmcdot07$. & $(\pmall{\alpha})\pmdot f\alpha$ \\
+	$\pmast20\pmcdot071$. & $(\pmsome{\alpha})\pmdot f\alpha$ \\
+	$\pmast20\pmcdot072$. & $[(\pmdsc{\alpha})(\phi \alpha)]\pmdot f(\pmdsc{\alpha})(\phi \alpha)$ \\
+	$\pmast20\pmcdot08$. & $f\{\pmcls{\alpha}{\psi \alpha}\}$ \\
+	$\pmast20\pmcdot081$. & $\alpha \pmcin \pmpred{\psi}{\pmhat{z}}$ \\
+	$\pmast21\pmcdot01$. & $f\{\pmrel{x}{y}{\phi(x,y)}\}$ \\
+	$\pmast21\pmcdot02$. & $\pmrelep{a}{\pmpredd{\phi}{\pmhat{x}}{\pmhat{y}}}{b}$ \\
+	$\pmast21\pmcdot03$. & $\pmRel$ \\
+	$\pmast21\pmcdot07$. & $(\pmall{R})\pmdot fR$ \\
+	$\pmast21\pmcdot071$. & $(\pmsome{R})\pmdot fR$ \\
+	$\pmast21\pmcdot072$. & $[(\pmdsc{R})(\phi R)]\pmdot f(\pmdsc{R})(\phi R)$ \\
+	$\pmast21\pmcdot08$. & $f\{\pmrel{R}{S}{\psi(R, S}\}$ \\
+	$\pmast21\pmcdot081$. & $\pmrelep{P}{\pmpredd{\phi}{\pmhat{R}}{\pmhat{S}}}{Q}$ \\
+	$\pmast21\pmcdot082$. & $f\{\pmcls{R}{\psi R}\}$ \\
+	$\pmast21\pmcdot083$. & $R \pmcin \pmpred{\psi}{\pmhat{R}}$ \\
+	$\pmast22\pmcdot01$. & $\alpha \pmcin \beta$ \\
+	$\pmast22\pmcdot02$. & $\alpha \pmccap \beta$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast22\pmcdot03$. & $\alpha \pmccup \beta$ \\
+$\pmast22\pmcdot04$. & $\pmccmp{\alpha}$ \\
+$\pmast22\pmcdot05$. & $\pmcmin{\alpha}{\beta}$ \\
+$\pmast22\pmcdot53$. & $\alpha \pmccap \beta \pmccap \gamma$ \\
+$\pmast22\pmcdot71$. & $\alpha \pmccup \beta \pmccup \gamma$ \\
+$\pmast23\pmcdot01$. & $R \pmrinc S$ \\
+$\pmast23\pmcdot02$. & $R \pmrcap S$ \\
+$\pmast23\pmcdot03$. & $R \pmrcup S$ \\
+$\pmast23\pmcdot04$. & $\pmrcmp{R}$ \\
+$\pmast23\pmcdot05$. & $\pmrmin{R}{S}$ \\
+$\pmast23\pmcdot53$. & $R \pmrcap S \pmrcap T$ \\
+$\pmast23\pmcdot71$. & $R \pmrcup S \pmrcup T$ \\
+$\pmast24\pmcdot01$. & $\pmcuni$ \\
+$\pmast24\pmcdot02$. & $\pmcnull$ \\
+$\pmast24\pmcdot03$. & $\pmcexists \alpha$ \\
+$\pmast25\pmcdot01$. & $\pmruni$ \\
+$\pmast25\pmcdot02$. & $\pmrnull$ \\
+$\pmast25\pmcdot03$. & $\pmrexists R$ \\
+$\pmast30\pmcdot01$. & $\pmdscf{R}{y}$ \\
+$\pmast30\pmcdot02$. & $\pmdscf{R}{\pmdscf{S}{y}}$ \\
+$\pmast31\pmcdot01$. & $\pmCnv$ \\
+$\pmast31\pmcdot02$. & $\pmcnv{P}$ \\
+$\pmast32\pmcdot01$. & $\pmRrf{R}$ \\
+$\pmast32\pmcdot02$. & $\pmRrl{R}$ \\
+$\pmast32\pmcdot03$. & $\pmsg$ \\
+$\pmast32\pmcdot04$. & $\pmgs$ \\
+$\pmast33\pmcdot01$. & $\pmDm$ \\
+$\pmast33\pmcdot02$. & $\pmCdm$ \\
+$\pmast33\pmcdot03$. & $\pmCmp$ \\
+$\pmast33\pmcdot04$. & $\pmFld$ \\
+$\pmast34\pmcdot01$. & $\pmrprd{R}{S}$ \\
+$\pmast34\pmcdot02$. & $\pmrprdn{R}{2}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast34\pmcdot03$. & $\pmrprdn{R}{3}$ \\
+$\pmast35\pmcdot01$. & $\pmrld{\alpha}{R}$ \\
+$\pmast35\pmcdot02$. & $\pmrlcd{R}{\beta}$ \\
+$\pmast35\pmcdot03$. & $\pmrlf{\alpha}{R}{\beta}$ \\
+$\pmast35\pmcdot04$. & $\pmrl{\alpha}{\beta}$ \\
+$\pmast35\pmcdot05$. & $\pmrl{\pmdscf{R}{x}}{\beta}$ \\
+$\pmast35\pmcdot24$. & $\pmrld{\alpha}{\pmrprd{R}{S}}$ \\
+$\pmast35\pmcdot25$. & $\pmrlF{P}{\alpha}$ \\
+$\pmast36\pmcdot01$. & $\pmrlf{R}{\beta}$ \\
+$\pmast37\pmcdot01$. & $\pmdscf{R}{\beta}$ \\
+$\pmast37\pmcdot02$. & $\pmdscfR{R}$ \\
+$\pmast37\pmcdot03$. & $\pmcnv{\pmdscfR{R}}$\\
+$\pmast37\pmcdot04$. & $\pmdscfff{R}{\kappa}$ \\
+$\pmast37\pmcdot05$. & $\pmdscfe{R}{\beta}$ \\
+$\pmast38\pmcdot01$. & $x \pmop$ \\
+$\pmast38\pmcdot02$. & $\pmop x$ \\
+$\pmast38\pmcdot03$. & $\pmopc{\alpha}{y}$\\
+$\pmast40\pmcdot01$. & $\pmccsum{\kappa}$ \\
+$\pmast40\pmcdot02$. & $\pmccprd{\kappa}$ \\
+$\pmast41\pmcdot01$. & $\pmcrsum{\lambda}$ \\
+$\pmast41\pmcdot02$. & $\pmcrprd{\lambda}$ \\
+$\pmast43\pmcdot01$. & $\pmrprdd{R}{S}$ \\
+$\pmast50\pmcdot01$. & $\pmrid$ \\
+$\pmast50\pmcdot02$. & $\pmrdiv$ \\
+$\pmast51\pmcdot01$. & $\pmcUnit$ \\
+$\pmast52\pmcdot01$. & $\pmcn{1}$ \\
+$\pmast54\pmcdot01$. & $\pmcn{0}$ \\
+$\pmast54\pmcdot02$. & $\pmcn{2}$ \\
+$\pmast55\pmcdot01$. & $\pmoc{x}{y}$ \\
+$\pmast55\pmcdot02$. & $\pmoc{\pmdscf{R}{x}}{y}$ \\
+$\pmast56\pmcdot01$. & $\pmdn{2}$ \\
+$\pmast56\pmcdot02$. & $\pmrn{2}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast56\pmcdot03$. & $\pmrn{0}$ \\
+$\pmast60\pmcdot01$. & $\pmsCl$ \\
+$\pmast60\pmcdot02$. & $\pmsCle$ \\
+$\pmast60\pmcdot03$. & $\pmClsn{2}$ \\
+$\pmast60\pmcdot04$. & $\pmClsn{3}$ \\
+$\pmast61\pmcdot01$. & $\pmsRl$ \\
+$\pmast61\pmcdot02$. & $\pmsRle$ \\
+$\pmast61\pmcdot03$. & $\pmReln{2}$ \\
+$\pmast61\pmcdot04$. & $\pmReln{3}$ \\
+$\pmast62\pmcdot01$. & $\pmrin$ \\
+$\pmast63\pmcdot01$. & $\pmrt{x}$ \\
+$\pmast63\pmcdot011$. & $\pmrtc{1}{x}$ \\
+$\pmast63\pmcdot02$. & $\pmrti{0}{\alpha}$ \\
+$\pmast63\pmcdot03$. & $\pmrti{1}{\kappa}$ \\
+$\pmast63\pmcdot04$. & $\pmrtc{2}{\kappa}$ \\
+$\pmast63\pmcdot041$. & $\pmrtc{3}{\kappa}$ \\
+$\pmast63\pmcdot05$. & $\pmrti{2}{\kappa}$ \\
+$\pmast63\pmcdot051$. & $\pmrti{3}{\kappa}$ \\
+$\pmast64\pmcdot01$. & $\pmrtri{00}{\alpha}$ \\
+$\pmast64\pmcdot011$. & $\pmrtrc{11}{x}$ \\
+$\pmast64\pmcdot012$. & $\pmrtc{12}{x}$ \\
+$\pmast64\pmcdot013$. & $\pmrtc{21}{x}$ \\
+$\pmast64\pmcdot014$. & $\pmrtc{22}{x}$ \\
+$\pmast64\pmcdot02$. & $\pmrti{01}{\alpha}$ \\
+$\pmast64\pmcdot021$. & $\pmrti{10}{\alpha}$ \\
+$\pmast64\pmcdot022$. & $\pmrti{11}{\alpha}$ \\
+$\pmast64\pmcdot03$. & $\pmrtric{0}{1}{\alpha}$ \\
+$\pmast64\pmcdot031$. & $\pmrtric{1}{1}{\alpha}$ \\
+$\pmast64\pmcdot04$. & $\pmrtrci{1}{0}{\alpha}$ \\
+$\pmast64\pmcdot041$. & $\pmrtrci{1}{1}{\alpha}$ \\
+$\pmast65\pmcdot01$. & $\pmrtdi{\alpha}{x}$ \\
+$\pmast65\pmcdot02$. & $\pmrtdc{\alpha}{x}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast65\pmcdot03$. & $\pmrtdri{R}{x}$ \\
+$\pmast65\pmcdot04$. & $\pmrtdrc{R}{x}$ \\
+$\pmast65\pmcdot1$. & $\pmrtdri{R}{(x,y)}$ \\
+$\pmast65\pmcdot11$. & $\pmrtdrc{R}{x_y}$\\
+$\pmast65\pmcdot12$. & $\pmrtdrc{R}{x, y}$ \\
+$\pmast70\pmcdot01$. & $\pmrdc{\alpha}{\beta}$ \\
+$\pmast73\pmcdot01$. & $\alpha \pmsmbar \beta$ \\
+$\pmast73\pmcdot02$. & $\pmsm$\\
+$\pmast80\pmcdot01$. & $\pmSelp$ \\
+$\pmast84\pmcdot01$. & $\pmexc$ \\
+$\pmast84\pmcdot02$. & $\pmexcc{\gamma}$ \\
+$\pmast84\pmcdot03$. & $\pmexcn$\\
+$\pmast85\pmcdot5$. & $\pmselc{P}{y}$ \\
+$\pmast88\pmcdot01$. & $\pmmultr$ \\
+$\pmast88\pmcdot02$. & $\pmmultc$ \\
+$\pmast88\pmcdot03$. & $\pmmultax$ \\
+$\pmast90\pmcdot01$. & $\pmanc{R}$ \\
+$\pmast90\pmcdot02$. & $\pmancc{R}$ \\
+$\pmast91\pmcdot01$. & $\pmrst{R}$ \\
+$\pmast91\pmcdot02$. & $\pmrts{R}$ \\
+$\pmast91\pmcdot03$. & $\pmpot{R}$ \\
+$\pmast91\pmcdot04$. & $\pmpotid{R}$ \\
+$\pmast91\pmcdot05$. & $\pmpo{R}$ \\
+$\pmast93\pmcdot01$. & $\pmB$ \\
+$\pmast93\pmcdot02$. & $\pmmin{P}$ \\
+$\pmast93\pmcdot021$. & $\pmmax{P}$ \\
+$\pmast93\pmcdot03$. & $\pmgen{P}$ \\
+$\pmast95\pmcdot01$. & $\pmefr{P}{Q}$ \\
+$\pmast96\pmcdot01$. & $\pmipr{R}{x}$ \\
+$\pmast96\pmcdot02$. & $\pmjpr{R}{x}$ \\
+$\pmast97\pmcdot01$. & $\pmfr{R}{x}$ \\
+$\pmast100\pmcdot01$. & $\pmNc$ 
+\end{tabular}
+
+\end{document}

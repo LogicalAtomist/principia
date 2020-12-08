@@ -15,14 +15,26 @@
 
 %Meta-logical symbols
 \newcommand{\pmdem}{\textit{Dem}.} %This notation begins a proof.
+\newcommand{\pmdemi}{\indent \pmdem} %This idents the notation that begins a proof.
+\newcommand{\pmprop}{\text{Prop}} %This occurs at the end of a proof.
+\newcommand{\pmithm}{\pmimp\;\pmthm} %This occurs when a meta-theoretic implication is asserted.
+\newcommand{\pmbr}[1]{\bigg \lbrack \normalsize #1 \bigg \rbrack} %These are larger brackets for substitution.
 \newcommand{\pmsub}[2]{\bigg \lbrack \small \begin{array}{c} #1 \\ \hline #2 \end{array} \bigg \rbrack} %This is the substitution command.
-\newcommand{\pmSub}[3]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c} #2 \\ \hline #3 \end{array}  \bigg \rbrack} %This is the substitution command.
 \newcommand{\pmsubb}[4]{\bigg \lbrack \small \begin{array}{c c} #1, & #3 \\ \hline #2, & #4 \end{array}  \bigg \rbrack} %This is the substitution command.
-\newcommand{\pmSubb}[5]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c} #2, & #4 \\ \hline #3, & #5 \end{array}  \bigg \rbrack} %This is the substitution command.
 \newcommand{\pmsubbb}[6]{\bigg \lbrack \small \begin{array}{c c c} #1, & #3, & #5 \\ \hline #2, & #4, & #6 \end{array}  \bigg \rbrack} %This is the substitution command.
-\newcommand{\pmSubbb}[7]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c} #2, & #4, & #6 \\ \hline #3, & #5, & #7 \end{array}  \bigg \rbrack} %This is the substitution command.
 \newcommand{\pmsubbbb}[8]{\bigg \lbrack \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}  \bigg \rbrack} %This is the substitution command.
-\newcommand{\pmSubbbb}[9]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSub}[3]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c} #2 \\ \hline #3 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubb}[5]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c} #2, & #4 \\ \hline #3, & #5 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubbb}[7]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c} #2, & #4, & #6 \\ \hline #3, & #5, & #7 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubbbb}[9]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array} \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsUb}[2]{\small \begin{array}{c} #1 \\ \hline #2 \end{array}} %This is the substitution command.
+\newcommand{\pmsUbb}[4]{\small \begin{array}{c c} #1, & #3 \\ \hline #2, & #4 \end{array}} %This is the substitution command.
+\newcommand{\pmsUbbb}[6]{\small \begin{array}{c c c} #1, & #3, & #5 \\ \hline #2, & #4, & #6 \end{array}} %This is the substitution command.
+\newcommand{\pmsUbbbb}[8]{\small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}} %This is the substitution command.
+\newcommand{\pmSUb}[3]{\normalsize #1 \text{ } \small \begin{array}{c} #2 \\ \hline #3 \end{array}} %This is the substitution command.
+\newcommand{\pmSUbb}[5]{\normalsize #1 \text{ } \small \begin{array}{c c} #2, & #4 \\ \hline #3, & #5 \end{array}} %This is the substitution command.
+\newcommand{\pmSUbbb}[7]{\normalsize #1 \text{ } \small \begin{array}{c c c} #2, & #4, & #6 \\ \hline #3, & #5, & #7 \end{array}} %This is the substitution command.
+\newcommand{\pmSUbbbb}[9]{\normalsize #1 \text{ } \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}} %This is the substitution command.
 \newcommand{\pmthm}{\mathpunct{\text{\scalebox{.5}[1]{$\boldsymbol\vdash$}}}} %This is the theorem sign.
 \newcommand{\pmast}{\text{\resizebox{!}{.75\height}{\ding{107}}}} %This is the sign introducing a theorem number.
 \newcommand{\pmcdot}{\text{\raisebox{.05cm}{$\boldsymbol\cdot$}}} %This is a sign introducing a theorem sub-number.
@@ -198,9 +210,10 @@
 \newcommand{\pmSele}{\pmcin_{\Delta}}
 \newcommand{\pmself}[1]{F_{\small\Delta}\mathbf{`}#1}
 \newcommand{\pmSelf}{F_{\Delta}}
+\newcommand{\pmex}[1]{\text{Cls} \mathop{\text{excl}}\mathbf{`}#1}
 \newcommand{\pmexc}{\text{Cls}^2 \mathop{\text{excl}}}
 \newcommand{\pmexcc}[1]{\text{Cl} \mathop{\text{excl}}\textbf{`}#1}
-\newcommand{\pmexcn}{\text{Cls} \mathop{\text{ex}}^2 \mathop{\text{excl}}}
+\newcommand{\pmexcn}{\text{Cls} \mathop{\text{ex}^2} \mathop{\text{excl}}}
 \newcommand{\pmselc}[2]{#1 \mathrel{\rotatebox[origin=c]{270}{$\boldsymbol{\mapsto}$}} #2}
 \newcommand{\pmmultr}{\mathop{\text{Rel}} \mathop{\text{Mult}}}
 \newcommand{\pmmultc}{\mathop{\text{Cls}^2} \mathop{\text{Mult}}}
@@ -232,3 +245,8 @@
 \newcommand{\pmNC}{\text{NC}}
 \newcommand{\pmnoc}[1]{\text{N}_0\text{c}\textbf{`}#1}
 \newcommand{\pmNoc}{\text{N}_0\text{c}}
+\newcommand{\pmnocind}[1]{\text{N}_0\text{Cinduct}\textbf{`}#1}
+\newcommand{\pmNocind}{\text{N}_0\text{Cinduct}}
+
+\newcommand{\pmclsrefl}{\text{Cls} \mathop{\text{refl}}} 
+\newcommand{\pmncrefl}{\text{NC} \mathop{\text{refl}}} 
