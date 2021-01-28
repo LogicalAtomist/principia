@@ -5,13 +5,22 @@ Import Unicode.Utf8.
   (*We first give the axioms of Principia
 for the propositional calculus in *1.*)
 
+Axiom Impl1_01 : ∀ P Q : Prop, 
+  (P → Q) = (~P ∨ Q). 
+  (*This is a definition in Principia: there → is a 
+      defined sign and ∨, ~ are primitive ones. So 
+      we will use this axiom to switch between 
+      disjunction and implication.*)
+  
 Axiom MP1_1 : ∀  P Q : Prop,
   (P → Q) → P → Q. (*Modus ponens*)
 
-  (**1.11 ommitted: it is MP for propositions containing variables. Likewise, ommitted the well-formedness rules 1.7, 1.71, 1.72*)
+  (**1.11 ommitted: it is MP for propositions 
+      containing variables. Likewise, ommitted 
+      the well-formedness rules 1.7, 1.71, 1.72*)
 
 Axiom Taut1_2 : ∀ P : Prop, 
-  P ∨ P→ P. (*Tautology*)
+  P ∨ P → P. (*Tautology*)
 
 Axiom Add1_3 : ∀ P Q : Prop, 
   Q → P ∨ Q. (*Addition*)
@@ -23,10 +32,9 @@ Axiom Assoc1_5 : ∀ P Q R : Prop,
   P ∨ (Q ∨ R) → Q ∨ (P ∨ R).
 
 Axiom Sum1_6: ∀ P Q R : Prop, 
-  (Q → R) → (P ∨ Q → P ∨ R). (*These are all the propositional axioms of Principia Mathematica.*)
-
-Axiom Impl1_01 : ∀ P Q : Prop, 
-  (P → Q) = (~P ∨ Q). (*This is a definition in Principia: there → is a defined sign and ∨, ~ are primitive ones. So we will use this axiom to switch between disjunction and implication.*)
+  (Q → R) → (P ∨ Q → P ∨ R). 
+  
+  (*These are all the propositional axioms of Principia.*)
 
 End No1.
 
@@ -97,7 +105,8 @@ Proof. intros P Q R.
   intros Comm2_04.
   specialize Syll2_05 with P Q R. 
   intros Syll2_05.
-  specialize MP1_1 with ((Q → R) → (P → Q) → P → R) ((P → Q) → ((Q → R) → (P → R))). 
+  specialize MP1_1 with ((Q → R) → (P → Q) → P → R) 
+      ((P → Q) → ((Q → R) → (P → R))). 
   intros MP1_1.
   apply MP1_1.
   apply Comm2_04.
@@ -370,7 +379,10 @@ Proof. intros P Q R.
 Qed.
 
 Axiom n2_33 : ∀ P Q R : Prop,
-  (P∨Q∨R)=((P∨Q)∨R). (*This definition makes the default left association. The default in Coq is right association, so this will need to be applied to underwrite some inferences.*)
+  (P∨Q∨R)=((P∨Q)∨R). 
+  (*This definition makes the default left association. 
+      The default in Coq is right association, so this will 
+      need to be applied to underwrite some inferences.*)
 
 Theorem n2_36 : ∀ P Q R : Prop,
   (Q → R) → ((P ∨ Q) → (R ∨ P)).
@@ -771,10 +783,10 @@ Proof. intros P Q R.
   specialize Assoc1_5 with P Q R. 
   intros Assoc1_5a.
   specialize n2_31 with Q P R. 
-  intros n2_31a. (*not cited explicitly!*)
+  intros n2_31a. (*not cited*)
   Syll Assoc1_5a n2_31a Sa. 
   specialize n2_32 with P Q R. 
-  intros n2_32a. (*not cited explicitly!*)
+  intros n2_32a. (*not cited*)
   Syll n2_32a Sa Sb.
   specialize Syll2_06 with ((P∨Q)∨R) ((Q∨P)∨R) (P∨R). 
   intros Syll2_06a.
@@ -793,12 +805,12 @@ Proof. intros P Q R.
   Syll n2_53a n2_74a Sa.
   specialize n2_31 with P (~Q) R. 
   intros n2_31a.
-  specialize Syll2_06 with (P∨(~Q)∨R)((P∨(~Q))∨R)  (P∨R). 
+  specialize Syll2_06 with (P∨(~Q)∨R)((P∨(~Q))∨R) (P∨R). 
   intros Syll2_06a.
   MP Syll2_06a n2_31a.
   Syll Sa Syll2_06a Sb.
   specialize Perm1_4 with P Q. 
-  intros Perm1_4a. (*not cited!*)
+  intros Perm1_4a. (*not cited*)
   Syll Perm1_4a Sb Sc.
   replace (~Q∨R) with (Q→R) in Sc.
   apply Sc.
@@ -913,7 +925,8 @@ Proof. intros P Q R.
   specialize n2_54 with P (Q→R). 
   intros n2_54a.
   specialize n2_02 with (~P) ((P∨Q→R)→(Q→R)). 
-  intros n2_02a. (*Not mentioned! Greg's suggestion per the BRS list in June 25, 2017.*)
+  intros n2_02a. (*Not cited. 
+      Greg's suggestion per the BRS list on June 25, 2017.*)
   MP Syll2_06a n2_02a.
   MP Hb n2_02a.
   Syll Hb n2_54a Hc.
@@ -947,7 +960,7 @@ Axiom Prod3_01 : ∀ P Q : Prop,
 Axiom Abb3_02 : ∀ P Q R : Prop, 
   (P→Q→R)=(P→Q)∧(Q→R).
 
-Theorem Conj3_03 : ∀ P Q : Prop, P → Q → (P∧Q). (*3.03 is a derived rule permitting an inference from the theoremhood of P and that of Q to that of P and Q.*)
+Theorem Conj3_03 : ∀ P Q : Prop, P → Q → (P∧Q). 
 Proof. intros P Q.
   specialize n2_11 with (~P∨~Q). intros n2_11a.
   specialize n2_32 with (~P) (~Q) (~(~P ∨ ~Q)). intros n2_32a.
@@ -960,6 +973,8 @@ Proof. intros P Q.
   apply Impl1_01.
   apply Prod3_01.
 Qed.
+(*3.03 is a derived rule permitting an inference from the 
+    theoremhood of P and that of Q to that of P and Q.*)
 
 Theorem n3_1 : ∀ P Q : Prop,
   (P ∧ Q) → ~(~P ∨ ~Q).
@@ -1376,7 +1391,8 @@ Import No2.
 Import No3.
 
 Axiom Equiv4_01 : ∀ P Q : Prop, 
-  (P↔Q)=((P→Q) ∧ (Q→P)). (*n4_02 defines P iff Q iff R as P iff Q AND Q iff R.*)
+  (P↔Q)=((P→Q) ∧ (Q→P)). 
+  (*n4_02 defines P iff Q iff R as P iff Q AND Q iff R.*)
 
 Axiom EqBi : ∀ P Q : Prop, 
   (P=Q) ↔ (P↔Q).
@@ -1428,7 +1444,8 @@ Proof. intros P Q.
   Syll n3_47a n3_22a Sa.
   replace ((P → Q) ∧ (Q → P)) with (P↔Q) in Sa.
   replace ((~P → ~Q) ∧ (~Q → ~P)) with (~P↔~Q) in Sa.
-  clear Trans2_16a. clear H. clear Trans2_16b. clear n3_22a. clear n3_47a.
+  clear Trans2_16a. clear H. clear Trans2_16b. 
+      clear n3_22a. clear n3_47a.
   specialize Trans2_17 with Q P. 
   intros Trans2_17a.
   specialize Trans2_17 with P Q. 
@@ -1443,7 +1460,8 @@ Proof. intros P Q.
   specialize n3_22 with (Q→P) (P→Q).
   intros n3_22a.
   Syll n3_47a n3_22a Sb.
-  clear Trans2_17a. clear Trans2_17b. clear H. clear n3_47a. clear n3_22a.
+  clear Trans2_17a. clear Trans2_17b. clear H. 
+      clear n3_47a. clear n3_22a.
   replace ((P → Q) ∧ (Q → P)) with (P↔Q) in Sb.
   replace ((~P → ~Q) ∧ (~Q → ~P)) with (~P↔~Q) in Sb.
   Conj Sa Sb.
@@ -1484,7 +1502,8 @@ Theorem n4_12 : ∀ P Q : Prop,
     specialize n3_47 with (Q→~P) (~P→Q) (P→~Q) (~Q→P).
     intros n3_47b.
     MP n3_47b H0.
-    clear n2_03a. clear Trans2_15a. clear H. clear n2_03b. clear Trans2_15b. clear H0.
+    clear n2_03a. clear Trans2_15a. clear H. clear n2_03b. 
+        clear Trans2_15b. clear H0.
     replace ((P → ~Q) ∧ (~Q → P)) with (P↔~Q) in n3_47a.
     replace ((Q → ~P) ∧ (~P → Q)) with (Q↔~P) in n3_47a.
     replace ((P → ~Q) ∧ (~Q → P)) with (P↔~Q) in n3_47b.
@@ -1557,11 +1576,13 @@ Theorem n4_15 : ∀ P Q R : Prop,
   intros n4_13a.
   replace (~~R) with R in n4_14a.
   rewrite Equiv4_01 in n4_14a.
-  specialize Simp3_26 with ((Q ∧ P → ~R) → Q ∧ R → ~P) ((Q ∧ R → ~P) → Q ∧ P → ~R). 
+  specialize Simp3_26 with ((Q ∧ P → ~R) → Q ∧ R → ~P) 
+      ((Q ∧ R → ~P) → Q ∧ P → ~R). 
   intros Simp3_26a.
   MP Simp3_26a n4_14a.
   Syll Syll2_06a Simp3_26a Sa.
-  specialize Simp3_27 with ((Q ∧ P → ~R) → Q ∧ R → ~P) ((Q ∧ R → ~P) → Q ∧ P → ~R). 
+  specialize Simp3_27 with ((Q ∧ P → ~R) → Q ∧ R → ~P) 
+      ((Q ∧ R → ~P) → Q ∧ P → ~R). 
   intros Simp3_27a.
   MP Simp3_27a n4_14a.
   specialize n3_22 with P Q. 
@@ -1649,7 +1670,10 @@ Proof. intros P Q R.
   specialize n2_83 with ((P↔Q)∧(Q↔R)) R Q P. 
   intros n2_83b.
   MP n2_83b Sc. MP n2_83b Sd.
-  clear Sd. clear Sb. clear Sc. clear Sa. clear Simp3_26a. clear Simp3_26b. clear Simp3_26c. clear Simp3_26d. clear Simp3_27a. clear Simp3_27b. clear Simp3_27c. clear Simp3_27d.
+  clear Sd. clear Sb. clear Sc. clear Sa. clear Simp3_26a. 
+      clear Simp3_26b. clear Simp3_26c. clear Simp3_26d. 
+      clear Simp3_27a. clear Simp3_27b. clear Simp3_27c. 
+      clear Simp3_27d.
   Conj n2_83a n2_83b. 
   split.
   apply n2_83a. 
@@ -1741,11 +1765,16 @@ Qed.
     replace (Q ∧ R→~P) with (P→~(Q ∧ R)) in n4_15a.
     specialize Trans4_11 with (P ∧ Q → ~R) (P → ~(Q ∧ R)).
     intros Trans4_11a.
-    replace ((P ∧ Q → ~R) ↔ (P → ~(Q ∧ R))) with (~(P ∧ Q → ~R) ↔ ~(P → ~(Q ∧ R))) in n4_15a.
-    replace (P ∧ Q → ~R) with (~(P ∧ Q ) ∨ ~R) in n4_15a.
-    replace (P → ~(Q ∧ R)) with (~P ∨ ~(Q ∧ R)) in n4_15a.
-    replace (~(~(P ∧ Q) ∨ ~R)) with ((P ∧ Q) ∧ R) in n4_15a.
-    replace (~(~P ∨ ~(Q ∧ R))) with (P ∧ (Q ∧ R )) in n4_15a.
+    replace ((P ∧ Q → ~R) ↔ (P → ~(Q ∧ R))) with 
+        (~(P ∧ Q → ~R) ↔ ~(P → ~(Q ∧ R))) in n4_15a.
+    replace (P ∧ Q → ~R) with 
+        (~(P ∧ Q ) ∨ ~R) in n4_15a.
+    replace (P → ~(Q ∧ R)) with 
+        (~P ∨ ~(Q ∧ R)) in n4_15a.
+    replace (~(~(P ∧ Q) ∨ ~R)) with 
+        ((P ∧ Q) ∧ R) in n4_15a.
+    replace (~(~P ∨ ~(Q ∧ R))) with 
+        (P ∧ (Q ∧ R )) in n4_15a.
     apply n4_15a.
     apply Prod3_01.
     apply Prod3_01.
@@ -1753,7 +1782,8 @@ Qed.
     reflexivity.
     rewrite Impl1_01.
     reflexivity.
-    replace (~(P ∧ Q → ~R) ↔ ~(P → ~(Q ∧ R))) with ((P ∧ Q → ~R) ↔ (P → ~(Q ∧ R))).
+    replace (~(P ∧ Q → ~R) ↔ ~(P → ~(Q ∧ R))) with 
+        ((P ∧ Q → ~R) ↔ (P → ~(Q ∧ R))).
     reflexivity.
     apply EqBi.
     apply Trans4_11a.
@@ -1761,7 +1791,15 @@ Qed.
     apply Trans4_1a.
     apply EqBi.
     apply n4_13. 
-    Qed. (*Note that the actual proof uses n4_12, but that transposition involves transforming a biconditional into a conditional. This way of doing it - using Trans4_1 to transpose a conditional and then applying n4_13 to double negate - is easier without a derived rule for replacing a biconditional with one of its equivalent implications.*)
+    Qed. 
+    (*Note that the actual proof uses n4_12, but 
+        that transposition involves transforming a 
+        biconditional into a conditional. This way 
+        of doing it - using Trans4_1 to transpose a 
+        conditional and then applying n4_13 to 
+        double negate - is easier without a derived 
+        rule for replacing a biconditional with one 
+        of its equivalent implications.*)
 
 Theorem n4_33 : ∀ P Q R : Prop,
   (P ∨ (Q ∨ R)) ↔ ((P ∨ Q) ∨ R).
@@ -1775,7 +1813,13 @@ Theorem n4_33 : ∀ P Q R : Prop,
   Qed.
 
   Axiom n4_34 : ∀ P Q R : Prop,
-  P ∧ Q ∧ R = ((P ∧ Q) ∧ R). (*This axiom ensures left association of brackets. Coq's default is right association. But Principia proves associativity of logical product as n4_32. So in effect, this axiom gives us a derived rule that allows us to shift between Coq's and Principia's default rules for brackets of logical products.*)
+  P ∧ Q ∧ R = ((P ∧ Q) ∧ R). 
+  (*This axiom ensures left association of brackets. 
+  Coq's default is right association. But Principia 
+  proves associativity of logical product as n4_32. 
+  So in effect, this axiom gives us a derived rule that 
+  allows us to shift between Coq's and Principia's 
+  default rules for brackets of logical products.*)
 
 Theorem n4_36 : ∀ P Q R : Prop,
   (P ↔ Q) → ((P ∧ R) ↔ (Q ∧ R)).
@@ -1788,11 +1832,13 @@ Proof. intros P Q R.
   split.
   apply Fact3_45a.
   apply Fact3_45b.
-  specialize n3_47 with (P→Q) (Q→P) (P ∧ R → Q ∧ R) (Q ∧ R → P ∧ R).
+  specialize n3_47 with (P→Q) (Q→P) 
+      (P ∧ R → Q ∧ R) (Q ∧ R → P ∧ R).
   intros n3_47a.
   MP n3_47 H.
   replace  ((P → Q) ∧ (Q → P)) with (P↔Q) in n3_47a.
-  replace ((P ∧ R → Q ∧ R) ∧ (Q ∧ R → P ∧ R)) with (P ∧ R ↔ Q ∧ R) in n3_47a.
+  replace ((P ∧ R → Q ∧ R) ∧ (Q ∧ R → P ∧ R)) with 
+      (P ∧ R ↔ Q ∧ R) in n3_47a.
   apply n3_47a.
   apply Equiv4_01.
   apply Equiv4_01.
@@ -1809,11 +1855,13 @@ Proof. intros P Q R.
   split.
   apply Sum1_6a.
   apply Sum1_6b.
-  specialize n3_47 with (P → Q) (Q → P) (R ∨ P → R ∨ Q) (R ∨ Q → R ∨ P).
+  specialize n3_47 with (P → Q) (Q → P) 
+      (R ∨ P → R ∨ Q) (R ∨ Q → R ∨ P).
   intros n3_47a.
   MP n3_47 H.
   replace  ((P → Q) ∧ (Q → P)) with (P↔Q) in n3_47a.
-  replace ((R ∨ P → R ∨ Q) ∧ (R ∨ Q → R ∨ P)) with (R ∨ P ↔ R ∨ Q) in n3_47a.
+  replace ((R ∨ P → R ∨ Q) ∧ (R ∨ Q → R ∨ P)) with 
+      (R ∨ P ↔ R ∨ Q) in n3_47a.
   replace (R ∨ P) with (P ∨ R) in n3_47a.
   replace (R ∨ Q) with (Q ∨ R) in n3_47a.
   apply n3_47a.
@@ -1836,15 +1884,18 @@ Proof. intros P Q R S.
   split.
   apply n3_47a.
   apply n3_47b.
-  specialize n3_47 with ((P→R) ∧ (Q→S)) ((R→P) ∧ (S→Q)) (P ∧ Q → R ∧ S) (R ∧ S → P ∧ Q).
+  specialize n3_47 with ((P→R) ∧ (Q→S)) 
+      ((R→P) ∧ (S→Q)) (P ∧ Q → R ∧ S) (R ∧ S → P ∧ Q).
   intros n3_47c.
   MP n3_47c H.
   specialize n4_32 with (P→R) (Q→S) ((R→P) ∧ (S → Q)).
   intros n4_32a.
-  replace (((P → R) ∧ (Q → S)) ∧ (R → P) ∧ (S → Q)) with ((P → R) ∧ (Q → S) ∧ (R → P) ∧ (S → Q)) in n3_47c.
+  replace (((P → R) ∧ (Q → S)) ∧ (R → P) ∧ (S → Q)) with 
+      ((P → R) ∧ (Q → S) ∧ (R → P) ∧ (S → Q)) in n3_47c.
   specialize n4_32 with (Q→S) (R→P) (S → Q).
   intros n4_32b.
-  replace ((Q → S) ∧ (R → P) ∧ (S → Q)) with (((Q → S) ∧ (R → P)) ∧ (S → Q)) in n3_47c.
+  replace ((Q → S) ∧ (R → P) ∧ (S → Q)) with 
+      (((Q → S) ∧ (R → P)) ∧ (S → Q)) in n3_47c.
   specialize n3_22 with (Q→S) (R→P).
   intros n3_22a.
   specialize n3_22 with (R→P) (Q→S).
@@ -1854,23 +1905,28 @@ Proof. intros P Q R S.
   apply n3_22a.
   apply n3_22b.
   Equiv H0.
-  replace ((Q → S) ∧ (R → P)) with ((R → P) ∧ (Q → S)) in n3_47c.
+  replace ((Q → S) ∧ (R → P)) with 
+      ((R → P) ∧ (Q → S)) in n3_47c.
   specialize n4_32 with (R → P) (Q → S) (S → Q).
   intros n4_32c.
-  replace (((R → P) ∧ (Q → S)) ∧ (S → Q)) with ((R → P) ∧ (Q → S) ∧ (S → Q)) in n3_47c.
+  replace (((R → P) ∧ (Q → S)) ∧ (S → Q)) with 
+      ((R → P) ∧ (Q → S) ∧ (S → Q)) in n3_47c.
   specialize n4_32 with (P→R) (R → P) ((Q → S)∧(S → Q)).
   intros n4_32d.
-  replace ((P → R) ∧ (R → P) ∧ (Q → S) ∧ (S → Q)) with (((P → R) ∧ (R → P)) ∧ (Q → S) ∧ (S → Q)) in n3_47c.
+  replace ((P → R) ∧ (R → P) ∧ (Q → S) ∧ (S → Q)) with 
+      (((P → R) ∧ (R → P)) ∧ (Q → S) ∧ (S → Q)) in n3_47c.
   replace ((P→R) ∧ (R → P)) with (P↔R) in n3_47c.
   replace ((Q → S) ∧ (S → Q)) with (Q↔S) in n3_47c.
-  replace ((P ∧ Q → R ∧ S) ∧ (R ∧ S → P ∧ Q)) with ((P ∧ Q) ↔ (R ∧ S)) in n3_47c.
+  replace ((P ∧ Q → R ∧ S) ∧ (R ∧ S → P ∧ Q)) with 
+      ((P ∧ Q) ↔ (R ∧ S)) in n3_47c.
   apply n3_47c.
   apply Equiv4_01.
   apply Equiv4_01.
   apply Equiv4_01.
   apply EqBi.
   apply n4_32d.
-  replace ((R → P) ∧ (Q → S) ∧ (S → Q)) with (((R → P) ∧ (Q → S)) ∧ (S → Q)).
+  replace ((R → P) ∧ (Q → S) ∧ (S → Q)) with 
+      (((R → P) ∧ (Q → S)) ∧ (S → Q)).
   reflexivity.
   apply EqBi.
   apply n4_32c.
@@ -1881,7 +1937,8 @@ Proof. intros P Q R S.
   apply Equiv4_01.
   apply EqBi.
   apply n4_32b.
-  replace ((P → R) ∧ (Q → S) ∧ (R → P) ∧ (S → Q)) with (((P → R) ∧ (Q → S)) ∧ (R → P) ∧ (S → Q)).
+  replace ((P → R) ∧ (Q → S) ∧ (R → P) ∧ (S → Q)) with 
+      (((P → R) ∧ (Q → S)) ∧ (R → P) ∧ (S → Q)).
   reflexivity.
   apply EqBi.
   apply n4_32a.
@@ -1898,16 +1955,20 @@ Proof.  intros P Q R S.
   split.
   apply n3_48a.
   apply n3_48b.
-  specialize n3_47 with ((P → R) ∧ (Q → S)) ((R → P) ∧ (S → Q)) (P ∨ Q → R ∨ S) (R ∨ S → P ∨ Q).
+  specialize n3_47 with ((P → R) ∧ (Q → S)) 
+      ((R → P) ∧ (S → Q)) (P ∨ Q → R ∨ S) (R ∨ S → P ∨ Q).
   intros n3_47a.
   MP n3_47a H.
-  replace ((P ∨ Q → R ∨ S) ∧ (R ∨ S → P ∨ Q)) with ((P ∨ Q) ↔ (R ∨ S)) in n3_47a.
+  replace ((P ∨ Q → R ∨ S) ∧ (R ∨ S → P ∨ Q)) with 
+      ((P ∨ Q) ↔ (R ∨ S)) in n3_47a.
   specialize n4_32 with ((P → R) ∧ (Q → S)) (R → P) (S → Q).
   intros n4_32a.
-  replace (((P → R) ∧ (Q → S)) ∧ (R → P) ∧ (S → Q)) with ((((P → R) ∧ (Q → S)) ∧ (R → P)) ∧ (S → Q)) in n3_47a.
+  replace (((P → R) ∧ (Q → S)) ∧ (R → P) ∧ (S → Q)) with 
+      ((((P → R) ∧ (Q → S)) ∧ (R → P)) ∧ (S → Q)) in n3_47a.
   specialize n4_32 with (P → R) (Q → S) (R → P).
   intros n4_32b.
-  replace (((P → R) ∧ (Q → S)) ∧ (R → P)) with ((P → R) ∧ (Q → S) ∧ (R → P)) in n3_47a.
+  replace (((P → R) ∧ (Q → S)) ∧ (R → P)) with 
+      ((P → R) ∧ (Q → S) ∧ (R → P)) in n3_47a.
   specialize n3_22 with (Q → S) (R → P).
   intros n3_22a. 
   specialize n3_22 with (R → P) (Q → S).
@@ -1917,18 +1978,22 @@ Proof.  intros P Q R S.
   apply n3_22a.
   apply n3_22b.
   Equiv H0.
-  replace ((Q → S) ∧ (R → P)) with ((R → P) ∧ (Q → S)) in n3_47a.
+  replace ((Q → S) ∧ (R → P)) with 
+      ((R → P) ∧ (Q → S)) in n3_47a.
   specialize n4_32 with (P → R) (R → P) (Q → S).
   intros n4_32c.
-  replace ((P → R) ∧ (R → P) ∧ (Q → S)) with (((P → R) ∧ (R → P)) ∧ (Q → S)) in n3_47a.
+  replace ((P → R) ∧ (R → P) ∧ (Q → S)) with 
+      (((P → R) ∧ (R → P)) ∧ (Q → S)) in n3_47a.
   replace ((P → R) ∧ (R → P)) with (P↔R) in n3_47a.
   specialize n4_32 with (P↔R) (Q→S) (S→Q).
   intros n4_32d.
-  replace (((P ↔ R) ∧ (Q → S)) ∧ (S → Q)) with ((P ↔ R) ∧ (Q → S) ∧ (S → Q)) in n3_47a.
+  replace (((P ↔ R) ∧ (Q → S)) ∧ (S → Q)) with 
+      ((P ↔ R) ∧ (Q → S) ∧ (S → Q)) in n3_47a.
   replace ((Q → S) ∧ (S → Q)) with (Q ↔ S) in n3_47a.
   apply n3_47a.
   apply Equiv4_01.
-  replace ((P ↔ R) ∧ (Q → S) ∧ (S → Q)) with (((P ↔ R) ∧ (Q → S)) ∧ (S → Q)).
+  replace ((P ↔ R) ∧ (Q → S) ∧ (S → Q)) with 
+      (((P ↔ R) ∧ (Q → S)) ∧ (S → Q)).
   reflexivity.
   apply EqBi.
   apply n4_32d.
@@ -1940,7 +2005,8 @@ Proof.  intros P Q R S.
   apply EqBi.
   apply H0.
   apply Equiv4_01.
-  replace ((P → R) ∧ (Q → S) ∧ (R → P)) with (((P → R) ∧ (Q → S)) ∧ (R → P)).
+  replace ((P → R) ∧ (Q → S) ∧ (R → P)) with 
+      (((P → R) ∧ (Q → S)) ∧ (R → P)).
   reflexivity.
   apply EqBi.
   apply n4_32b.
@@ -1999,14 +2065,15 @@ Proof. intros P Q R.
   specialize Comp3_43 with (P ∧ Q ∨ P ∧ R) P (Q∨R).
   intros Comp3_43b.
   MP Comp3_43b H1.
-  clear H1. clear H0. clear n3_44a. clear n3_48b. clear Simp3_26a. clear Simp3_26b.
+  clear H1. clear H0. clear n3_44a. clear n3_48b. 
+      clear Simp3_26a. clear Simp3_26b.
   Conj Imp3_31a Comp3_43b.
   split.
-apply Imp3_31a.
-apply Comp3_43b.
-Equiv H0.
-apply H0.
-apply Equiv4_01.
+  apply Imp3_31a.
+  apply Comp3_43b.
+  Equiv H0.
+  apply H0.
+  apply Equiv4_01.
 Qed.
 
 Theorem n4_41 : ∀ P Q R : Prop,
@@ -2108,7 +2175,8 @@ Proof. intros P Q.
   intros Imp3_31a.
   MP Imp3_31a n2_65a.
   Syll n3_47a Imp3_31a Sa.
-  clear n2_2a. clear n2_2b. clear H. clear n2_53a. clear n2_53b. clear H0. clear n2_65a. clear n3_47a. clear Imp3_31a.
+  clear n2_2a. clear n2_2b. clear H. clear n2_53a. clear n2_53b. 
+      clear H0. clear n2_65a. clear n3_47a. clear Imp3_31a.
   Conj Comp3_43a Sa.
   split.
   apply Comp3_43a.
@@ -2182,9 +2250,12 @@ Theorem n4_51 : ∀ P Q : Prop,
     intros n4_5a.
     specialize n4_12 with (P ∧ Q) (~P ∨ ~Q).
     intros n4_12a.
-    replace ((P ∧ Q ↔ ~(~P ∨ ~Q)) ↔ (~P ∨ ~Q ↔ ~(P ∧ Q))) with ((P ∧ Q ↔ ~(~P ∨ ~Q)) = (~P ∨ ~Q ↔ ~(P ∧ Q))) in n4_12a.
-    replace (P ∧ Q ↔ ~(~P ∨ ~Q)) with (~P ∨ ~Q ↔ ~(P ∧ Q)) in n4_5a.
-    replace (~P ∨ ~Q ↔ ~(P ∧ Q)) with (~(P ∧ Q) ↔ (~P ∨ ~Q)) in n4_5a.
+    replace ((P∧Q ↔ ~(~P∨~Q))↔(~P∨~Q ↔ ~(P∧Q))) with 
+        ((P∧Q ↔ ~(~P∨~Q)) = (~P∨~Q ↔ ~(P∧Q))) in n4_12a.
+    replace (P ∧ Q ↔ ~(~P ∨ ~Q)) with 
+        (~P ∨ ~Q ↔ ~(P ∧ Q)) in n4_5a.
+    replace (~P ∨ ~Q ↔ ~(P ∧ Q)) with 
+        (~(P ∧ Q) ↔ (~P ∨ ~Q)) in n4_5a.
     apply n4_5a.
     specialize n4_21 with (~(P ∧ Q)) (~P ∨ ~Q).
     intros n4_21a.
@@ -2214,9 +2285,12 @@ Theorem n4_53 : ∀ P Q : Prop,
     intros n4_52a.
     specialize n4_12 with ( P ∧ ~Q) ((~P ∨ Q)).
     intros n4_12a.
-    replace ((P ∧ ~Q ↔ ~(~P ∨ Q)) ↔ (~P ∨ Q ↔ ~(P ∧ ~Q))) with ((P ∧ ~Q ↔ ~(~P ∨ Q)) = (~P ∨ Q ↔ ~(P ∧ ~Q))) in n4_12a.
-    replace (P ∧ ~Q ↔ ~(~P ∨ Q)) with (~P ∨ Q ↔ ~(P ∧ ~Q)) in n4_52a.
-    replace (~P ∨ Q ↔ ~(P ∧ ~Q)) with (~(P ∧ ~Q) ↔ (~P ∨ Q)) in n4_52a.
+    replace ((P∧~Q ↔ ~(~P∨Q))↔(~P∨Q ↔ ~(P∧~Q))) with 
+        ((P∧~Q ↔ ~(~P∨Q)) = (~P∨Q ↔ ~(P∧~Q))) in n4_12a.
+    replace (P ∧ ~Q ↔ ~(~P ∨ Q)) with 
+        (~P ∨ Q ↔ ~(P ∧ ~Q)) in n4_52a.
+    replace (~P ∨ Q ↔ ~(P ∧ ~Q)) with 
+        (~(P ∧ ~Q) ↔ (~P ∨ Q)) in n4_52a.
     apply n4_52a.
     specialize n4_21 with (~(P ∧ ~Q)) (~P ∨ Q).
     intros n4_21a.
@@ -2246,14 +2320,17 @@ Theorem n4_55 : ∀ P Q : Prop,
     intros n4_54a.
     specialize n4_12 with (~P ∧ Q) (P ∨ ~Q).
     intros n4_12a.
-    replace (~P ∧ Q ↔ ~(P ∨ ~Q)) with (P ∨ ~Q ↔ ~(~P ∧ Q)) in n4_54a.
-    replace (P ∨ ~Q ↔ ~(~P ∧ Q)) with (~(~P ∧ Q) ↔ (P ∨ ~Q)) in n4_54a.
+    replace (~P ∧ Q ↔ ~(P ∨ ~Q)) with 
+        (P ∨ ~Q ↔ ~(~P ∧ Q)) in n4_54a.
+    replace (P ∨ ~Q ↔ ~(~P ∧ Q)) with 
+        (~(~P ∧ Q) ↔ (P ∨ ~Q)) in n4_54a.
     apply n4_54a.
     specialize n4_21 with (~(~P ∧ Q)) (P ∨ ~Q).
     intros n4_21a.
     apply EqBi.
     apply n4_21a.
-    replace ((~P ∧ Q ↔ ~(P ∨ ~Q)) ↔ (P ∨ ~Q ↔ ~(~P ∧ Q))) with ((~P ∧ Q ↔ ~(P ∨ ~Q)) = (P ∨ ~Q ↔ ~(~P ∧ Q))) in n4_12a.
+    replace ((~P ∧ Q ↔ ~(P ∨ ~Q)) ↔ (P ∨ ~Q ↔ ~(~P ∧ Q))) with 
+        ((~P ∧ Q ↔ ~(P ∨ ~Q)) = (P ∨ ~Q ↔ ~(~P ∧ Q))) in n4_12a.
     rewrite n4_12a.
     reflexivity.
     apply EqBi.
@@ -2278,18 +2355,22 @@ Theorem n4_57 : ∀ P Q : Prop,
     intros n4_56a.
     specialize n4_12 with (~P ∧ ~Q) (P ∨ Q).
     intros n4_12a.
-    replace (~P ∧ ~Q ↔ ~(P ∨ Q)) with (P ∨ Q ↔ ~(~P ∧ ~Q)) in n4_56a.
-    replace (P ∨ Q ↔ ~(~P ∧ ~Q)) with (~(~P ∧ ~Q) ↔ P ∨ Q) in n4_56a.
+    replace (~P ∧ ~Q ↔ ~(P ∨ Q)) with 
+        (P ∨ Q ↔ ~(~P ∧ ~Q)) in n4_56a.
+    replace (P ∨ Q ↔ ~(~P ∧ ~Q)) with 
+        (~(~P ∧ ~Q) ↔ P ∨ Q) in n4_56a.
     apply n4_56a.
     specialize n4_21 with (~(~P ∧ ~Q)) (P ∨ Q).
     intros n4_21a.
     apply EqBi.
     apply n4_21a.
-    replace ((~P ∧ ~Q ↔ ~(P ∨ Q)) ↔ (P ∨ Q ↔ ~(~P ∧ ~Q))) with ((P ∨ Q ↔ ~(~P ∧ ~Q)) ↔ (~P ∧ ~Q ↔ ~(P ∨ Q))) in n4_12a.
+    replace ((~P∧~Q↔~(P∨Q))↔(P∨Q↔~(~P∧~Q))) with 
+        ((P∨Q↔~(~P∧~Q))↔(~P∧~Q↔~(P∨Q))) in n4_12a.
     apply EqBi.
     apply n4_12a.
     apply EqBi.
-    specialize n4_21 with (P ∨ Q ↔ ~(~P ∧ ~Q)) (~P ∧ ~Q ↔ ~(P ∨ Q)).
+    specialize n4_21 with 
+        (P ∨ Q ↔ ~(~P ∧ ~Q)) (~P ∧ ~Q ↔ ~(P ∨ Q)).
     intros n4_21b.
     apply n4_21b.
   Qed.
@@ -2312,12 +2393,14 @@ Theorem n4_61 : ∀ P Q : Prop,
   intros Trans4_11a.
   specialize n4_52 with P Q.
   intros n4_52a.
-  replace ((P → Q) ↔ ~P ∨ Q) with (~(P → Q) ↔ ~(~P ∨ Q)) in n4_6a.
+  replace ((P → Q) ↔ ~P ∨ Q) with 
+      (~(P → Q) ↔ ~(~P ∨ Q)) in n4_6a.
   replace (~(~P ∨ Q)) with (P ∧ ~Q) in n4_6a.
   apply n4_6a.
   apply EqBi.
   apply n4_52a.
-  replace (((P → Q) ↔ ~P ∨ Q) ↔ (~(P → Q) ↔ ~(~P ∨ Q))) with ((~(P → Q) ↔ ~(~P ∨ Q)) ↔ ((P → Q) ↔ ~P ∨ Q)) in Trans4_11a.
+  replace (((P→Q)↔~P∨Q)↔(~(P→Q)↔~(~P∨Q))) with 
+      ((~(P→Q)↔~(~P∨Q))↔((P→Q)↔~P∨Q)) in Trans4_11a.
   apply EqBi.
   apply Trans4_11a.
   apply EqBi.
@@ -2342,12 +2425,15 @@ Theorem n4_63 : ∀ P Q : Prop,
     specialize n4_5 with P Q.
     intros n4_5a.
     replace (~(~P ∨ ~Q)) with (P ∧ Q) in Trans4_11a.
-    replace ((P → ~Q) ↔ ~P ∨ ~Q) with ((~(P → ~Q) ↔ P ∧ Q)) in n4_62a.
+    replace ((P → ~Q) ↔ ~P ∨ ~Q) with 
+        ((~(P → ~Q) ↔ P ∧ Q)) in n4_62a.
     apply n4_62a.
-    replace (((P → ~Q) ↔ ~P ∨ ~Q) ↔ (~(P → ~Q) ↔  P ∧ Q)) with ((~(P → ~Q) ↔  P ∧ Q) ↔ ((P → ~Q) ↔ ~P ∨ ~Q)) in Trans4_11a.
+    replace (((P→~Q)↔~P∨~Q)↔(~(P→~Q)↔P∧Q)) with 
+        ((~(P→~Q)↔P∧Q)↔((P→~Q)↔~P∨~Q)) in Trans4_11a.
     apply EqBi.
     apply Trans4_11a.
-    specialize n4_21 with (~(P → ~Q) ↔ P ∧ Q) ((P → ~Q) ↔ ~P ∨ ~Q).
+    specialize n4_21 with 
+        (~(P → ~Q) ↔ P ∧ Q) ((P → ~Q) ↔ ~P ∨ ~Q).
     intros n4_21a.
     apply EqBi.
     apply n4_21a.
@@ -2380,8 +2466,10 @@ Theorem n4_65 : ∀ P Q : Prop,
   intros Trans4_11a.
   specialize n4_56 with P Q.
   intros n4_56a.
-  replace (((~P → Q) ↔ P ∨ Q) ↔ (~(~P → Q) ↔ ~(P ∨ Q))) with ((~(~P → Q) ↔ ~(P ∨ Q)) ↔ ((~P → Q) ↔ P ∨ Q)) in Trans4_11a.
-  replace ((~P → Q) ↔ P ∨ Q) with (~(~P → Q) ↔ ~(P ∨ Q)) in n4_64a.
+  replace (((~P→Q)↔P∨Q)↔(~(~P→Q)↔~(P∨Q))) with 
+      ((~(~P→Q)↔~(P∨Q))↔((~P→Q)↔P∨Q)) in Trans4_11a.
+  replace ((~P → Q) ↔ P ∨ Q) with 
+      (~(~P → Q) ↔ ~(P ∨ Q)) in n4_64a.
   replace (~(P ∨ Q)) with (~P ∧ ~Q) in n4_64a.
   apply n4_64a.
   apply EqBi.
@@ -2407,14 +2495,16 @@ Theorem n4_67 : ∀ P Q : Prop,
   intros n4_66a.
   specialize Trans4_11 with (~P → ~Q) (P ∨ ~Q).
   intros Trans4_11a.
-  replace ((~P → ~Q) ↔ P ∨ ~Q) with (~(~P → ~Q) ↔ ~(P ∨ ~Q)) in n4_66a.
+  replace ((~P → ~Q) ↔ P ∨ ~Q) with 
+      (~(~P → ~Q) ↔ ~(P ∨ ~Q)) in n4_66a.
   specialize n4_54 with P Q.
   intros n4_54a.
   replace (~(P ∨ ~Q)) with (~P ∧ Q) in n4_66a.
   apply n4_66a.
   apply EqBi.
   apply n4_54a.
-  replace (((~P → ~Q) ↔ P ∨ ~Q) ↔ (~(~P → ~Q) ↔ ~(P ∨ ~Q))) with ((~(~P → ~Q) ↔ ~(P ∨ ~Q)) ↔ ((~P → ~Q) ↔ P ∨ ~Q)) in Trans4_11a.
+  replace (((~P→~Q)↔P∨~Q)↔(~(~P→~Q)↔~(P∨~Q))) with 
+      ((~(~P→~Q)↔~(P∨~Q))↔((~P→~Q)↔P∨~Q)) in Trans4_11a.
   apply EqBi.
   apply Trans4_11a.
   apply EqBi.
@@ -2426,7 +2516,8 @@ Theorem n4_7 : ∀ P Q : Prop,
   Proof. intros P Q.
   specialize Comp3_43 with P P Q.
   intros Comp3_43a.
-  specialize Exp3_3 with  (P → P) (P → Q) (P → P ∧ Q).
+  specialize Exp3_3 with 
+      (P → P) (P → Q) (P → P ∧ Q).
   intros Exp3_3a.
   MP Exp3_3a Comp3_43a.
   specialize n2_08 with P.
@@ -2454,13 +2545,15 @@ Theorem n4_71 : ∀ P Q : Prop,
   intros n4_7a.
   specialize n3_21 with (P→(P∧Q)) ((P∧Q)→P).
   intros n3_21a.
-  replace ((P → P ∧ Q) ∧ (P ∧ Q → P)) with (P↔(P ∧ Q)) in n3_21a.
+  replace ((P → P ∧ Q) ∧ (P ∧ Q → P)) with 
+      (P↔(P ∧ Q)) in n3_21a.
   specialize Simp3_26 with P Q.
   intros Simp3_26a.
   MP n3_21a Simp3_26a.
   specialize Simp3_26 with (P→(P∧Q)) ((P∧Q)→P).
   intros Simp3_26b.
-  replace ((P → P ∧ Q) ∧ (P ∧ Q → P)) with (P↔(P ∧ Q)) in Simp3_26b. clear Simp3_26a.
+  replace ((P → P ∧ Q) ∧ (P ∧ Q → P)) with 
+      (P↔(P ∧ Q)) in Simp3_26b. clear Simp3_26a.
   Conj n3_21a Simp3_26b.
   split.
   apply n3_21a.
@@ -2491,7 +2584,8 @@ Theorem n4_72 : ∀ P Q : Prop,
   split.
   apply Trans4_1a.
   apply n4_71a.
-  specialize n4_22 with (P→Q) (~Q→~P) (~Q↔~Q ∧ ~ P).
+  specialize n4_22 with 
+      (P→Q) (~Q→~P) (~Q↔~Q ∧ ~P).
   intros n4_22a.
   MP n4_22a H.
   specialize n4_21 with (~Q) (~Q ∧ ~P).
@@ -2500,16 +2594,18 @@ Theorem n4_72 : ∀ P Q : Prop,
   split.
   apply n4_22a.
   apply n4_21a.
-  specialize n4_22 with (P→Q) (~Q ↔ ~Q ∧ ~P) (~Q ∧ ~P ↔ ~Q).
+  specialize n4_22 with 
+      (P→Q) (~Q ↔ ~Q ∧ ~P) (~Q ∧ ~P ↔ ~Q).
   intros n4_22b.
   MP n4_22b H0.
-  specialize n4_12 with (~Q ∧ ~ P) (Q).
+  specialize n4_12 with (~Q ∧ ~P) (Q).
   intros n4_12a.
   Conj n4_22b n4_12a.
   split.
   apply n4_22b.
   apply n4_12a.
-  specialize n4_22 with (P → Q) ((~Q ∧ ~ P) ↔ ~Q) (Q ↔ ~(~Q ∧ ~P)).
+  specialize n4_22 with 
+      (P → Q) ((~Q ∧ ~P) ↔ ~Q) (Q ↔ ~(~Q ∧ ~P)).
   intros n4_22c.
   MP n4_22b H0.
   specialize n4_57 with Q P.
@@ -2522,7 +2618,8 @@ Theorem n4_72 : ∀ P Q : Prop,
   apply EqBi.
   apply n4_31a.
   apply EqBi.
-  replace (~(~Q ∧ ~P) ↔ Q ∨ P) with (Q ∨ P ↔~(~Q ∧ ~P)) in n4_57a.
+  replace (~(~Q ∧ ~P) ↔ Q ∨ P) with 
+      (Q ∨ P ↔~(~Q ∧ ~P)) in n4_57a.
   apply n4_57a.
   apply EqBi.
   apply n4_21.
@@ -2535,8 +2632,10 @@ Theorem n4_73 : ∀ P Q : Prop,
   intros n2_02a.
   specialize n4_71 with P Q.
   intros n4_71a.
-  replace ((P → Q) ↔ (P ↔ P ∧ Q)) with (((P → Q) → (P ↔ P ∧ Q)) ∧ ((P ↔ P ∧ Q)→(P→Q))) in n4_71a.
-  specialize Simp3_26 with ((P → Q) → P ↔ P ∧ Q) (P ↔ P ∧ Q → P → Q).
+  replace ((P → Q) ↔ (P ↔ P ∧ Q)) with 
+      (((P→Q)→(P↔P∧Q))∧((P↔P∧Q)→(P→Q))) in n4_71a.
+  specialize Simp3_26 with 
+      ((P → Q) → P ↔ P ∧ Q) (P ↔ P ∧ Q → P → Q).
   intros Simp3_26a.
   MP Simp3_26a n4_71a.
   Syll n2_02a Simp3_26a Sa.
@@ -2554,7 +2653,8 @@ Theorem n4_74 : ∀ P Q : Prop,
   replace (P → Q) with (Q ↔ P ∨ Q) in n2_21a.
   apply n2_21a.
   apply EqBi.
-  replace ((P → Q) ↔ (Q ↔ P ∨ Q)) with ((Q ↔ P ∨ Q) ↔ (P → Q)) in n4_72a.
+  replace ((P → Q) ↔ (Q ↔ P ∨ Q)) with 
+      ((Q ↔ P ∨ Q) ↔ (P → Q)) in n4_72a.
   apply n4_72a.
   apply EqBi.
   apply n4_21.
@@ -2568,7 +2668,8 @@ Theorem n4_76 : ∀ P Q R : Prop,
   replace (~P ∨ Q) with (P→Q) in n4_41a.
   replace (~P ∨ R) with (P→R) in n4_41a.
   replace (~P ∨ Q ∧ R) with (P → Q ∧ R) in n4_41a.
-  replace ((P → Q ∧ R) ↔ (P → Q) ∧ (P → R)) with ((P → Q) ∧ (P → R) ↔ (P → Q ∧ R)) in n4_41a.
+  replace ((P → Q ∧ R) ↔ (P → Q) ∧ (P → R)) with 
+      ((P → Q) ∧ (P → R) ↔ (P → Q ∧ R)) in n4_41a.
   apply n4_41a.
   apply EqBi.
   apply n4_21.
@@ -2593,36 +2694,53 @@ Theorem n4_77 : ∀ P Q R : Prop,
   intros Add1_3a.
   Syll Add1_3a H Sb.
   apply Sb.
-  Qed. (*Note that we used the split tactic on a conditional, effectively introducing an assumption for conditional proof. It remains to prove that (AvB)→C and A→(AvB) together imply A→C, and similarly that (AvB)→C and B→(AvB) together imply B→C. This can be proved by Syll, but we need a rule of replacement in the context of ((AvB)→C)→(A→C)/\(B→C).*)
+  Qed. 
+  (*Note that we used the split tactic on a conditional, 
+      effectively introducing an assumption for conditional 
+      proof. It remains to prove that (AvB)→C and A→(AvB) 
+     together imply A→C, and similarly that (AvB)→C and 
+     B→(AvB) together imply B→C. This can be proved by 
+     Syll, but we need a rule of replacement in the context 
+     of ((AvB)→C)→(A→C)/\(B→C).*)
 
 Theorem n4_78 : ∀ P Q R : Prop,
   ((P → Q) ∨ (P → R)) ↔ (P → (Q ∨ R)).
   Proof. intros P Q R.
   specialize n4_2 with ((P→Q) ∨ (P → R)).
   intros n4_2a.
-  replace (((P → Q) ∨ (P → R))↔((P → Q) ∨ (P → R))) with (((P → Q) ∨ (P → R))↔((~P ∨ Q) ∨ ~P ∨ R)) in n4_2a.
+  replace (((P→Q)∨(P→R))↔((P→Q)∨(P→R))) with 
+      (((P → Q) ∨ (P → R))↔((~P ∨ Q) ∨ ~P ∨ R)) in n4_2a.
   specialize n4_33 with (~P) Q (~P ∨ R).
   intros n4_33a.
-  replace ((~P ∨ Q) ∨ ~P ∨ R) with (~P ∨ Q ∨ ~P ∨ R) in n4_2a.
+  replace ((~P ∨ Q) ∨ ~P ∨ R) with 
+      (~P ∨ Q ∨ ~P ∨ R) in n4_2a.
   specialize n4_31 with (~P) Q.
   intros n4_31a.
   specialize n4_37 with (~P∨Q) (Q ∨ ~P) R.
   intros n4_37a.
   MP n4_37a n4_31a.
-  replace (Q ∨ ~P ∨ R) with ((Q ∨ ~P) ∨ R) in n4_2a.
-  replace ((Q ∨ ~P) ∨ R) with ((~P ∨ Q) ∨ R) in n4_2a.
+  replace (Q ∨ ~P ∨ R) with 
+      ((Q ∨ ~P) ∨ R) in n4_2a.
+  replace ((Q ∨ ~P) ∨ R) with 
+      ((~P ∨ Q) ∨ R) in n4_2a.
   specialize n4_33 with (~P) (~P∨Q) R.
   intros n4_33b.
-  replace (~P ∨ (~P ∨ Q) ∨ R) with ((~P ∨ (~P ∨ Q)) ∨ R) in n4_2a.
+  replace (~P ∨ (~P ∨ Q) ∨ R) with 
+      ((~P ∨ (~P ∨ Q)) ∨ R) in n4_2a.
   specialize n4_25 with (~P).
   intros n4_25a.
-  specialize n4_37 with (~P) (~P ∨ ~P) (Q ∨ R).
+  specialize n4_37 with 
+      (~P) (~P ∨ ~P) (Q ∨ R).
   intros n4_37b.
   MP n4_37b n4_25a.
-  replace (~P ∨ ~P ∨ Q) with ((~P ∨ ~P) ∨ Q) in n4_2a.
-  replace (((~P ∨ ~P) ∨ Q) ∨ R) with ((~P ∨ ~P) ∨ Q ∨ R) in n4_2a.
-  replace ((~P ∨ ~P) ∨ Q ∨ R) with ((~P) ∨ (Q ∨ R)) in n4_2a.
-  replace (~P ∨ Q ∨ R) with (P → (Q ∨ R)) in n4_2a.
+  replace (~P ∨ ~P ∨ Q) with 
+      ((~P ∨ ~P) ∨ Q) in n4_2a.
+  replace (((~P ∨ ~P) ∨ Q) ∨ R) with 
+      ((~P ∨ ~P) ∨ Q ∨ R) in n4_2a.
+  replace ((~P ∨ ~P) ∨ Q ∨ R) with 
+      ((~P) ∨ (Q ∨ R)) in n4_2a.
+  replace (~P ∨ Q ∨ R) with 
+      (P → (Q ∨ R)) in n4_2a.
   apply n4_2a.
   apply Impl1_01.
   apply EqBi.
@@ -2631,7 +2749,8 @@ Theorem n4_78 : ∀ P Q R : Prop,
   replace ((~P ∨ ~P) ∨ Q) with (~P ∨ ~P ∨ Q).
   reflexivity.
   apply n2_33.
-  replace ((~P ∨ ~P ∨ Q) ∨ R) with (~P ∨ (~P ∨ Q) ∨ R).
+  replace ((~P ∨ ~P ∨ Q) ∨ R) with 
+      (~P ∨ (~P ∨ Q) ∨ R).
   reflexivity.
   apply EqBi.
   apply n4_33b.
@@ -2660,25 +2779,31 @@ Theorem n4_79 : ∀ P Q R : Prop,
     split.
     apply Trans4_1a.
     apply Trans4_1b.
-    specialize n4_39 with (Q→P) (R→P) (~P→~Q) (~P→~R).
+    specialize n4_39 with 
+        (Q→P) (R→P) (~P→~Q) (~P→~R).
     intros n4_39a.
     MP n4_39a H.
     specialize n4_78 with (~P) (~Q) (~R).
     intros n4_78a.
-    replace ((~P → ~Q) ∨ (~P → ~R)) with (~P → ~Q ∨ ~R) in n4_39a.
+    replace ((~P → ~Q) ∨ (~P → ~R)) with 
+        (~P → ~Q ∨ ~R) in n4_39a.
     specialize Trans2_15 with P (~Q ∨ ~R).
     intros Trans2_15a.
-    replace (~P → ~Q ∨ ~R) with (~(~Q ∨ ~R) → P) in n4_39a.
-    replace (~(~Q ∨ ~R)) with (Q ∧ R) in n4_39a.
+    replace (~P → ~Q ∨ ~R) with 
+        (~(~Q ∨ ~R) → P) in n4_39a.
+    replace (~(~Q ∨ ~R)) with 
+        (Q ∧ R) in n4_39a.
     apply n4_39a.
     apply Prod3_01.
-    replace (~(~Q ∨ ~R) → P) with (~P → ~Q ∨ ~R).
+    replace (~(~Q ∨ ~R) → P) with 
+        (~P → ~Q ∨ ~R).
     reflexivity.
     apply EqBi.
     split.
     apply Trans2_15a.
     apply Trans2_15.
-    replace (~P → ~Q ∨ ~R) with ((~P → ~Q) ∨ (~P → ~R)).
+    replace (~P → ~Q ∨ ~R) with 
+        ((~P → ~Q) ∨ (~P → ~R)).
     reflexivity.
     apply EqBi.
     apply n4_78a.
@@ -2787,12 +2912,16 @@ Theorem n4_84 : ∀ P Q R : Prop,
     split.
     apply Syll2_06a.
     apply Syll2_06b.
-    specialize n3_47 with (P→Q) (Q→P) ((Q→R)→P→R) ((P→R)→Q→R).
+    specialize n3_47 with 
+        (P→Q) (Q→P) ((Q→R)→P→R) ((P→R)→Q→R).
     intros n3_47a.
     MP n3_47a H.
-    replace ((P→Q) ∧ (Q → P)) with (P↔Q) in n3_47a.
-    replace (((Q → R) → P → R) ∧ ((P → R) → Q → R)) with ((Q → R) ↔ (P → R)) in n3_47a.
-    replace ((Q → R) ↔ (P → R)) with ((P→ R) ↔ (Q → R)) in n3_47a.
+    replace ((P→Q) ∧ (Q → P)) with 
+        (P↔Q) in n3_47a.
+    replace (((Q→R)→P→R)∧((P→R)→Q→R)) with 
+        ((Q → R) ↔ (P → R)) in n3_47a.
+    replace ((Q → R) ↔ (P → R)) with 
+        ((P→ R) ↔ (Q → R)) in n3_47a.
     apply n3_47a.
     apply EqBi.
     apply n4_21.
@@ -2811,11 +2940,13 @@ Theorem n4_85 : ∀ P Q R : Prop,
   split.
   apply Syll2_05a.
   apply Syll2_05b.
-  specialize n3_47 with (P→Q) (Q→P) ((R→P)→R→Q) ((R→Q)→R→P).
+  specialize n3_47 with 
+      (P→Q) (Q→P) ((R→P)→R→Q) ((R→Q)→R→P).
   intros n3_47a.
   MP n3_47a H.
   replace ((P→Q) ∧ (Q → P)) with (P↔Q) in n3_47a.
-  replace (((R → P) → R → Q) ∧ ((R → Q) → R → P)) with ((R → P) ↔ (R → Q)) in n3_47a.
+  replace (((R→P)→R→Q)∧((R→Q)→R→P)) with 
+      ((R → P) ↔ (R → Q)) in n3_47a.
   apply n3_47a.
   apply Equiv4_01.
   apply Equiv4_01.
@@ -2847,7 +2978,8 @@ Theorem n4_86 : ∀ P Q R : Prop,
   split.
   apply H.
   apply H0.
-  replace ((P ↔ Q) ∧ (R ↔ P)) with ((R ↔ P) ∧ (P ↔ Q)) in H1.
+  replace ((P ↔ Q) ∧ (R ↔ P)) with 
+      ((R ↔ P) ∧ (P ↔ Q)) in H1.
   specialize n4_22 with R P Q.
   intros n4_22a.
   MP n4_22a H1.
@@ -2891,7 +3023,8 @@ Theorem n4_86 : ∀ P Q R : Prop,
   Qed.
 
 Theorem n4_87 : ∀ P Q R : Prop,
-  (((P ∧ Q) → R) ↔ (P → Q → R)) ↔ ((Q → (P → R)) ↔ (Q ∧ P → R)).
+  (((P ∧ Q) → R) ↔ (P → Q → R)) ↔ 
+      ((Q → (P → R)) ↔ (Q ∧ P → R)).
   Proof. intros P Q R.
   specialize Exp3_3 with P Q R.
   intros Exp3_3a.
@@ -2920,11 +3053,14 @@ Theorem n4_87 : ∀ P Q R : Prop,
   apply Comm2_04a.
   apply Comm2_04b.
   Equiv H1.
-  clear Exp3_3a. clear Imp3_31a. clear Exp3_3b. clear Imp3_31b. clear Comm2_04a. clear Comm2_04b.
+  clear Exp3_3a. clear Imp3_31a. clear Exp3_3b. 
+      clear Imp3_31b. clear Comm2_04a. 
+      clear Comm2_04b.
   replace (P∧Q→R) with (P → Q → R).
   replace (Q∧P→R) with (Q → P → R).
   replace (Q→P→R) with (P → Q → R).
-  specialize n4_2 with ((P → Q → R) ↔ (P → Q → R)).
+  specialize n4_2 with 
+      ((P → Q → R) ↔ (P → Q → R)).
   intros n4_2a.
   apply n4_2a.
   apply EqBi.
@@ -2968,22 +3104,26 @@ Theorem n5_1 : ∀ P Q : Prop,
   apply Sa.
   specialize n4_76 with (P∧Q) (P→Q) (Q→P).
   intros n4_76a.
-  replace ((P ∧ Q → P → Q) ∧ (P ∧ Q → Q → P)) with (P ∧ Q → (P → Q) ∧ (Q → P)) in H.
+  replace ((P∧Q→P→Q)∧(P∧Q→Q→P)) with 
+      (P ∧ Q → (P → Q) ∧ (Q → P)) in H.
   replace ((P→Q)∧(Q→P)) with (P↔Q) in H.
   apply H.
   apply Equiv4_01.
-  replace (P ∧ Q → (P → Q) ∧ (Q → P)) with ((P ∧ Q → P → Q) ∧ (P ∧ Q → Q → P)).
+  replace (P ∧ Q → (P → Q) ∧ (Q → P)) with 
+      ((P ∧ Q → P → Q) ∧ (P ∧ Q → Q → P)).
   reflexivity.
   apply EqBi.
   apply n4_76a.
-  Qed. (*Note that n4_76 is not cited, but it is used to move from ((a→b) ∧  (a→c)) to (a→ (b ∧ c)).*)
+  Qed. 
+  (*Note that n4_76 is not cited, but it is used to 
+      move from ((a→b) ∧  (a→c)) to (a→ (b ∧ c)).*)
 
 Theorem n5_11 : ∀ P Q : Prop,
   (P → Q) ∨ (~P → Q).
   Proof. intros P Q.
   specialize n2_5 with P Q.
   intros n2_5a.
-  specialize n2_54 with ((P → Q)) (~ P → Q).
+  specialize n2_54 with ((P → Q)) (~P → Q).
   intros n2_54a.
   MP n2_54a n2_5a.
   apply n2_54a.
@@ -2994,7 +3134,7 @@ Theorem n5_12 : ∀ P Q : Prop,
   Proof. intros P Q.
   specialize n2_51 with P Q.
   intros n2_51a.
-  specialize n2_54 with ((P → Q)) (P → ~ Q).
+  specialize n2_54 with ((P → Q)) (P → ~Q).
   intros n2_54a.
   MP n2_54a n2_5a.
   apply n2_54a.
@@ -3005,15 +3145,19 @@ Theorem n5_13 : ∀ P Q : Prop,
   Proof. intros P Q.
   specialize n2_521 with P Q.
   intros n2_521a.
-  replace (~ (P → Q) → Q → P) with (~~ (P → Q) ∨ (Q → P)) in n2_521a.
+  replace (~(P → Q) → Q → P) with 
+      (~~(P → Q) ∨ (Q → P)) in n2_521a.
   replace (~~(P→Q)) with (P→Q) in n2_521a.
   apply n2_521a.
   apply EqBi.
   apply n4_13.
-  replace (~~ (P → Q) ∨ (Q → P)) with (~ (P → Q) → Q → P).
+  replace (~~(P → Q) ∨ (Q → P)) with 
+      (~(P → Q) → Q → P).
   reflexivity.
   apply Impl1_01.
-  Qed. (*n4_13 is not cited, but is needed for double negation elimination.*)
+  Qed. 
+  (*n4_13 is not cited, but is needed for 
+      double negation elimination.*)
 
 Theorem n5_14 : ∀ P Q R : Prop,
   (P → Q) ∨ (Q → R).
@@ -3026,12 +3170,14 @@ Theorem n5_14 : ∀ P Q R : Prop,
   specialize n2_21 with Q R.
   intros n2_21a.
   Syll Trans2_16a n2_21a Sa.
-  replace (~(P→Q)→(Q→R)) with (~~(P→Q)∨(Q→R)) in Sa.
+  replace (~(P→Q)→(Q→R)) with 
+      (~~(P→Q)∨(Q→R)) in Sa.
   replace (~~(P→Q)) with (P→Q) in Sa.
   apply Sa.
   apply EqBi.
   apply n4_13.
-  replace (~~(P→Q)∨(Q→R)) with (~(P→Q)→(Q→R)).
+  replace (~~(P→Q)∨(Q→R)) with 
+      (~(P→Q)→(Q→R)).
   reflexivity.
   apply Impl1_01.
   Qed.
@@ -3041,8 +3187,10 @@ Theorem n5_15 : ∀ P Q : Prop,
   Proof. intros P Q.
   specialize n4_61 with P Q.
   intros n4_61a.
-  replace (~ (P → Q) ↔ P ∧ ~ Q) with ((~ (P → Q) → P ∧ ~ Q) ∧ ((P ∧ ~ Q) → ~ (P → Q))) in n4_61a.
-  specialize Simp3_26 with (~ (P → Q) → P ∧ ~ Q) ((P ∧ ~ Q) → ~ (P → Q)).
+  replace (~(P → Q) ↔ P ∧ ~Q) with 
+      ((~(P→Q)→P∧~Q)∧((P∧~Q)→~(P→Q))) in n4_61a.
+  specialize Simp3_26 with 
+      (~(P → Q) → P ∧ ~Q) ((P ∧ ~Q) → ~(P → Q)).
   intros Simp3_26a.
   MP Simp3_26a n4_61a.
   specialize n5_1 with P (~Q).
@@ -3053,8 +3201,10 @@ Theorem n5_15 : ∀ P Q : Prop,
   MP n2_54a Sa.
   specialize n4_61 with Q P.
   intros n4_61b.
-  replace ((~(Q → P)) ↔ (Q ∧ ~P)) with (((~(Q → P)) → (Q ∧ ~P)) ∧ ((Q ∧ ~P) → (~(Q → P)))) in n4_61b.
-  specialize Simp3_26 with (~(Q → P)→ (Q ∧ ~P)) ((Q ∧ ~P)→ (~(Q → P))).
+  replace ((~(Q → P)) ↔ (Q ∧ ~P)) with 
+      (((~(Q→P))→(Q∧~P))∧((Q∧~P)→(~(Q→P)))) in n4_61b.
+  specialize Simp3_26 with 
+      (~(Q → P)→ (Q ∧ ~P)) ((Q ∧ ~P)→ (~(Q → P))).
   intros Simp3_26b.
   MP Simp3_26b n4_61b.
   specialize n5_1 with Q (~P).
@@ -3066,10 +3216,14 @@ Theorem n5_15 : ∀ P Q : Prop,
   specialize n2_54 with (Q→P) (P↔~Q).
   intros n2_54b.
   MP n2_54b Sb.
-  clear n4_61a. clear Simp3_26a. clear n5_1a. clear n2_54a. clear n4_61b. clear Simp3_26b. clear n5_1b. clear n4_12a. clear n2_54b.
-  replace (~(P → Q) → P ↔ ~Q) with (~~ (P → Q) ∨ (P ↔ ~Q)) in Sa.
+  clear n4_61a. clear Simp3_26a. clear n5_1a. 
+      clear n2_54a. clear n4_61b. clear Simp3_26b. 
+      clear n5_1b. clear n4_12a. clear n2_54b.
+  replace (~(P → Q) → P ↔ ~Q) with 
+      (~~(P → Q) ∨ (P ↔ ~Q)) in Sa.
   replace (~~(P→Q)) with (P→Q) in Sa.
-  replace (~(Q → P) → (P ↔ ~Q)) with (~~(Q → P) ∨ (P ↔ ~Q)) in Sb.
+  replace (~(Q → P) → (P ↔ ~Q)) with 
+      (~~(Q → P) ∨ (P ↔ ~Q)) in Sb.
   replace (~~(Q→P)) with (Q→P) in Sb.
   Conj Sa Sb.
   split.
@@ -3077,11 +3231,15 @@ Theorem n5_15 : ∀ P Q : Prop,
   apply Sb.
   specialize n4_41 with (P↔~Q) (P→Q) (Q→P).
   intros n4_41a.
-  replace ((P → Q) ∨ (P ↔ ~Q)) with ((P ↔ ~Q) ∨ (P → Q)) in H.
-  replace ((Q → P) ∨ (P ↔ ~Q)) with ((P ↔ ~Q) ∨ (Q → P)) in H.
-  replace (((P ↔ ~Q) ∨ (P → Q)) ∧ ((P ↔ ~Q) ∨ (Q → P))) with ((P ↔ ~Q) ∨ (P → Q) ∧ (Q → P)) in H.
+  replace ((P → Q) ∨ (P ↔ ~Q)) with 
+      ((P ↔ ~Q) ∨ (P → Q)) in H.
+  replace ((Q → P) ∨ (P ↔ ~Q)) with 
+      ((P ↔ ~Q) ∨ (Q → P)) in H.
+  replace (((P↔~Q)∨(P→Q))∧((P↔~Q)∨(Q→P))) with 
+      ((P ↔ ~Q) ∨ (P → Q) ∧ (Q → P)) in H.
   replace ((P→Q) ∧ (Q → P)) with (P↔Q) in H.
-  replace ((P ↔ ~Q) ∨ (P ↔ Q)) with ((P ↔ Q) ∨ (P ↔ ~Q)) in H.
+  replace ((P ↔ ~Q) ∨ (P ↔ Q)) with 
+      ((P ↔ Q) ∨ (P ↔ ~Q)) in H.
   apply H.
   apply EqBi.
   apply n4_31.
@@ -3094,12 +3252,14 @@ Theorem n5_15 : ∀ P Q : Prop,
   apply n4_31.
   apply EqBi.
   apply n4_13.
-  replace (~~(Q → P) ∨ (P ↔ ~Q)) with (~(Q → P) → (P ↔ ~Q)).
+  replace (~~(Q → P) ∨ (P ↔ ~Q)) with 
+      (~(Q → P) → (P ↔ ~Q)).
   reflexivity.
   apply Impl1_01.
   apply EqBi.
   apply n4_13.
-  replace (~~ (P → Q) ∨ (P ↔ ~Q)) with (~(P → Q) → P ↔ ~Q).
+  replace (~~(P → Q) ∨ (P ↔ ~Q)) with 
+      (~(P → Q) → P ↔ ~Q).
   reflexivity.
   apply Impl1_01.
   apply EqBi.
@@ -3115,58 +3275,77 @@ Theorem n5_16 : ∀ P Q : Prop,
   intros Simp3_26a.
   specialize n2_08 with ((P ↔ Q) ∧ (P → ~Q)).
   intros n2_08a.
-  replace (((P → Q) ∧ (P → ~Q)) ∧ (Q → P)) with ((P → Q) ∧ ((P → ~Q) ∧ (Q → P))) in Simp3_26a.
-  replace ((P → ~Q) ∧ (Q → P)) with ((Q → P) ∧ (P → ~Q)) in Simp3_26a.
-  replace ((P→Q) ∧ (Q → P)∧ (P → ~Q)) with (((P→Q) ∧ (Q → P)) ∧ (P → ~Q)) in Simp3_26a.
-  replace ((P → Q) ∧ (Q → P)) with (P↔Q) in Simp3_26a.
+  replace (((P → Q) ∧ (P → ~Q)) ∧ (Q → P)) with 
+      ((P→Q)∧((P→~Q)∧(Q→P))) in Simp3_26a.
+  replace ((P → ~Q) ∧ (Q → P)) with 
+      ((Q → P) ∧ (P → ~Q)) in Simp3_26a.
+  replace ((P→Q) ∧ (Q → P)∧ (P → ~Q)) with 
+      (((P→Q) ∧ (Q → P)) ∧ (P → ~Q)) in Simp3_26a.
+  replace ((P → Q) ∧ (Q → P)) with 
+      (P↔Q) in Simp3_26a.
   Syll n2_08a Simp3_26a Sa.
   specialize n4_82 with P Q.
   intros n4_82a.
   replace ((P → Q) ∧ (P → ~Q)) with (~P) in Sa.
-  specialize Simp3_27 with (P→Q) ((Q→P)∧ (P → ~Q)).
+  specialize Simp3_27 with 
+      (P→Q) ((Q→P)∧ (P → ~Q)).
   intros Simp3_27a.
-  replace ((P→Q) ∧ (Q → P)∧ (P → ~Q)) with (((P→Q) ∧ (Q → P)) ∧ (P → ~Q)) in Simp3_27a.
-  replace ((P → Q) ∧ (Q → P)) with (P↔Q) in Simp3_27a.
+  replace ((P→Q) ∧ (Q → P)∧ (P → ~Q)) with 
+      (((P→Q) ∧ (Q → P)) ∧ (P → ~Q)) in Simp3_27a.
+  replace ((P → Q) ∧ (Q → P)) with 
+      (P↔Q) in Simp3_27a.
   specialize Syll3_33 with Q P (~Q).
   intros Syll3_33a.
   Syll Simp3_27a Syll2_06a Sb.
   specialize Abs2_01 with Q.
   intros Abs2_01a.
   Syll Sb Abs2_01a Sc.
-  clear Sb. clear Simp3_26a. clear n2_08a. clear n4_82a. clear Simp3_27a. clear Syll3_33a. clear Abs2_01a.
+  clear Sb. clear Simp3_26a. clear n2_08a. 
+      clear n4_82a. clear Simp3_27a. clear Syll3_33a. 
+      clear Abs2_01a.
   Conj Sa Sc.
   split.
   apply Sa.
   apply Sc.
-  specialize Comp3_43 with ((P ↔ Q) ∧ (P → ~Q)) (~P) (~Q).
+  specialize Comp3_43 with 
+      ((P ↔ Q) ∧ (P → ~Q)) (~P) (~Q).
   intros Comp3_43a.
   MP Comp3_43a H.
   specialize n4_65 with Q P.
   intros n4_65a.
   replace (~Q ∧ ~P) with (~P ∧ ~Q) in n4_65a.
-  replace (~P ∧ ~Q) with (~(~Q→P)) in Comp3_43a.
-  specialize Exp3_3 with (P↔Q) (P→~Q) (~(~Q→P)).
+  replace (~P ∧ ~Q) with 
+      (~(~Q→P)) in Comp3_43a.
+  specialize Exp3_3 with 
+      (P↔Q) (P→~Q) (~(~Q→P)).
   intros Exp3_3a.
   MP Exp3_3a Comp3_43a.
-  replace ((P→~Q)→~(~Q→P)) with (~(P→~Q)∨~(~Q→P)) in Exp3_3a.
+  replace ((P→~Q)→~(~Q→P)) with 
+      (~(P→~Q)∨~(~Q→P)) in Exp3_3a.
   specialize n4_51 with (P→~Q) (~Q→P).
   intros n4_51a.
-  replace (~(P → ~Q) ∨ ~(~Q → P)) with (~((P → ~Q) ∧ (~Q → P))) in Exp3_3a.
-  replace ((P→~Q) ∧ (~ Q → P)) with (P↔~Q) in Exp3_3a.
-  replace ((P↔Q)→~(P↔~Q)) with (~(P↔Q)∨~(P↔~Q)) in Exp3_3a.
+  replace (~(P → ~Q) ∨ ~(~Q → P)) with 
+      (~((P → ~Q) ∧ (~Q → P))) in Exp3_3a.
+  replace ((P→~Q) ∧ (~Q → P)) with 
+      (P↔~Q) in Exp3_3a.
+  replace ((P↔Q)→~(P↔~Q)) with 
+      (~(P↔Q)∨~(P↔~Q)) in Exp3_3a.
   specialize n4_51 with (P↔Q) (P↔~Q).
   intros n4_51b.
-  replace (~(P ↔ Q) ∨ ~(P ↔ ~Q)) with (~((P ↔ Q) ∧ (P ↔ ~Q))) in Exp3_3a.
+  replace (~(P ↔ Q) ∨ ~(P ↔ ~Q)) with 
+      (~((P ↔ Q) ∧ (P ↔ ~Q))) in Exp3_3a.
   apply Exp3_3a.
   apply EqBi.
   apply n4_51b.
-  replace (~(P ↔ Q) ∨ ~(P ↔ ~Q)) with (P ↔ Q → ~(P ↔ ~Q)).
+  replace (~(P ↔ Q) ∨ ~(P ↔ ~Q)) with 
+      (P ↔ Q → ~(P ↔ ~Q)).
   reflexivity.
   apply Impl1_01.
   apply Equiv4_01.
   apply EqBi.
   apply n4_51a.
-  replace (~(P → ~Q) ∨ ~(~Q → P)) with ((P → ~Q) → ~(~Q → P)).
+  replace (~(P → ~Q) ∨ ~(~Q → P)) with 
+      ((P → ~Q) → ~(~Q → P)).
   reflexivity.
   apply Impl1_01.
   apply EqBi.
@@ -3185,7 +3364,8 @@ Theorem n5_16 : ∀ P Q : Prop,
   apply n4_32.
   apply EqBi.
   apply n4_3.
-  replace ((P → Q) ∧ (P → ~Q) ∧ (Q → P)) with (((P → Q) ∧ (P → ~Q)) ∧ (Q → P)).
+  replace ((P → Q) ∧ (P → ~Q) ∧ (Q → P)) with 
+      (((P → Q) ∧ (P → ~Q)) ∧ (Q → P)).
   reflexivity.
   apply EqBi.
   apply n4_32.
@@ -3198,24 +3378,30 @@ Theorem n5_17 : ∀ P Q : Prop,
   intros n4_64a.
   specialize n4_21 with (Q∨P) (~Q→P).
   intros n4_21a.
-  replace ((~Q→P)↔(Q∨P)) with ((Q∨P)↔(~Q→P)) in n4_64a.
+  replace ((~Q→P)↔(Q∨P)) with 
+      ((Q∨P)↔(~Q→P)) in n4_64a.
   replace (Q∨P) with (P∨Q) in n4_64a.
   specialize n4_63 with P Q.
   intros n4_63a.
-  replace (~(P → ~Q) ↔ P ∧ Q) with (P ∧ Q ↔ ~(P → ~Q)) in n4_63a.
+  replace (~(P → ~Q) ↔ P ∧ Q) with 
+      (P ∧ Q ↔ ~(P → ~Q)) in n4_63a.
   specialize Trans4_11 with (P∧Q) (~(P→~Q)).
   intros Trans4_11a.
-  replace (~~(P→~Q)) with (P→~Q) in Trans4_11a.
-  replace (P ∧ Q ↔ ~(P → ~Q)) with (~(P ∧ Q) ↔ (P → ~Q)) in n4_63a.
+  replace (~~(P→~Q)) with 
+      (P→~Q) in Trans4_11a.
+  replace (P ∧ Q ↔ ~(P → ~Q)) with 
+      (~(P ∧ Q) ↔ (P → ~Q)) in n4_63a.
   clear Trans4_11a. clear n4_21a.
   Conj n4_64a n4_63a.
   split.
   apply n4_64a.
   apply n4_63a.
-  specialize n4_38 with (P ∨ Q) (~(P ∧ Q)) (~Q → P) (P → ~Q).
+  specialize n4_38 with 
+      (P ∨ Q) (~(P ∧ Q)) (~Q → P) (P → ~Q).
   intros n4_38a.
   MP n4_38a H.
-  replace ((~Q→P) ∧ (P → ~Q)) with (~Q↔P) in n4_38a.
+  replace ((~Q→P) ∧ (P → ~Q)) with 
+      (~Q↔P) in n4_38a.
   specialize n4_21 with P (~Q).
   intros n4_21b.
   replace (~Q↔P) with (P↔~Q) in n4_38a.
@@ -3223,7 +3409,8 @@ Theorem n5_17 : ∀ P Q : Prop,
   apply EqBi.
   apply n4_21b.
   apply Equiv4_01.
-  replace (~(P ∧ Q) ↔ (P → ~Q)) with (P ∧ Q ↔ ~(P → ~Q)).
+  replace (~(P ∧ Q) ↔ (P → ~Q)) with 
+      (P ∧ Q ↔ ~(P → ~Q)).
   reflexivity.
   apply EqBi.
   apply Trans4_11a.
@@ -3250,7 +3437,8 @@ Theorem n5_18 : ∀ P Q : Prop,
   apply n5_16a.
   specialize n5_17 with (P↔Q) (P↔~Q).
   intros n5_17a.
-  replace ((P ↔ Q) ↔ ~(P ↔ ~Q)) with (((P ↔ Q) ∨ (P ↔ ~Q)) ∧ ~((P ↔ Q) ∧ (P ↔ ~Q))).
+  replace ((P ↔ Q) ↔ ~(P ↔ ~Q)) with 
+      (((P↔Q)∨(P↔~Q))∧~((P↔Q)∧(P↔~Q))).
   apply H.
   apply EqBi.
   apply n5_17a.
@@ -3293,13 +3481,16 @@ Theorem n5_22 : ∀ P Q : Prop,
   split.
   apply n4_61a.
   apply n4_61b.
-  specialize n4_39 with (~(P → Q)) (~(Q → P)) (P ∧ ~Q) (Q ∧ ~P).
+  specialize n4_39 with 
+      (~(P → Q)) (~(Q → P)) (P ∧ ~Q) (Q ∧ ~P).
   intros n4_39a.
   MP n4_39a H.
   specialize n4_51 with (P→Q) (Q→P).
   intros n4_51a.
-  replace (~(P → Q) ∨ ~(Q → P)) with (~((P → Q) ∧ (Q → P))) in n4_39a.
-  replace ((P → Q) ∧ (Q → P)) with (P↔Q) in n4_39a.
+  replace (~(P → Q) ∨ ~(Q → P)) with 
+      (~((P → Q) ∧ (Q → P))) in n4_39a.
+  replace ((P → Q) ∧ (Q → P)) with 
+      (P↔Q) in n4_39a.
   apply n4_39a.
   apply Equiv4_01.
   apply EqBi.
@@ -3315,7 +3506,8 @@ Theorem n5_23 : ∀ P Q : Prop,
   intros n5_22a.
   specialize n4_13 with Q.
   intros n4_13a.
-  replace (~(P↔~Q)) with ((P ∧ ~~Q) ∨ (~Q ∧ ~P)) in n5_18a.
+  replace (~(P↔~Q)) with 
+      ((P ∧ ~~Q) ∨ (~Q ∧ ~P)) in n5_18a.
   replace (~~Q) with Q in n5_18a.
   replace (~Q ∧ ~P) with (~P ∧ ~Q) in n5_18a.
   apply n5_18a.
@@ -3327,7 +3519,10 @@ Theorem n5_23 : ∀ P Q : Prop,
   reflexivity.
   apply EqBi.
   apply n5_22a.
-  Qed. (*The proof sketch in Principia offers n4_36, but we found it far simpler to simply use the commutativity of conjunction (n4_3).*)
+  Qed. 
+  (*The proof sketch in Principia offers n4_36, 
+      but we found it far simpler to simply use the 
+      commutativity of conjunction (n4_3).*)
 
 Theorem n5_24 : ∀ P Q : Prop,
   ~((P ∧ Q) ∨ (~P ∧ ~Q)) ↔ ((P ∧ ~Q) ∨ (Q ∧ ~P)).
@@ -3336,20 +3531,25 @@ Theorem n5_24 : ∀ P Q : Prop,
   intros n5_22a.
   specialize n5_23 with P Q.
   intros n5_23a.
-  replace ((P↔Q)↔((P∧ Q) ∨(~P ∧ ~Q))) with ((~(P↔Q)↔~((P∧ Q) ∨(~P ∧ ~Q)))) in n5_23a.
-  replace (~(P↔Q)) with (~((P ∧ Q) ∨ (~P ∧ ~Q))) in n5_22a.
+  replace ((P↔Q)↔((P∧ Q) ∨(~P ∧ ~Q))) with 
+      ((~(P↔Q)↔~((P∧ Q)∨(~P ∧ ~Q)))) in n5_23a.
+  replace (~(P↔Q)) with 
+      (~((P ∧ Q) ∨ (~P ∧ ~Q))) in n5_22a.
   apply n5_22a.
-  replace (~((P ∧ Q) ∨ (~P ∧ ~Q))) with (~(P ↔ Q)).
+  replace (~((P ∧ Q)∨(~P ∧ ~Q))) with (~(P↔Q)).
   reflexivity.
   apply EqBi.
   apply n5_23a.
-  replace (~(P ↔ Q) ↔ ~(P ∧ Q ∨ ~P ∧ ~Q)) with ((P ↔ Q) ↔ P ∧ Q ∨ ~P ∧ ~Q).
+  replace (~(P ↔ Q) ↔ ~(P ∧ Q ∨ ~P ∧ ~Q)) with 
+      ((P ↔ Q) ↔ P ∧ Q ∨ ~P ∧ ~Q).
   reflexivity.
-  specialize Trans4_11 with (P↔Q) (P ∧ Q ∨ ~P ∧ ~Q).
+  specialize Trans4_11 with 
+      (P↔Q) (P ∧ Q ∨ ~P ∧ ~Q).
   intros Trans4_11a.
   apply EqBi.
   apply Trans4_11a.
-  Qed. (*Note that Trans4_11 is not cited explicitly.*)
+  Qed. 
+  (*Note that Trans4_11 is not cited.*)
 
 Theorem n5_25 : ∀ P Q : Prop,
   (P ∨ Q) ↔ ((P → Q) → Q).
@@ -3372,7 +3572,8 @@ Theorem n5_3 : ∀ P Q R : Prop,
   Proof. intros P Q R.
   specialize Comp3_43 with (P ∧ Q) P R.
   intros Comp3_43a.
-  specialize Exp3_3 with (P ∧ Q → P) (P ∧ Q →R) (P ∧ Q → P ∧ R).
+  specialize Exp3_3 with 
+      (P ∧ Q → P) (P ∧ Q →R) (P ∧ Q → P ∧ R).
   intros Exp3_3a.
   MP Exp3_3a Comp3_43a.
   specialize Simp3_26 with P Q.
@@ -3383,7 +3584,8 @@ Theorem n5_3 : ∀ P Q R : Prop,
   specialize Simp3_27 with P R.
   intros Simp3_27a.
   MP Syll2_05a Simp3_27a.
-  clear Comp3_43a. clear Simp3_27a. clear Simp3_26a.
+  clear Comp3_43a. clear Simp3_27a. 
+      clear Simp3_26a.
   Conj Exp3_3a Syll2_05a.
   split.
   apply Exp3_3a.
@@ -3391,7 +3593,9 @@ Theorem n5_3 : ∀ P Q R : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed. (*Note that Exp is not cited in the proof sketch, but seems necessary.*)
+  Qed. 
+  (*Note that Exp is not cited in the proof sketch,
+      but seems necessary.*)
 
 Theorem n5_31 : ∀ P Q R : Prop,
   (R ∧ (P → Q)) → (P → (Q ∧ R)).
@@ -3400,8 +3604,10 @@ Theorem n5_31 : ∀ P Q R : Prop,
   intros Comp3_43a.
   specialize n2_02 with P R.
   intros n2_02a.
-  replace ((P→Q) ∧ (P→R)) with ((P→R) ∧ (P→Q)) in Comp3_43a.
-  specialize Exp3_3 with (P→R) (P→Q) (P→(Q ∧ R)).
+  replace ((P→Q) ∧ (P→R)) with 
+      ((P→R) ∧ (P→Q)) in Comp3_43a.
+  specialize Exp3_3 with 
+      (P→R) (P→Q) (P→(Q ∧ R)).
   intros Exp3_3a.
   MP Exp3_3a Comp3_43a.
   Syll n2_02a Exp3_3a Sa.
@@ -3411,7 +3617,9 @@ Theorem n5_31 : ∀ P Q R : Prop,
   apply Imp3_31a.
   apply EqBi.
   apply n4_3. (*with (P→R)∧(P→Q)).*)
-  Qed. (*Note that Exp, Imp, and n4_3 are not cited in the proof sketch.*)
+  Qed. 
+  (*Note that Exp, Imp, and n4_3 are not cited 
+      in the proof sketch.*)
 
 Theorem n5_32 : ∀ P Q R : Prop,
   (P → (Q ↔ R)) ↔ ((P ∧ Q) ↔ (P ∧ R)).
@@ -3444,13 +3652,15 @@ Theorem n5_32 : ∀ P Q R : Prop,
   replace (P∧Q→R) with (P∧Q→P∧R) in n4_76a.
   replace (P→R→Q) with (P∧R→Q) in n4_76a.
   replace (P∧R→Q) with (P∧R→P∧Q) in n4_76a.
-  replace ((P∧Q→P∧R)∧(P∧R→P∧Q)) with ((P∧Q)↔(P∧R)) in n4_76a.
-  replace ((P∧Q ↔ P∧R)↔(P→(Q→R)∧(R→Q))) with ((P→(Q→R)∧(R→Q))↔(P∧Q ↔ P∧R)) in n4_76a.
+  replace ((P∧Q→P∧R)∧(P∧R→P∧Q)) with 
+      ((P∧Q)↔(P∧R)) in n4_76a.
+  replace ((P∧Q↔P∧R)↔(P→(Q→R)∧(R→Q))) with 
+      ((P→(Q→R)∧(R→Q))↔(P∧Q ↔ P∧R)) in n4_76a.
   replace ((Q→R)∧(R→Q)) with (Q↔R) in n4_76a.
   apply n4_76a.
   apply Equiv4_01.
   apply EqBi.
-  apply n4_3. (*to commute the biconditional to get the theorem.*)
+  apply n4_3. (*to commute the biconditional*)
   apply Equiv4_01.
   replace (P ∧ R → P ∧ Q) with (P ∧ R → Q).
   reflexivity.
@@ -3473,8 +3683,17 @@ Theorem n5_33 : ∀ P Q R : Prop,
   Proof. intros P Q R.
     specialize n5_32 with P (Q→R) ((P∧Q)→R).
     intros n5_32a.
-    replace ((P→(Q→R)↔(P∧Q→R))↔(P∧(Q→R)↔P∧(P∧Q→R))) with (((P→(Q→R)↔(P∧Q→R))→(P∧(Q→R)↔P∧(P∧Q→R)))∧((P∧(Q→R)↔P∧(P∧Q→R)→(P→(Q→R)↔(P∧Q→R))))) in n5_32a.
-    specialize Simp3_26 with ((P→(Q→R)↔(P∧Q→R))→(P∧(Q→R)↔P∧(P∧Q→R))) ((P∧(Q→R)↔P∧(P∧Q→R)→(P→(Q→R)↔(P∧Q→R)))). (*Not cited.*)
+    replace 
+        ((P→(Q→R)↔(P∧Q→R))↔(P∧(Q→R)↔P∧(P∧Q→R))) 
+        with 
+        (((P→(Q→R)↔(P∧Q→R))→(P∧(Q→R)↔P∧(P∧Q→R)))
+        ∧
+        ((P∧(Q→R)↔P∧(P∧Q→R)→(P→(Q→R)↔(P∧Q→R))))) 
+        in n5_32a.
+    specialize Simp3_26 with 
+        ((P→(Q→R)↔(P∧Q→R))→(P∧(Q→R)↔P∧(P∧Q→R))) 
+        ((P∧(Q→R)↔P∧(P∧Q→R)→(P→(Q→R)↔(P∧Q→R)))). 
+        (*Not cited.*)
     intros Simp3_26a.
     MP Simp3_26a n5_32a.
     specialize n4_73 with Q P.
@@ -3511,7 +3730,8 @@ Theorem n5_36 : ∀ P Q : Prop,
   intros n5_32a.
   specialize n2_08 with (P↔Q).
   intros n2_08a.
-  replace (P↔Q→P↔Q) with ((P↔Q)∧P↔(P↔Q)∧Q) in n2_08a.
+  replace (P↔Q→P↔Q) with 
+      ((P↔Q)∧P↔(P↔Q)∧Q) in n2_08a.
   replace ((P↔Q)∧P) with (P∧(P↔Q)) in n2_08a.
   replace ((P↔Q)∧Q) with (Q∧(P↔Q)) in n2_08a.
   apply n2_08a.
@@ -3519,11 +3739,15 @@ Theorem n5_36 : ∀ P Q : Prop,
   apply n4_3.
   apply EqBi.
   apply n4_3.
-  replace ((P ↔ Q) ∧ P ↔ (P ↔ Q) ∧ Q) with (P ↔ Q → P ↔ Q).
+  replace ((P ↔ Q) ∧ P ↔ (P ↔ Q) ∧ Q) with 
+      (P ↔ Q → P ↔ Q).
   reflexivity.
   apply EqBi.
   apply n5_32a.
-  Qed. (*The proof sketch cites Ass3_35 and n4_38. Since I couldn't decipher how that proof would go, I used a different one invoking other theorems.*)
+  Qed. 
+  (*The proof sketch cites Ass3_35 and n4_38. 
+  Since I couldn't decipher how that proof would go, 
+  I used a different one invoking other theorems.*)
 
 Theorem n5_4 : ∀ P Q : Prop,
   (P → (P → Q)) ↔ (P → Q).
@@ -3567,7 +3791,8 @@ Theorem n5_42 : ∀ P Q R : Prop,
   replace ((P∧Q)→R) with (P→Q→R) in n5_3a.
   specialize n4_87 with P Q (P∧R).
   intros n4_87b.
-  replace ((P∧Q)→(P∧R)) with (P→Q→(P∧R)) in n5_3a.
+  replace ((P∧Q)→(P∧R)) with 
+      (P→Q→(P∧R)) in n5_3a.
   apply n5_3a.
   specialize Imp3_31 with P Q (P∧R).
   intros Imp3_31b.
@@ -3593,49 +3818,74 @@ Theorem n5_42 : ∀ P Q R : Prop,
   apply EqBi.
   apply H.
   apply Equiv4_01.
-  Qed. (*The law n4_87 is really unwieldy to use in Coq. It is actually easier to introduce the subformula of the importation-exportation law required and apply that biconditional. It may be worthwhile in later parts of PM to prove a derived rule that allows us to manipulate a biconditional's subformulas that are biconditionals.*)
+  Qed. 
+  (*The law n4_87 is really unwieldy to use in Coq. 
+  It is actually easier to introduce the subformula 
+  of the importation-exportation law required and 
+  apply that biconditional. It may be worthwhile 
+  in later parts of PM to prove a derived rule that 
+  allows us to manipulate a biconditional's 
+  subformulas that are biconditionals.*)
 
 Theorem n5_44 : ∀ P Q R : Prop,
   (P→Q) → ((P → R) ↔ (P → (Q ∧ R))).
   Proof. intros P Q R.
   specialize n4_76 with P Q R.
   intros n4_76a.
-  replace ((P→Q)∧(P→R)↔(P→Q∧R)) with (((P→Q)∧(P→R)→(P→Q∧R))∧((P→Q∧R)→(P→Q)∧(P→R))) in n4_76a.
-  specialize Simp3_26 with ((P→Q)∧(P→R)→(P→Q∧R)) ((P→Q∧R)→(P→Q)∧(P→R)).
+  replace ((P→Q)∧(P→R)↔(P→Q∧R)) with 
+      (((P→Q)∧(P→R)→(P→Q∧R))
+      ∧
+      ((P→Q∧R)→(P→Q)∧(P→R))) in n4_76a.
+  specialize Simp3_26 with 
+      ((P→Q)∧(P→R)→(P→Q∧R)) 
+      ((P→Q∧R)→(P→Q)∧(P→R)).
   intros Simp3_26a. (*Not cited.*)
   MP Simp3_26a n4_76a.
   specialize Exp3_3 with (P→Q) (P→R) (P→Q∧R).
   intros Exp3_3a. (*Not cited.*)
   MP Exp3_3a Simp3_26a.
-  specialize Simp3_27 with ((P→Q)∧(P→R)→(P→Q∧R)) ((P→Q∧R)→(P→Q)∧(P→R)).
+  specialize Simp3_27 with 
+      ((P→Q)∧(P→R)→(P→Q∧R)) 
+      ((P→Q∧R)→(P→Q)∧(P→R)).
   intros Simp3_27a. (*Not cited.*)
   MP Simp3_27a n4_76a.
   specialize Simp3_26 with (P→R) (P→Q).
   intros Simp3_26b.
-  replace ((P→Q)∧(P→R)) with ((P→R)∧(P→Q)) in Simp3_27a.
+  replace ((P→Q)∧(P→R)) with 
+      ((P→R)∧(P→Q)) in Simp3_27a.
   Syll Simp3_27a Simp3_26b Sa.
   specialize n2_02 with (P→Q) ((P→Q∧R)→P→R).
   intros n2_02a. (*Not cited.*)
   MP n2_02a Sa.
-  clear Sa. clear Simp3_26b. clear Simp3_26a. clear n4_76a. clear Simp3_27a.
+  clear Sa. clear Simp3_26b. clear Simp3_26a. 
+      clear n4_76a. clear Simp3_27a.
   Conj Exp3_3a n2_02a.
   split.
   apply Exp3_3a.
   apply n2_02a.
-  specialize n4_76 with (P→Q) ((P→R)→(P→(Q∧R))) ((P→(Q∧R))→(P→R)).
+  specialize n4_76 with (P→Q) 
+      ((P→R)→(P→(Q∧R))) ((P→(Q∧R))→(P→R)).
   intros n4_76b.
-  replace (((P→Q)→(P→R)→P→Q∧R)∧((P→Q)→(P→Q∧R)→P→R)) with ((P→Q)→((P→R)→P→Q∧R)∧((P→Q∧R)→P→R)) in H.
-  replace (((P→R)→P→Q∧R)∧((P→Q∧R)→P→R)) with ((P→R)↔(P→Q∧R)) in H.
+  replace 
+      (((P→Q)→(P→R)→P→Q∧R)∧((P→Q)→(P→Q∧R)→P→R)) 
+      with 
+      ((P→Q)→((P→R)→P→Q∧R)∧((P→Q∧R)→P→R)) in H.
+  replace (((P→R)→P→Q∧R)∧((P→Q∧R)→P→R)) with 
+      ((P→R)↔(P→Q∧R)) in H.
   apply H.
   apply Equiv4_01.
-  replace ((P→Q)→((P→R)→P→Q∧R)∧((P→Q∧R)→P→R)) with (((P→Q)→(P→R)→P→Q∧R)∧((P→Q)→(P→Q∧R)→P→R)).
+  replace ((P→Q)→((P→R)→P→Q∧R)∧((P→Q∧R)→P→R)) with 
+      (((P→Q)→(P→R)→P→Q∧R)∧((P→Q)→(P→Q∧R)→P→R)).
   reflexivity.
   apply EqBi.
   apply n4_76b.
   apply EqBi.
   apply n4_3. (*Not cited.*)
   apply Equiv4_01.
-  Qed. (*This proof does not use either n5_3 or n5_32. It instead uses four propositions not cited in the proof sketch, plus a second use of n4_76.*)
+  Qed. 
+  (*This proof does not use either n5_3 or n5_32. 
+      It instead uses four propositions not cited in 
+      the proof sketch, plus a second use of n4_76.*)
 
 Theorem n5_5 : ∀ P Q : Prop,
   P → ((P → Q) ↔ Q).
@@ -3649,7 +3899,7 @@ Theorem n5_5 : ∀ P Q : Prop,
   intros n2_02a.
   specialize Exp3_3 with P Q (P→Q).
   intros Exp3_3b.
-  specialize n3_42 with P Q (P→Q). (*Not mentioned explicitly.*)
+  specialize n3_42 with P Q (P→Q). (*Not cited*)
   intros n3_42a.
   MP n3_42a n2_02a.
   MP Exp3_3b n3_42a.
@@ -3662,7 +3912,8 @@ Theorem n5_5 : ∀ P Q : Prop,
   intros n3_47a.
   MP n3_47a H.
   replace (P∧P) with P in n3_47a.
-  replace (((P→Q)→Q)∧(Q→(P→Q))) with ((P→Q)↔Q) in n3_47a.
+  replace (((P→Q)→Q)∧(Q→(P→Q))) with 
+      ((P→Q)↔Q) in n3_47a.
   apply n3_47a.
   apply Equiv4_01.
   apply EqBi.
@@ -3680,33 +3931,39 @@ Theorem n5_501 : ∀ P Q : Prop,
   specialize Ass3_35 with P Q.
   intros Ass3_35a.
   specialize Simp3_26 with (P∧(P→Q)) (Q→P).
-  intros Simp3_26a. (*Not cited.*)
+  intros Simp3_26a. (*Not cited*)
   Syll Simp3_26a Ass3_35a Sa.
-  replace ((P∧(P→Q))∧(Q→P)) with (P∧((P→Q)∧(Q→P))) in Sa.
+  replace ((P∧(P→Q))∧(Q→P)) with 
+      (P∧((P→Q)∧(Q→P))) in Sa.
   replace ((P→Q)∧(Q→P)) with (P↔Q) in Sa.
   specialize Exp3_3 with P (P↔Q) Q.
   intros Exp3_3b.
   MP Exp3_3b Sa.
-  clear n5_1a. clear Ass3_35a. clear Simp3_26a. clear Sa.
+  clear n5_1a. clear Ass3_35a. 
+      clear Simp3_26a. clear Sa.
   Conj Exp3_3a Exp3_3b.
   split.
   apply Exp3_3a.
   apply Exp3_3b.
   specialize n4_76 with P (Q→(P↔Q)) ((P↔Q)→Q).
-  intros n4_76a. (*Not cited.*)
-  replace ((P→Q→P↔Q)∧(P→P↔Q→Q)) with ((P→(Q→P↔Q)∧(P↔Q→Q))) in H.
-  replace ((Q→(P↔Q))∧((P↔Q)→Q)) with (Q↔(P↔Q)) in H.
+  intros n4_76a. (*Not cited*)
+  replace ((P→Q→P↔Q)∧(P→P↔Q→Q)) with 
+      ((P→(Q→P↔Q)∧(P↔Q→Q))) in H.
+  replace ((Q→(P↔Q))∧((P↔Q)→Q)) with 
+      (Q↔(P↔Q)) in H.
   apply H.
   apply Equiv4_01.
-  replace (P→(Q→P↔Q)∧(P↔Q→Q)) with ((P→Q→P↔Q)∧(P→P↔Q→Q)).
+  replace (P→(Q→P↔Q)∧(P↔Q→Q)) with 
+      ((P→Q→P↔Q)∧(P→P↔Q→Q)).
   reflexivity.
   apply EqBi.
   apply n4_76a.
   apply Equiv4_01.
-  replace (P∧(P→Q)∧(Q→P)) with ((P∧(P→Q))∧(Q→P)).
+  replace (P∧(P→Q)∧(Q→P)) with 
+      ((P∧(P→Q))∧(Q→P)).
   reflexivity.
   apply EqBi.
-  apply n4_32. (*Not cited.*)
+  apply n4_32. (*Not cited*)
   Qed.
 
 Theorem n5_53 : ∀ P Q R S : Prop,
@@ -3716,11 +3973,15 @@ Theorem n5_53 : ∀ P Q R S : Prop,
   intros n4_77a.
   specialize n4_77 with S P Q.
   intros n4_77b.
-  replace (P ∨ Q → S) with ((P→S)∧(Q→S)) in n4_77a.
-  replace ((((P→S)∧(Q→S))∧(R→S))↔(((P∨Q)∨R)→S)) with ((((P∨Q)∨R)→S)↔(((P→S)∧(Q→S))∧(R→S))) in n4_77a.
+  replace (P ∨ Q → S) with 
+      ((P→S)∧(Q→S)) in n4_77a.
+  replace ((((P→S)∧(Q→S))∧(R→S))↔(((P∨Q)∨R)→S)) 
+      with 
+      ((((P∨Q)∨R)→S)↔(((P→S)∧(Q→S))∧(R→S))) 
+      in n4_77a.
   apply n4_77a.
   apply EqBi.
-  apply n4_3. (*Not cited explicitly.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
   apply n4_77b.
   Qed.
@@ -3738,13 +3999,16 @@ Theorem n5_54 : ∀ P Q : Prop,
   specialize Trans4_11 with Q (Q∨(P∧Q)).
   intros Trans4_11a.
   replace (Q∧P) with (P∧Q) in n4_44a.
-  replace (Q↔Q∨P∧Q) with (~Q↔~(Q∨P∧Q)) in n4_44a.
+  replace (Q↔Q∨P∧Q) with 
+      (~Q↔~(Q∨P∧Q)) in n4_44a.
   replace (~Q) with (~(Q∨P∧Q)) in Trans2_16a.
-  replace (~(Q∨P∧Q)) with (~Q∧~(P∧Q)) in Trans2_16a.
+  replace (~(Q∨P∧Q)) with 
+      (~Q∧~(P∧Q)) in Trans2_16a.
   specialize n5_1 with (~Q) (~(P∧Q)).
   intros n5_1a.
   Syll Trans2_16a n5_1a Sa.
-  replace (~(P↔P∧Q)→(~Q↔~(P∧Q))) with (~~(P↔P∧Q)∨(~Q↔~(P∧Q))) in Sa.
+  replace (~(P↔P∧Q)→(~Q↔~(P∧Q))) with 
+      (~~(P↔P∧Q)∨(~Q↔~(P∧Q))) in Sa.
   replace (~~(P↔P∧Q)) with (P↔P∧Q) in Sa.
   specialize Trans4_11 with Q (P∧Q).
   intros Trans4_11b.
@@ -3753,18 +4017,19 @@ Theorem n5_54 : ∀ P Q : Prop,
   replace (P↔(P∧Q)) with ((P∧Q)↔P) in Sa.
   apply Sa.
   apply EqBi.
-  apply n4_21. (*Not cited.*)
+  apply n4_21. (*Not cited*)
   apply EqBi.
   apply n4_21. 
   apply EqBi.
   apply Trans4_11b.
   apply EqBi.
-  apply n4_13. (*Not cited.*)
-  replace (~~(P↔P∧Q)∨(~Q↔~(P∧Q))) with (~(P↔P∧Q)→~Q↔~(P∧Q)).
+  apply n4_13. (*Not cited*)
+  replace (~~(P↔P∧Q)∨(~Q↔~(P∧Q))) with 
+      (~(P↔P∧Q)→~Q↔~(P∧Q)).
   reflexivity.
-  apply Impl1_01. (*Not cited.*)
+  apply Impl1_01. (*Not cited*)
   apply EqBi.
-  apply n4_56. (*Not cited.*)
+  apply n4_56. (*Not cited*)
   replace (~(Q∨P∧Q)) with (~Q).
   reflexivity.
   apply EqBi.
@@ -3774,7 +4039,7 @@ Theorem n5_54 : ∀ P Q : Prop,
   apply EqBi.
   apply Trans4_11a.
   apply EqBi.
-  apply n4_3. (*Not cited.*)
+  apply n4_3. (*Not cited*)
   Qed. 
 
 Theorem n5_55 : ∀ P Q : Prop,
@@ -3791,36 +4056,39 @@ Theorem n5_55 : ∀ P Q : Prop,
   specialize n4_74 with P Q.
   intros n4_74a.
   specialize Trans2_15 with P (Q↔P∨Q).
-  intros Trans2_15a. (*Not cited.*)
+  intros Trans2_15a. (*Not cited*)
   MP Trans2_15a n4_74a.
   Syll Trans2_15a Sa Sb.
-  replace (~(Q↔(P∨Q))→(P↔(P∨Q))) with (~~(Q↔(P∨Q))∨(P↔(P∨Q))) in Sb.
+  replace (~(Q↔(P∨Q))→(P↔(P∨Q))) with 
+      (~~(Q↔(P∨Q))∨(P↔(P∨Q))) in Sb.
   replace (~~(Q↔(P∨Q))) with (Q↔(P∨Q)) in Sb.
   replace (Q↔(P∨Q)) with ((P∨Q)↔Q) in Sb.
   replace (P↔(P∨Q)) with ((P∨Q)↔P) in Sb.
-  replace ((P∨Q↔Q)∨(P∨Q↔P)) with ((P∨Q↔P)∨(P∨Q↔Q)) in Sb.
+  replace ((P∨Q↔Q)∨(P∨Q↔P)) with 
+      ((P∨Q↔P)∨(P∨Q↔Q)) in Sb.
   apply Sb.
   apply EqBi.
-  apply n4_31. (*Not cited.*)
+  apply n4_31. (*Not cited*)
   apply EqBi.
-  apply n4_21. (*Not cited.*)
+  apply n4_21. (*Not cited*)
   apply EqBi.
   apply n4_21.
   apply EqBi.
-  apply n4_13. (*Not cited.*)
-  replace (~~(Q↔P∨Q)∨(P↔P∨Q)) with (~(Q↔P∨Q)→P↔P∨Q).
+  apply n4_13. (*Not cited*)
+  replace (~~(Q↔P∨Q)∨(P↔P∨Q)) with 
+      (~(Q↔P∨Q)→P↔P∨Q).
   reflexivity.
   apply Impl1_01.
   apply EqBi.
   apply n4_31. 
   apply EqBi.
-  apply n4_25. (*Not cited.*)
+  apply n4_25. (*Not cited*)
   replace ((P∨P)∧(Q∨P)) with ((P∧Q)∨P).
   reflexivity.
   replace ((P∧Q)∨P) with (P∨(P∧Q)).
   replace (Q∨P) with (P∨Q).
   apply EqBi.
-  apply n4_41. (*Not cited.*)
+  apply n4_41. (*Not cited*)
   apply EqBi.
   apply n4_31.
   apply EqBi.
@@ -3836,8 +4104,15 @@ Theorem n5_6 : ∀ P Q R : Prop,
   intros n4_64a.
   specialize n4_85 with P Q R.
   intros n4_85a.
-  replace (((P ∧ ~Q → R) ↔ (P → ~Q → R)) ↔ ((~Q → P → R) ↔ (~Q ∧ P → R))) with ((((P ∧ ~Q → R) ↔ (P → ~Q → R)) → ((~Q → P → R) ↔ (~Q ∧ P → R)))∧((((~Q → P → R) ↔ (~Q ∧ P → R)))→(((P ∧ ~Q → R) ↔ (P → ~Q → R))))) in n4_87a.
-  specialize Simp3_27 with (((P ∧ ~Q → R) ↔ (P → ~Q → R) → (~Q → P → R) ↔ (~Q ∧ P → R))) (((~Q → P → R) ↔ (~Q ∧ P → R) → (P ∧ ~Q → R) ↔ (P → ~Q → R))).
+  replace (((P∧~Q→R)↔(P→~Q→R))↔((~Q→P→R)↔(~Q∧P→R)))
+       with 
+       ((((P∧~Q→R)↔(P→~Q→R))→((~Q→P→R)↔(~Q∧P→R)))
+       ∧
+       ((((~Q→P→R)↔(~Q∧P→R)))→(((P∧~Q→R)↔(P→~Q→R))))) 
+       in n4_87a.
+  specialize Simp3_27 with 
+      (((P∧~Q→R)↔(P→~Q→R)→(~Q→P→R)↔(~Q∧P→R))) 
+      (((~Q→P→R)↔(~Q∧P→R)→(P∧~Q→R)↔(P→~Q→R))).
   intros Simp3_27a.
   MP Simp3_27a n4_87a.
   specialize Imp3_31 with (~Q) P R.
@@ -3858,7 +4133,10 @@ Theorem n5_6 : ∀ P Q R : Prop,
   apply n4_64a.
   apply Equiv4_01.
   apply Equiv4_01.  
-  Qed. (*A fair amount of manipulation was needed here to pull the relevant biconditional out of the biconditional of biconditionals.*)
+  Qed. 
+  (*A fair amount of manipulation was needed 
+      here to pull the relevant biconditional out 
+      of the biconditional of biconditionals.*)
 
 Theorem n5_61 : ∀ P Q : Prop,
   ((P ∨ Q) ∧ ~Q) ↔ (P ∧ ~Q).
@@ -3867,21 +4145,24 @@ Theorem n5_61 : ∀ P Q : Prop,
   intros n4_74a.
   specialize n5_32 with (~Q) P (Q∨P).
   intros n5_32a.
-  replace (~Q → P ↔ Q ∨ P) with (~Q ∧ P ↔ ~Q ∧ (Q ∨ P)) in n4_74a.
+  replace (~Q → P ↔ Q ∨ P) with 
+      (~Q ∧ P ↔ ~Q ∧ (Q ∨ P)) in n4_74a.
   replace (~Q∧P) with (P∧~Q) in n4_74a.
   replace (~Q∧(Q∨P)) with ((Q∨P)∧~Q) in n4_74a.
   replace (Q∨P) with (P∨Q) in n4_74a.
-  replace (P ∧ ~Q ↔ (P ∨ Q) ∧ ~Q) with ((P ∨ Q) ∧ ~Q ↔ P ∧ ~Q) in n4_74a.
+  replace (P ∧ ~Q ↔ (P ∨ Q) ∧ ~Q) with 
+      ((P ∨ Q) ∧ ~Q ↔ P ∧ ~Q) in n4_74a.
   apply n4_74a.
   apply EqBi.
-  apply n4_3. (*Not cited exlicitly.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
-  apply n4_31. (*Not cited explicitly.*)
+  apply n4_31. (*Not cited*)
   apply EqBi.
-  apply n4_3. (*Not cited explicitly.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
-  apply n4_3. (*Not cited explicitly.*)
-  replace (~Q ∧ P ↔ ~Q ∧ (Q ∨ P)) with (~Q → P ↔ Q ∨ P).
+  apply n4_3. (*Not cited*)
+  replace (~Q ∧ P ↔ ~Q ∧ (Q ∨ P)) with 
+      (~Q → P ↔ Q ∨ P).
   reflexivity.
   apply EqBi.
   apply n5_32a.
@@ -3897,24 +4178,25 @@ Theorem n5_62 : ∀ P Q : Prop,
   replace (~Q∨(Q∧P)) with ((Q∧P)∨~Q) in n4_7a.
   replace (~Q∨P) with (P∨~Q) in n4_7a.
   replace (Q∧P) with (P∧Q) in n4_7a.
-  replace (P ∨ ~Q ↔ P ∧ Q ∨ ~Q) with (P ∧ Q ∨ ~Q ↔ P ∨ ~Q) in n4_7a.
+  replace (P ∨ ~Q ↔ P ∧ Q ∨ ~Q) with 
+      (P ∧ Q ∨ ~Q ↔ P ∨ ~Q) in n4_7a.
   apply n4_7a.
   apply EqBi.
-  apply n4_21. (*Not cited explicitly.*)
+  apply n4_21. (*Not cited*)
   apply EqBi.
-  apply n4_3. (*Not cited explicitly.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
-  apply n4_31. (*Not cited explicitly.*)
+  apply n4_31. (*Not cited*)
   apply EqBi.
-  apply n4_31. (*Not cited explicitly.*)
+  apply n4_31. (*Not cited*)
   replace (~Q ∨ Q ∧ P) with (Q → Q ∧ P).
   reflexivity.
   apply EqBi.
-  apply n4_6. (*Not cited explicitly.*)
+  apply n4_6. (*Not cited*)
   replace (~Q ∨ P) with (Q → P).
   reflexivity.
   apply EqBi.
-  apply n4_6. (*Not cited explicitly.*)
+  apply n4_6. (*Not cited*)
   Qed.
 
 Theorem n5_63 : ∀ P Q : Prop,
@@ -3925,60 +4207,66 @@ Theorem n5_63 : ∀ P Q : Prop,
   replace (~~P) with P in n5_62a.
   replace (Q ∨ P) with (P ∨ Q) in n5_62a.
   replace ((Q∧~P)∨P) with (P∨(Q∧~P)) in n5_62a.
-  replace (P ∨ Q ∧ ~ P ↔ P ∨ Q) with (P ∨ Q ↔ P ∨ Q ∧ ~ P) in n5_62a.
+  replace (P ∨ Q ∧ ~P ↔ P ∨ Q) with 
+      (P ∨ Q ↔ P ∨ Q ∧ ~P) in n5_62a.
   replace (Q∧~P) with (~P∧Q) in n5_62a.
   apply n5_62a.
   apply EqBi.
-  apply n4_3. (*Not cited explicitly.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
-  apply n4_21. (*Not cited explicitly.*)
+  apply n4_21. (*Not cited*)
   apply EqBi.
-  apply n4_31. (*Not cited explicitly.*)
+  apply n4_31. (*Not cited*)
   apply EqBi.
-  apply n4_31. (*Not cited explicitly.*)
+  apply n4_31. (*Not cited*)
   apply EqBi.
-  apply n4_13. (*Not cited explicitly.*)
+  apply n4_13. (*Not cited*)
   Qed.
 
 Theorem n5_7 : ∀ P Q R : Prop,
   ((P ∨ R) ↔ (Q ∨ R)) ↔ (R ∨ (P ↔ Q)).
   Proof. intros P Q R.
   specialize n5_32 with (~R) (~P) (~Q).
-  intros n5_32a. (*Not cited.*)
+  intros n5_32a. (*Not cited*)
   replace (~R∧~P) with (~(R∨P)) in n5_32a.
   replace (~R∧~Q) with (~(R∨Q)) in n5_32a.
-  replace ((~(R∨P))↔(~(R∨Q))) with ((R∨P)↔(R∨Q)) in n5_32a.
+  replace ((~(R∨P))↔(~(R∨Q))) with 
+      ((R∨P)↔(R∨Q)) in n5_32a.
   replace ((~P)↔(~Q)) with (P↔Q) in n5_32a.
-  replace (~R→(P↔Q)) with (~~R∨(P↔Q)) in n5_32a.
+  replace (~R→(P↔Q)) with 
+      (~~R∨(P↔Q)) in n5_32a.
   replace (~~R) with R in n5_32a.
   replace (R∨P) with (P∨R) in n5_32a.
   replace (R∨Q) with (Q∨R) in n5_32a.
-  replace ((R∨(P↔Q))↔(P∨R↔Q∨R)) with ((P∨R↔Q∨R)↔(R∨(P↔Q))) in n5_32a.
-  apply n5_32a. (*Not cited.*)
+  replace ((R∨(P↔Q))↔(P∨R↔Q∨R)) with 
+      ((P∨R↔Q∨R)↔(R∨(P↔Q))) in n5_32a.
+  apply n5_32a. (*Not cited*)
   apply EqBi.
-  apply n4_21. (*Not cited.*)
+  apply n4_21. (*Not cited*)
   apply EqBi.
   apply n4_31.
   apply EqBi.
   apply n4_31.
   apply EqBi.
-  apply n4_13. (*Not cited.*)
+  apply n4_13. (*Not cited*)
   replace (~~R∨(P↔Q)) with (~R→P↔Q).
   reflexivity.
-  apply Impl1_01. (*Not cited.*)
+  apply Impl1_01. (*Not cited*)
   apply EqBi.
-  apply Trans4_11. (*Not cited.*)
+  apply Trans4_11. (*Not cited*)
   apply EqBi.
   apply Trans4_11.
   replace (~(R∨Q)) with (~R∧~Q).
   reflexivity.
   apply EqBi.
-  apply n4_56. (*Not cited.*)
+  apply n4_56. (*Not cited*)
   replace (~(R∨P)) with (~R∧~P).
   reflexivity.
   apply EqBi.
   apply n4_56.
-  Qed. (*The proof sketch was indecipherable, but an easy proof was available through n5_32.*)
+  Qed. 
+  (*The proof sketch was indecipherable, but an 
+      easy proof was available through n5_32.*)
 
 Theorem n5_71 : ∀ P Q R : Prop,
   (Q → ~R) → (((P ∨ Q) ∧ R) ↔ (P ∧ R)).
@@ -3990,8 +4278,12 @@ Theorem n5_71 : ∀ P Q R : Prop,
   specialize n4_51 with Q R.
   intros n4_51a.
   replace (~Q∨~R) with (~(Q∧R)) in n4_62a.
-  replace ((Q→~R)↔~(Q∧R)) with (((Q→~R)→~(Q∧R))∧(~(Q∧R)→(Q→~R))) in n4_62a.
-  specialize Simp3_26 with ((Q→~R)→~(Q∧R)) (~(Q∧R)→(Q→~R)).
+  replace ((Q→~R)↔~(Q∧R)) with 
+      (((Q→~R)→~(Q∧R))
+      ∧
+      (~(Q∧R)→(Q→~R))) in n4_62a.
+  specialize Simp3_26 with 
+      ((Q→~R)→~(Q∧R)) (~(Q∧R)→(Q→~R)).
   intros Simp3_26a.
   MP Simp3_26a n4_62a.
   specialize n4_74 with (Q∧R) (P∧R).
@@ -3999,23 +4291,25 @@ Theorem n5_71 : ∀ P Q R : Prop,
   Syll Simp3_26a n4_74a Sa.
   replace (R∧P) with (P∧R) in n4_4a.
   replace (R∧Q) with (Q∧R) in n4_4a.
-  replace ((P∧R)∨(Q∧R)) with ((Q∧R)∨(P∧R)) in n4_4a.
+  replace ((P∧R)∨(Q∧R)) with 
+      ((Q∧R)∨(P∧R)) in n4_4a.
   replace ((Q∧R)∨(P∧R)) with (R∧(P∨Q)) in Sa.
   replace (R∧(P∨Q)) with ((P∨Q)∧R) in Sa.
-  replace ((P∧R)↔((P∨Q)∧R)) with (((P∨Q)∧R)↔(P∧R)) in Sa.
+  replace ((P∧R)↔((P∨Q)∧R)) with 
+      (((P∨Q)∧R)↔(P∧R)) in Sa.
   apply Sa.
   apply EqBi.
-  apply n4_21. (*Not cited.*)
+  apply n4_21. (*Not cited*)
   apply EqBi.
-  apply n4_3. (*Not cited.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
-  apply n4_4a. (*Not cited.*)
+  apply n4_4a. (*Not cited*)
   apply EqBi.
-  apply n4_31. (*Not cited.*)
+  apply n4_31. (*Not cited*)
   apply EqBi.
-  apply n4_3. (*Not cited.*)
+  apply n4_3. (*Not cited*)
   apply EqBi.
-  apply n4_3. (*Not cited.*)
+  apply n4_3. (*Not cited*)
   apply Equiv4_01.
   apply EqBi.
   apply n4_51a.
@@ -4032,18 +4326,23 @@ Theorem n5_74 : ∀ P Q R : Prop,
   split.
   apply n5_41a.
   apply n5_41b.
-  specialize n4_38 with ((P→Q)→(P→R)) ((P→R)→(P→Q)) (P→Q→R) (P→R→Q).
+  specialize n4_38 with 
+      ((P→Q)→(P→R)) ((P→R)→(P→Q)) 
+      (P→Q→R) (P→R→Q).
   intros n4_38a.
   MP n4_38a H.
-  replace (((P→Q)→(P→R))∧((P→R)→(P→Q))) with ((P→Q)↔(P→R)) in n4_38a.
+  replace (((P→Q)→(P→R))∧((P→R)→(P→Q))) with 
+      ((P→Q)↔(P→R)) in n4_38a.
   specialize n4_76 with P (Q→R) (R→Q).
   intros n4_76a.
   replace ((Q→R)∧(R→Q)) with (Q↔R) in n4_76a.
-  replace ((P→Q→R)∧(P→R→Q)) with (P→(Q↔R)) in n4_38a.
-  replace (((P→Q)↔(P→R))↔(P→Q↔R)) with ((P→(Q↔R))↔((P→Q)↔(P→R))) in n4_38a.
+  replace ((P→Q→R)∧(P→R→Q)) with 
+      (P→(Q↔R)) in n4_38a.
+  replace (((P→Q)↔(P→R))↔(P→Q↔R)) with 
+      ((P→(Q↔R))↔((P→Q)↔(P→R))) in n4_38a.
   apply n4_38a.
   apply EqBi.
-  apply n4_21. (*Not cited.*)
+  apply n4_21. (*Not cited*)
   replace (P→Q↔R) with ((P→Q→R)∧(P→R→Q)).
   reflexivity.
   apply EqBi.
@@ -4057,20 +4356,26 @@ Theorem n5_75 : ∀ P Q R : Prop,
   Proof. intros P Q R.
   specialize n5_6 with P Q R.
   intros n5_6a.
-  replace ((P∧~Q→R)↔(P→Q∨R)) with (((P∧~Q→R)→(P→Q∨R))∧((P→Q∨R)→(P∧~Q→R))) in n5_6a.
-  specialize Simp3_27 with ((P∧~Q→R)→(P→Q∨R)) ((P→Q∨R)→(P∧~Q→R)).
+  replace ((P∧~Q→R)↔(P→Q∨R)) with 
+      (((P∧~Q→R)→(P→Q∨R))
+      ∧
+      ((P→Q∨R)→(P∧~Q→R))) in n5_6a.
+  specialize Simp3_27 with 
+      ((P∧~Q→R)→(P→Q∨R)) ((P→Q∨R)→(P∧~Q→R)).
   intros Simp3_27a.
   MP Simp3_27a n5_6a.
   specialize Simp3_26 with (P→(Q∨R)) ((Q∨R)→P).
   intros Simp3_26a.
-  replace ((P→(Q∨R))∧((Q∨R)→P)) with (P↔(Q∨R)) in Simp3_26a.
+  replace ((P→(Q∨R))∧((Q∨R)→P)) with 
+      (P↔(Q∨R)) in Simp3_26a.
   Syll Simp3_26a Simp3_27a Sa.
   specialize Simp3_27 with (R→~Q) (P↔(Q∨R)).
   intros Simp3_27b.
   Syll Simp3_27b Sa Sb.
   specialize Simp3_27 with (P→(Q∨R)) ((Q∨R)→P).
   intros Simp3_27c.
-  replace ((P→(Q∨R))∧((Q∨R)→P)) with (P↔(Q∨R)) in Simp3_27c.
+  replace ((P→(Q∨R))∧((Q∨R)→P)) with 
+      (P↔(Q∨R)) in Simp3_27c.
   Syll Simp3_27b Simp3_27c Sc.
   specialize n4_77 with P Q R.
   intros n4_77a.
@@ -4084,21 +4389,27 @@ Theorem n5_75 : ∀ P Q R : Prop,
   split.
   apply Sd.
   apply Simp3_26b.
-  specialize Comp3_43 with ((R→~Q)∧(P↔(Q∨R))) (R→P) (R→~Q).
+  specialize Comp3_43 with 
+      ((R→~Q)∧(P↔(Q∨R))) (R→P) (R→~Q).
   intros Comp3_43a.
   MP Comp3_43a H.
   specialize Comp3_43 with R P (~Q).
   intros Comp3_43b.
   Syll Comp3_43a Comp3_43b Se.
-  clear n5_6a. clear Simp3_27a. clear Simp3_27b. clear Simp3_27c. clear Simp3_27d. clear Simp3_26a. clear Simp3_26b. clear Comp3_43a. clear Comp3_43b. clear Sa. clear Sc. clear Sd. clear H. clear n4_77a.
+  clear n5_6a. clear Simp3_27a. clear Simp3_27b. 
+      clear Simp3_27c. clear Simp3_27d. clear Simp3_26a. 
+      clear Simp3_26b. clear Comp3_43a. clear Comp3_43b. 
+      clear Sa. clear Sc. clear Sd. clear H. clear n4_77a.
   Conj Sb Se.
   split.
   apply Sb.
   apply Se.
-  specialize Comp3_43 with ((R→~Q)∧(P↔Q∨R)) (P∧~Q→R) (R→P∧~Q).
+  specialize Comp3_43 with 
+      ((R→~Q)∧(P↔Q∨R)) (P∧~Q→R) (R→P∧~Q).
   intros Comp3_43c.
   MP Comp3_43c H.
-  replace ((P∧~Q→R)∧(R→P∧~Q)) with (P∧~Q↔R) in Comp3_43c.
+  replace ((P∧~Q→R)∧(R→P∧~Q)) with 
+      (P∧~Q↔R) in Comp3_43c.
   apply Comp3_43c.
   apply Equiv4_01.
   apply EqBi.
