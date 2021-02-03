@@ -15,7 +15,7 @@ Axiom Impl1_01 : ∀ P Q : Prop,
 Axiom MP1_1 : ∀  P Q : Prop,
   (P → Q) → P → Q. (*Modus ponens*)
 
-  (**1.11 ommitted: it is MP for propositions 
+  (*1.11 ommitted: it is MP for propositions 
       containing variables. Likewise, ommitted 
       the well-formedness rules 1.7, 1.71, 1.72*)
 
