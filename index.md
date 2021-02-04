@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+# Welcome to the *Principia* Rewrite project website!
 
-You can use the [editor on GitHub](https://github.com/LogicalAtomist/principia/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![*Principia* & `Coq` side-by-side](https://github.com/LogicalAtomist/principia/blob/master/PM%202.14-2.15.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Summary
+This website hosts updates for the *Principia* Rewrite project. Our aim is to facilitate academic and public engagement with Whitehead and Russell's landmark work on logic and the foundations of mathematics. The project aims to do this by digitizing, mapping, and analyzing their work.
 
-### Markdown
+## Updates
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there, whereas project milestones will be announced here. As of February 2021, the project has produced:
 
-```markdown
-Syntax highlighted code block
+1. a [LaTeX] package, [`principia`](https://ctan.org/pkg/principia), for typesetting any symbol in *Principia*'s Volume I
+2. a `Coq` encoding of *Principia*'s propositional logic (\*1-\*5), running about 110 pages of code (4,600 lines of code)
 
-# Header 1
-## Header 2
-### Header 3
+And there are further developments to come: the top priority on our project agenda is to build a map of the first five chapters ("starred numbers") of *Principia*.
 
-- Bulleted
-- List
+## People
 
-1. Numbered
-2. List
+The principal investigator is [Landon D. C. Elkind](https://landondcelkind.com) ([@LogicalAtomist](https://twitter.com/LogicalAtomist)), who is affiliated with the Department of Philosophy at the University of Alberta. This project is supported by a postdoctoral fellowship from the [Killam Trusts](https://killamlaureates.ca/) to maintain and preview the content for your website in Markdown files.
 
-**Bold** and _Italic_ and `Code` text
+### Contact
 
-[Link](url) and ![Image](src)
-```
+If you have any questions, criticisms, or thoughts related to the *Principia* Rewrite project, write to us at [elkind at ualberta dot ca](elkind@ualberta.ca).
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/LogicalAtomist/principia/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+![Sample page of *Principia* digitized with LaTeX using the `principia` package](https://github.com/LogicalAtomist/principia/blob/master/TeX%20package%20samples/Sample%20principia%20alphabetical%20list%20of%20props.png)
