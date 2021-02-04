@@ -1,6 +1,6 @@
 # Welcome to the *Principia* Rewrite project website!
 
-![*Principia* & `Coq` side-by-side](https://github.com/LogicalAtomist/principia/blob/master/PM2.14-2.15.png)
+![*Principia* & `Coq` side-by-side](https://github.com/LogicalAtomist/principia/blob/gh-pages/PM2.14-2.15.png)
 
 ## Summary
 This website hosts updates for the *Principia* Rewrite project. Our aim is to facilitate academic and public engagement with Whitehead and Russell's landmark work on logic and the foundations of mathematics. The project aims to do this by digitizing, mapping, and analyzing their work.
@@ -24,4 +24,4 @@ This project is supported by a postdoctoral fellowship from the [Killam Trusts](
 
 If you have any questions, criticisms, or thoughts related to the *Principia* Rewrite project, write to us at `elkind at ualberta dot ca`.
 
-![Sample page of *Principia* digitized with LaTeX using the `principia` package](https://github.com/LogicalAtomist/principia/blob/master/SamplePMalphabeticallistofprops.png)
+![Sample page of *Principia* digitized with LaTeX using the `principia` package](https://github.com/LogicalAtomist/principia/blob/gh-pages/SamplePMalphabeticallistofprops.png)
