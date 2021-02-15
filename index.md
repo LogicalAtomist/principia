@@ -1,4 +1,5 @@
 # Welcome to the *Principia* Rewrite project website!
+{:toc}
 
 ## What is the project? What are you trying to do?
 What we are doing is best explained by a picture:
