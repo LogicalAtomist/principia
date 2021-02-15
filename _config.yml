@@ -4,7 +4,7 @@ logo: Logo.png
 
 markdown: kramdown
 
-show_downloads: true
+show_downloads: false
 
 title: The Principia Rewrite
 
