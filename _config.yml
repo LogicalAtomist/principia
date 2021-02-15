@@ -1,3 +1,13 @@
 theme: jekyll-theme-minimal
 
 logo: Logo.png
+
+markdown: kramdown
+
+show_downloads: true
+
+title: The Principia Rewrite
+
+author:
+  name: Landon D. C. Elkind
+  twitter: LogicalAtomist
