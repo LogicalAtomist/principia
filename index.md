@@ -27,13 +27,13 @@ We also want to create a subway-style map of *Principia* that allows one to clic
 It is definitely a lot. We would be very happy to get Volume I done by 2025, which will be exactly one hundred years since *Principia*'s second edition was published. So we might give a rough estimate of one volume every five years.
 
 # Who is doing tihs?
-The principal investigator is your resident logical atomist, [Landon D. C. Elkind](https://landondcelkind.com) ([@LogicalAtomist](https://twitter.com/LogicalAtomist)), who is affiliated with the Department of Philosophy at the University of Alberta. I began and am currently undertaking this project with the suppoert of an [Izaak Walton Killam Postdoctoral Fellowship](https://www.ualberta.ca/graduate-studies/about/celebrating-our-killam-laureates/2020-izaak-walton-killam-postdoctoral.html).
+The principal investigator is your resident logical atomist, [Landon D. C. Elkind](https://landondcelkind.com) ([@LogicalAtomist](https://twitter.com/LogicalAtomist)), who is affiliated with the Department of Philosophy at the University of Alberta. I began and am currently undertaking this project with the support of an [Izaak Walton Killam Postdoctoral Fellowship](https://www.ualberta.ca/graduate-studies/about/celebrating-our-killam-laureates/2020-izaak-walton-killam-postdoctoral.html).
 
 # Updates
-The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there, whereas project milestones will be announced below.
+The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
 
 ## February 15, 2021
-The project has formally verified *Principia*'s propositional logic proof sketches - for all 189 theorems in \*1-to-\*5 - for the very first time. This improves significantly on the earlier computer verification work of Allen Newell *et al*., Hao Wang, and Daniel O'Leary. In all three cases, either some theorems were not verified or their proofs were not reconstructed according to *Principia*'s proof sketches. Our project in contrast reconstructs all the proofs in a way that is faithful to the text: each completion of *Principia*'s proof in `Coq` make use of every theorem cited in *Principia*'s proof sketch.
+The project has formally verified *Principia*'s propositional logic proof sketches - for all 189 theorems in \*1-to-\*5 - for the very first time. This improves significantly on the earlier computer verification work of Allen Newell *et al*., Hao Wang, and Daniel O'Leary. In all three cases, either some theorems were not verified or their proofs were not reconstructed according to *Principia*'s proof sketches. Our project in contrast reconstructs all the proofs in a way that is faithful to the text: each completion of *Principia*'s proof in `Coq` makes use of every theorem cited in *Principia*'s proof sketch.
 
 # Digital publications
 As of February 15, 2021, the *Principia* Rewrite project has also produced:
