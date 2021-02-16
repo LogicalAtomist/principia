@@ -6,7 +6,7 @@ Welcome to the *Principia* Rewrite project website!
 # What is the project? What are you trying to do?
 What we are doing is best explained by a picture:
 ![*2.37: the original *Principia* proof, the `Coq` proof, and the rewritten proof side-by-side-by-side](2.37sidebysidebysideArrows.png)
-We are taking the original *Principia* proof on the left, which is really a proof sketch omitting a lot of steps, and filling out the missing steps. For this we are using the interactive theorem prover `Coq` to ensure each proof step is a valid step according to *Principia*'s axioms and that no steps are skipped, even by accident. Finally, we are using the `Coq` encoding to typeset the full, gapless proof as it would appear in *Principia*'s notation.
+We are taking Whitehead and Russell's original *Principia* proof on the left, which is really a proof sketch omitting a lot of steps, and filling out the missing steps. For this we are using the interactive theorem prover `Coq` to ensure each proof step is a valid step according to *Principia*'s axioms and that no steps are skipped, even by accident. Finally, we are using the `Coq` encoding to typeset the full, gapless proof as it would appear in *Principia*'s notation.
 
 # Why are you doing all *that*?
 Because it is fun. We also want academics and the public to engage more with Whitehead and Russell's landmark three-volume work on logic and the foundations of mathematics. The project aims to facilitate that by producing a scholarly edition of *Principia* that is pleasingly typeset and searchable.
