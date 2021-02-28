@@ -1,0 +1,544 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.29)  23 FEB 2021 21:45
+entering extended mode
+**./principia.tex
+(principia.tex
+LaTeX2e <2020-10-01> patch level 1
+L3 programming layer <2020-10-05> xparse <2020-03-03>
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size12.clo"
+File: size12.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+
+LaTeX Warning: You have requested package `',
+               but the package provides `principia'.
+
+Package: principia 2020/10/25 principia package version 1.1
+(C:\Users\dcelk\AppData\Roaming\MiKTeX\2.9\tex/latex/preprint\fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip49
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\fontenc.sty"
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\inputenc.sty"
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+)
+(C:\Users\dcelk\AppData\Roaming\MiKTeX\2.9\tex/latex/setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(principia.sty
+Package: principia 2020/10/25 principia package version 1.1
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen139
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen140
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count183
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count184
+\leftroot@=\count185
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count186
+\DOTSCASE@=\count187
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen141
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count188
+\c@MaxMatrixCols=\count189
+\dotsspace@=\muskip16
+\c@parentequation=\count190
+\dspbrk@lvl=\count191
+\tag@help=\toks19
+\row@=\count192
+\column@=\count193
+\maxfields@=\count194
+\andhelp@=\toks20
+\eqnshift@=\dimen142
+\alignsep@=\dimen143
+\tagshift@=\dimen144
+\tagwidth@=\dimen145
+\totwidth@=\dimen146
+\lineht@=\dimen147
+\@envbody=\toks21
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen148
+\Gin@req@width=\dimen149
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/marvosym\marvosym.sty"
+Package: marvosym 2011/07/20 v2.2 Martin Vogel's Symbols font definitions
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\pifont.sty"
+Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
+LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
+
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\upzd.fd"
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
+
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\upsy.fd"
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+)))
+("C:\Program Files\MiKTeX 2.9\tex/latex/l3backend\l3backend-pdftex.def"
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count195
+\l__pdf_internal_box=\box49
+)
+(principia.aux)
+\openout1 = `principia.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+
+("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count196
+\scratchdimen=\dimen150
+\scratchbox=\box50
+\nofMPsegments=\count197
+\nofMParguments=\count198
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count199
+\MPscratchDim=\dimen151
+\MPnumerator=\count266
+\makeMPintoPDFobject=\count267
+\everyMPtoPDFconversion=\toks25
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/epstopdf-pkg\epstopdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+8.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\t1cmtt.fd"
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 49.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 49.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 49.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 49.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 49.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[][][]\T1/cmtt/m/n/12 \pmsub{p}{q}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[][]\T1/cmtt/m/n/12 \pmsubb{p}{q}{r}{s}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+[][][]\T1/cmtt/m/n/12 \pmdot[]\T1/cmr/m/n/12 , [][]\T1/cmtt/m/n/12 \pmdott[]\T1
+/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[][][]\T1/cmtt/m/n/12 \pmand[]\T1/cmr/m/n/12 , [][]\T1/cmtt/m/n/12 \pmandd[]\T1
+/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (5.90004pt too wide) in paragraph at lines 67--67
+[][][]\T1/cmtt/m/n/12 \pmpreddd{\phi}{x}{y}{z}| 
+ []
+
+
+Overfull \hbox (22.60225pt too wide) in paragraph at lines 40--69
+[] 
+ []
+
+[1
+
+{C:/Users/dcelk/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \vbox (18.26869pt too high) has occurred while \output is active []
+
+
+[2]
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 85.
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 85
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 98.
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \vbox (1.5pt too high) detected at line 98
+ []
+
+
+Overfull \hbox (22.60225pt too wide) in paragraph at lines 70--107
+[] 
+ []
+
+
+Overfull \vbox (3.3756pt too high) has occurred while \output is active []
+
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[][][]\T1/cmtt/m/n/12 \pmdscfr{R}{x}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (5.90004pt too wide) in paragraph at lines 123--123
+[][][]\T1/cmtt/m/n/12 \pmrlf{\alpha}{R}{\beta}| 
+ []
+
+
+Overfull \hbox (5.90004pt too wide) in paragraph at lines 124--124
+[][][]\T1/cmtt/m/n/12 \pmrlF{\alpha}{R}{\beta}| 
+ []
+
+LaTeX Font Info:    Trying to load font information for U+mvs on input line 126
+.
+("C:\Program Files\MiKTeX 2.9\tex/latex/marvosym\umvs.fd")
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
+[][][]\T1/cmtt/m/n/12 \pmrtri{n}{R}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (22.60225pt too wide) in paragraph at lines 108--142
+[] 
+ []
+
+
+Overfull \vbox (14.09262pt too high) has occurred while \output is active []
+
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 144--144
+[][][]\T1/cmtt/m/n/12 \pmrtric{n}{R}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
+[][][]\T1/cmtt/m/n/12 \pmrtdi{\alpha}{x}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
+[][][]\T1/cmtt/m/n/12 \pmrtdc{\alpha}{x}[]\T1/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+[][][]\T1/cmtt/m/n/12 \pmoneone[]\T1/cmr/m/n/12 , [][]\T1/cmtt/m/n/12 \pmoneman
+y[]\T1/cmr/m/n/12 ,
+ []
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 150.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 151.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 152.
+
+
+Overfull \hbox (22.60225pt too wide) in paragraph at lines 143--173
+[] 
+ []
+
+
+Overfull \vbox (5.80965pt too high) has occurred while \output is active []
+
+
+[5] (principia.aux) ) 
+Here is how much of TeX's memory you used:
+ 3252 strings out of 480202
+ 39757 string characters out of 2887231
+ 347927 words of memory out of 3000000
+ 19760 multiletter control sequences out of 15000+200000
+ 564595 words of font info for 110 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 72i,27n,77p,1022b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-s
+uper-t1.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbsy10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmbsy8.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cmextra/cmmib8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/lcircle1.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/marvosym/marvosym.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx0800.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1000.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/cm-super/sfrm0800.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/cm-super/sfrm1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-sup
+er/sfrm1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm20
+74.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfti1200.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfti2074.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1200.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/cm-super/sftt1440.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/cm-super/sftt2074.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/urw/zapfding/uzdr.pfb>
+Output written on principia.pdf (5 pages, 381284 bytes).
+PDF statistics:
+ 131 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

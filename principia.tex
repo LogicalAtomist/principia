@@ -3,6 +3,7 @@
 \ProvidesPackage{principia}[2020/10/25 principia package version 1.1] %This package supports typesetting the Peanese notation in Volume I of Whitehead and Russell’s 1910 ``Principia Mathematica". 
 %Version 1.0 (superseded by Version 1.1): Covers typesetting of notation through Volume I. 2020/10/24
 %Version 1.1 (updates): fixed the spacing of scope dots around parentheses; fixed spacing of theorem sign; fixed spacing around primitive proposition and definition signs. 2020/10/25
+%Version 1.2 (updates): boldfaced (`thickened') the truth-functional connectives, existential quantifier, set and relation symbols; added numerous commands for typesetting brackets and substitutions into theorems. 2021/02/23
 %Licensed under LaTeX Project Public License 1.3c. 
 %Copyright Landon D. C. Elkind, 2020.  (https://landondcelkind.com/contact/).
 
@@ -19,7 +20,7 @@
 \usepackage{marvosym} %This loads the male and female symbol.
 \usepackage{graphicx} %This loads commands that flip iota for definite descriptions, Lambda for the universal class, and so on. The (superseded) graphics package should also work here, but is not recommended.
 
-\title{\texttt{principia.sty }\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 1.1)}
+\title{\texttt{principia.sty }\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 1.2)}
 \author{Landon D. C. Elkind \texttt{elkind@ualberta.ca}}
 \date{\today}
 
@@ -32,7 +33,7 @@ The \texttt{principia} package is designed for typesetting the Peanese notation 
 
 In \textit{Principia Mathematica} some symbols occur with an argument and sometimes that same symbol occurs without an argument. For example, `$\pmsome{x}$' occurs in some formulas, but sometimes `$\pmSome$' occurs in the text when they talk about the symbol itself. \texttt{principia} is designed to accommodate these different occurrences of symbols. When a symbol is to occur without an argument, capitalize the first letter following the `\texttt{$\backslash$pm}' part of the command. E.g. \verb|\pmsome{x}| produces $\pmsome{x}$ and \verb|\pmSome| produces `$\pmSome$'. Note the former command requires an argument and the latter command does not. Not all commands in the \texttt{principia} package admit of such dual use because some symbols in \textit{Principia Mathematica} never occur without an argument or do not take an argument in the usual sense. For example, the propositional connectives do not take an `argument' in the way singular or plural descriptions do.
 
-Version 1.1 of \texttt{principia}, like Version 1.0, is adequate to typeset all notations throughout Volume I of \textit{Principia} and includes some fixes to spacing, etc. See the package documentation for details. Updates to include all notations throughout Volumes II and III are planned.
+Version 1.2 (and 1.0-1.1) of \texttt{principia} is adequate to typeset all notations throughout Volume I of \textit{Principia} and includes some fixes to spacing, etc. See the package documentation for details. Updates to include all notations throughout Volumes II and III are planned.
 
 \texttt{principia}'s dependencies are \texttt{amsmath}, \texttt{amssymb}, \texttt{pifont}, \texttt{marvosym}, and \texttt{graphicx}. Make sure to load these package by typing \texttt{$\backslash$usepackage\{graphicx\}}, etc., into the document preamble. To load \texttt{principia}, type \texttt{$\backslash$usepackage\{principia\}} in the document's preamble.
 

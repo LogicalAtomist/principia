@@ -14,8 +14,10 @@
 \RequirePackage{pifont} %This loads the symbols such as the eight-pointed asterisk.
 
 %Meta-logical symbols
+\newcommand{\pmfd}{\begin{center} \rule{5cm}{.5pt} \end{center}} %Dividing line between introductory remarks in a starred number and the formal deductions.
 \newcommand{\pmdem}{\textit{Dem}.} %This notation begins a proof.
 \newcommand{\pmdemi}{\indent \pmdem} %This idents the notation that begins a proof.
+\newcommand{\pmhp}{\text{Hp}} %This typesets Hp (short for antecedent), which occurs at the beginning of a proof.
 \newcommand{\pmprop}{\text{Prop}} %This occurs at the end of a proof.
 \newcommand{\pmithm}{\pmimp\;\pmthm} %This occurs when a meta-theoretic implication is asserted.
 \newcommand{\pmbr}[1]{\bigg \lbrack \normalsize #1 \bigg \rbrack} %These are larger brackets for substitution.
@@ -51,13 +53,14 @@
 \newcommand{\pmdotttttt}{\pmdott\hspace{.1em}\pmdott\hspace{.1em}\pmdott}
 
 %Logical connectives
-\newcommand{\pmnot}{\mathord{\sim}}
-\newcommand{\pmimp}{\mathbin{\boldsymbol{\supset}}}
-\newcommand{\pmiff}{\mathbin{\equiv}}
-\newcommand{\pmor}{\mathbin{\boldsymbol{\vee}}}
+\newcommand{\pmnot}{\mathord{\ooalign{$\boldsymbol{\sim}\mkern.5mu$\hidewidth\cr$\boldsymbol{\sim}$\cr\hidewidth$\mkern.5mu\boldsymbol{\sim}$}}}
+\newcommand{\pmimp}{\mathbin{\ooalign{$\boldsymbol{\supset}\mkern.5mu$\hidewidth\cr$\boldsymbol{\supset}$\cr\hidewidth$\mkern.5mu\boldsymbol{\supset}$}}}
+\newcommand{\pmiff}{\mathbin{\ooalign{$\boldsymbol{\equiv}\mkern.5mu$\hidewidth\cr$\boldsymbol{\equiv}$\cr\hidewidth$\mkern.5mu\boldsymbol{\equiv}$}}}
+\newcommand{\pmor}{\mathbin{\ooalign{$\boldsymbol{\vee}\mkern.5mu$\hidewidth\cr$\boldsymbol{\vee}$\cr\hidewidth$\mkern.5mu\boldsymbol{\vee}$}}}
+\newcommand{\pmprod}{\mathbin{\ooalign{$\boldsymbol{\wedge}\mkern.5mu$\hidewidth\cr$\boldsymbol{\wedge}$\cr\hidewidth$\mkern.5mu\boldsymbol{\wedge}$}}}
 \newcommand{\pmall}[1]{(#1)}
-\newcommand{\pmsome}[1]{(\text{\raisebox{.5em}{\rotatebox{180}{E}}}#1)}
-\newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{E}}}}
+\newcommand{\pmsome}[1]{(\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}#1)}
+\newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}}
 \newcommand{\pmand}{\mathrel{\hbox{\rule{.3ex}{.3ex}}}}
 \newcommand{\pmandd}{\overset{\pmand}{\pmand}}
 \newcommand{\pmanddd}{\pmandd\hspace{.1em}\pmand}
@@ -75,10 +78,10 @@
 \newcommand{\pmpredd}[3]{#1\pmshr(#2, #3)} %for predicates (``predicative functions'') of two variables
 \newcommand{\pmpreddd}[4]{#1\pmshr(#2, #3, #4)} %for predicates (``predicative functions'') of three variables
 \newcommand{\pmnid}{\mathrel{\ooalign{$=$\cr\hidewidth\footnotesize\rotatebox[origin=c]{210}{\textbf{/}}\hidewidth\cr}}} %*13.01
-\newcommand{\pmiota}{\rotatebox[origin=c]{180}{$\iota$}} %the rotated Greek iota used in definite descriptions
+\newcommand{\pmiota}{\ooalign{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}\cr\hidewidth\raisebox{.0125em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.025em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.0375em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.05em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}}} %the rotated Greek iota used in definite descriptions
 \newcommand{\pmdsc}[1]{(\pmiota#1)} %*14.01
 \newcommand{\pmDsc}{\pmiota} %*14.01
-\newcommand{\pmexists}{\text{E}\pmshr} %*14.02
+\newcommand{\pmexists}{\textbf{E}\hspace{.1em}\pmshr} %*14.02
 
 %Class signs
 \newcommand{\pmcuni}{\text{\rotatebox[origin=c]{180}{$\Lambda$}}}
@@ -86,13 +89,13 @@
 \newcommand{\pmcls}[2]{\pmhat{#1}(#2)}
 \newcommand{\pmCls}{\text{Cls}}
 \newcommand{\pmClsn}[1]{\text{Cls}^{#1}}
-\newcommand{\pmcexists}{\text{\raisebox{.5em}{\rotatebox{180}{E}}}\mathop{\pmshr}}
+\newcommand{\pmcexists}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}\hspace{-.1em}\mathop{\pmshr}}
 \newcommand{\pmccmp}[1]{\boldsymbol{-}#1}
 \newcommand{\pmcmin}[2]{#1\boldsymbol{-}#2}
-\newcommand{\pmcin}{\mathop{\epsilon}}
-\newcommand{\pmccup}{\mathop{\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}}}
-\newcommand{\pmccap}{\mathop{\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}}}
-\newcommand{\pmcinc}{\mathop{\boldsymbol{\subset}}}
+\newcommand{\pmcin}{\mathop{\boldsymbol{\epsilon}}}
+\newcommand{\pmccup}{\mathop{\ooalign{\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.1em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.2em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.3em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.4em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.5em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.6em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}}}}
+\newcommand{\pmccap}{\mathop{\ooalign{\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.1em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.2em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.3em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.4em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.5em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.6em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}}}}
+\newcommand{\pmcinc}{\mathop{\ooalign{$\boldsymbol{\subset}$\cr\hidewidth$\hspace{.1em}\boldsymbol{\subset}$\cr\hidewidth$\hspace{.15em}\boldsymbol{\subset}$\cr\hidewidth$\hspace{.2em}\boldsymbol{\subset}$}}}
 
 %Relation signs
 \newcommand{\pmruni}{\dot{\text{\rotatebox[origin=c]{180}{$\Lambda$}}}}
@@ -179,7 +182,7 @@
 \newcommand{\pmsrel}[1]{\text{Rel}\textbf{`}#1}
 \newcommand{\pmRel}{\text{Rel}}
 \newcommand{\pmReln}[1]{\text{Rel}^{#1}}
-\newcommand{\pmrin}{\mathop{\epsilon}}
+\newcommand{\pmrin}{\mathop{\boldsymbol{\epsilon}}}
 
 %Relative type symbols
 \newcommand{\pmrt}[1]{t\textbf{`}#1}
