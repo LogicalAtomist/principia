@@ -1,4 +1,6 @@
-Welcome to the *Principia* Rewrite project website! Below is a table of contents.
+Welcome to the *Principia* Rewrite project website!
+
+# Table of contents
 
 * TOC
 {:toc}
