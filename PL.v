@@ -1,39 +1,95 @@
 Require Import Unicode.Utf8.
+Require Import Classical_Prop.
+Require Import ClassicalFacts.
+Require Import PropExtensionality.
 
 Module No1.
 Import Unicode.Utf8.
+Import ClassicalFacts.
+Import Classical_Prop.
+Import PropExtensionality.
+
   (*We first give the axioms of Principia
 for the propositional calculus in *1.*)
 
-Axiom Impl1_01 : ∀ P Q : Prop, 
-  (P → Q) = (¬P ∨ Q). 
+Theorem Impl1_01 : ∀ P Q : Prop, 
+  (P → Q) = (¬P ∨ Q).
+Proof. intros P Q.
+  apply propositional_extensionality.
+  split.
+  apply imply_to_or.
+  apply or_to_imply.
+Qed.
   (*This is a definition in Principia: there → is a 
       defined sign and ∨, ¬ are primitive ones. So 
       we will use this axiom to switch between 
       disjunction and implication.*)
   
-Axiom MP1_1 : ∀  P Q : Prop,
+Theorem MP1_1 : ∀  P Q : Prop,
   (P → Q) → P → Q. (*Modus ponens*)
-
+Proof. intros P Q.
+  intros iff_refl.
+  apply iff_refl.
+Qed.
   (*1.11 ommitted: it is MP for propositions 
       containing variables. Likewise, ommitted 
       the well-formedness rules 1.7, 1.71, 1.72*)
 
-Axiom Taut1_2 : ∀ P : Prop, 
+Theorem Taut1_2 : ∀ P : Prop, 
   P ∨ P → P. (*Tautology*)
+Proof. intros P.
+  apply imply_and_or.
+  apply iff_refl.
+Qed.
 
-Axiom Add1_3 : ∀ P Q : Prop, 
+Theorem Add1_3 : ∀ P Q : Prop, 
   Q → P ∨ Q. (*Addition*)
+Proof. intros P Q.
+  apply or_intror.
+Qed.
 
-Axiom Perm1_4 : ∀ P Q : Prop, 
+Theorem Perm1_4 : ∀ P Q : Prop, 
   P ∨ Q → Q ∨ P. (*Permutation*)
+Proof. intros P Q.
+  apply or_comm.
+Qed.
 
-Axiom Assoc1_5 : ∀ P Q R : Prop, 
+Theorem Assoc1_5 : ∀ P Q R : Prop, 
   P ∨ (Q ∨ R) → Q ∨ (P ∨ R). (*Association*)
+Proof. intros P Q R.
+  specialize or_assoc with P Q R.
+  intros or_assoc1.
+  replace (P∨Q∨R) with ((P∨Q)∨R).
+  specialize or_comm with P Q.
+  intros or_comm1.
+  replace (P∨Q) with (Q∨P).
+  specialize or_assoc with Q P R.
+  intros or_assoc2.
+  replace ((Q∨P)∨R) with (Q∨P∨R).
+  apply iff_refl.
+  apply propositional_extensionality.
+  apply iff_sym.
+  apply or_assoc2.
+  apply propositional_extensionality.
+  apply or_comm.
+  apply propositional_extensionality.
+  apply or_assoc.
+Qed.
 
-Axiom Sum1_6: ∀ P Q R : Prop, 
+Theorem Sum1_6 : ∀ P Q R : Prop, 
   (Q → R) → (P ∨ Q → P ∨ R). (*Summation*)
-  
+Proof. intros P Q R.
+  specialize imply_and_or2 with Q R P.
+  intros imply_and_or2a.
+  replace (P∨Q) with (Q∨P).
+  replace (P∨R) with (R∨P).
+  apply imply_and_or2a.
+  apply propositional_extensionality.
+  apply or_comm.
+  apply propositional_extensionality.
+  apply or_comm.
+Qed.
+
 (*These are all the propositional axioms of Principia.*)
 
 End No1.
@@ -637,7 +693,7 @@ Proof. intros P Q.
   MP Syll2_06a Perm1_4a.
   Syll n2_55a Syll2_06a Sa.
   apply Sa.
-  Qed.
+Qed.
 
 Theorem n2_6 : ∀ P Q : Prop,
   (¬P→Q) → ((P → Q) → Q).
@@ -1547,7 +1603,7 @@ Theorem n4_12 : ∀ P Q : Prop,
     rewrite <- Equiv4_01 in H.
     rewrite <- Equiv4_01 in H.
     apply H.
-  Qed.
+Qed.
 
 Theorem n4_13 : ∀ P : Prop,
   P ↔ ¬¬P.
@@ -1563,7 +1619,7 @@ Theorem n4_13 : ∀ P : Prop,
   Equiv H. 
   apply H. 
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_14 : ∀ P Q R : Prop,
   ((P ∧ Q) → R) ↔ ((P ∧ ¬R) → ¬Q).
@@ -1631,7 +1687,7 @@ Theorem n4_15 : ∀ P Q R : Prop,
   apply Equiv4_01.
   apply EqBi.
   apply n4_13a.
-  Qed.
+Qed.
 
 Theorem n4_2 : ∀ P : Prop,
   P ↔ P.
@@ -1645,7 +1701,7 @@ Theorem n4_2 : ∀ P : Prop,
   Equiv n3_2a.
   apply n3_2a.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_21 : ∀ P Q : Prop,
   (P ↔ Q) ↔ (Q ↔ P).
@@ -1789,9 +1845,9 @@ Theorem n4_31 : ∀ P Q : Prop,
     apply Equiv4_01.
 Qed.
 
-  Theorem n4_32 : ∀ P Q R : Prop,
+Theorem n4_32 : ∀ P Q R : Prop,
     ((P ∧ Q) ∧ R) ↔ (P ∧ (Q ∧ R)).
-    Proof. intros P Q R.
+  Proof. intros P Q R.
     specialize n4_15 with P Q R.
     intros n4_15a.
     specialize Transp4_1 with P (¬(Q ∧ R)).
@@ -1828,7 +1884,7 @@ Qed.
     specialize n4_13 with (Q ∧ R).
     intros n4_13a.
     apply n4_13a. 
-    Qed. 
+Qed. 
     (*Note that the actual proof uses n4_12, but 
         that transposition involves transforming a 
         biconditional into a conditional. This theorem 
@@ -1850,10 +1906,10 @@ Theorem n4_33 : ∀ P Q R : Prop,
     Equiv H.
     apply H.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Axiom Abb4_34 : ∀ P Q R : Prop,
-  P ∧ Q ∧ R = ((P ∧ Q) ∧ R). 
+  (P ∧ Q ∧ R) = ((P ∧ Q) ∧ R). 
   (*This axiom ensures left association of brackets. 
   Coq's default is right association. But Principia 
   proves associativity of logical product as n4_32. 
@@ -1882,7 +1938,7 @@ Proof. intros P Q R.
   apply n3_47a.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_37 : ∀ P Q R : Prop,
   (P ↔ Q) → ((P ∨ R) ↔ (Q ∨ R)).
@@ -1915,7 +1971,7 @@ Proof. intros P Q R.
   apply n4_31b.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_38 : ∀ P Q R S : Prop,
   ((P ↔ R) ∧ (Q ↔ S)) → ((P ∧ Q) ↔ (R ∧ S)).
@@ -1986,7 +2042,7 @@ Proof. intros P Q R S.
   reflexivity.
   apply EqBi.
   apply n4_32a.
-  Qed.
+Qed.
 
 Theorem n4_39 : ∀ P Q R S : Prop,
   ((P ↔ R) ∧ (Q ↔ S)) → ((P ∨ Q) ↔ (R ∨ S)).
@@ -2057,7 +2113,7 @@ Proof.  intros P Q R S.
   apply EqBi.
   apply n4_32a.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_4 : ∀ P Q R : Prop,
   (P ∧ (Q ∨ R)) ↔ ((P∧ Q) ∨ (P ∧ R)).
@@ -2266,7 +2322,7 @@ Theorem n4_44 : ∀ P Q : Prop,
     Equiv H.
     apply H.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_45 : ∀ P Q : Prop,
   P ↔ (P ∧ (P ∨ Q)).
@@ -2303,7 +2359,7 @@ Theorem n4_5 : ∀ P Q : Prop,
     replace (¬(¬P ∨ ¬Q)) with (P ∧ Q).
     apply n4_2a.
     apply Prod3_01.
-  Qed.
+Qed.
 
 Theorem n4_51 : ∀ P Q : Prop,
   ¬(P ∧ Q) ↔ (¬P ∨ ¬Q).
@@ -2327,7 +2383,7 @@ Theorem n4_51 : ∀ P Q : Prop,
     apply n4_21b.
     apply EqBi.
     apply EqBi.
-  Qed.
+Qed.
 
 Theorem n4_52 : ∀ P Q : Prop,
   (P ∧ ¬Q) ↔ ¬(¬P ∨ Q).
@@ -2340,7 +2396,7 @@ Theorem n4_52 : ∀ P Q : Prop,
     intros n4_13a.
     apply EqBi.
     apply n4_13a.
-  Qed.
+Qed.
 
 Theorem n4_53 : ∀ P Q : Prop,
   ¬(P ∧ ¬Q) ↔ (¬P ∨ Q).
@@ -2362,7 +2418,7 @@ Theorem n4_53 : ∀ P Q : Prop,
     apply n4_21a.
     apply EqBi.
     apply EqBi.
-  Qed.
+Qed.
 
 Theorem n4_54 : ∀ P Q : Prop,
   (¬P ∧ Q) ↔ ¬(P ∨ ¬Q).
@@ -2375,7 +2431,7 @@ Theorem n4_54 : ∀ P Q : Prop,
     apply n4_5a.
     apply EqBi.
     apply n4_13a.
-  Qed.
+Qed.
 
 Theorem n4_55 : ∀ P Q : Prop,
   ¬(¬P ∧ Q) ↔ (P ∨ ¬Q).
@@ -2402,7 +2458,7 @@ Theorem n4_55 : ∀ P Q : Prop,
     (¬P∧Q↔¬(P∨¬Q)).
     intros n4_21b.
     apply n4_21.
-  Qed.
+Qed.
 
 Theorem n4_56 : ∀ P Q : Prop,
   (¬P ∧ ¬Q) ↔ ¬(P ∨ Q).
@@ -2415,7 +2471,7 @@ Theorem n4_56 : ∀ P Q : Prop,
     specialize n4_13 with Q.
     intros n4_13a.
     apply n4_13a.
-  Qed.
+Qed.
 
 Theorem n4_57 : ∀ P Q : Prop,
   ¬(¬P ∧ ¬Q) ↔ (P ∨ Q).
@@ -2442,7 +2498,7 @@ Theorem n4_57 : ∀ P Q : Prop,
         (P ∨ Q ↔ ¬(¬P ∧ ¬Q)) (¬P ∧ ¬Q ↔ ¬(P ∨ Q)).
     intros n4_21b.
     apply n4_21b.
-  Qed.
+Qed.
     
 Theorem n4_6 : ∀ P Q : Prop,
   (P → Q) ↔ (¬P ∨ Q).
@@ -2451,7 +2507,7 @@ Theorem n4_6 : ∀ P Q : Prop,
     intros n4_2a.
     rewrite Impl1_01.
     apply n4_2a.
-  Qed.
+Qed.
 
 Theorem n4_61 : ∀ P Q : Prop,
   ¬(P → Q) ↔ (P ∧ ¬Q).
@@ -2477,7 +2533,7 @@ Theorem n4_61 : ∀ P Q : Prop,
       ((P→Q)↔(¬P∨Q)).
   intros n4_21a.
   apply n4_21a.
-  Qed.
+Qed.
 
 Theorem n4_62 : ∀ P Q : Prop,
   (P → ¬Q) ↔ (¬P ∨ ¬Q).
@@ -2485,7 +2541,7 @@ Theorem n4_62 : ∀ P Q : Prop,
     specialize n4_6 with P (¬Q).
     intros n4_6a.
     apply n4_6a.
-  Qed.
+Qed.
 
 Theorem n4_63 : ∀ P Q : Prop,
   ¬(P → ¬Q) ↔ (P ∧ Q).
@@ -2511,7 +2567,7 @@ Theorem n4_63 : ∀ P Q : Prop,
     apply n4_21a.
     apply EqBi.
     apply n4_5a.
-  Qed.
+Qed.
 
 Theorem n4_64 : ∀ P Q : Prop,
   (¬P → Q) ↔ (P ∨ Q).
@@ -2527,7 +2583,7 @@ Theorem n4_64 : ∀ P Q : Prop,
     Equiv H.
     apply H.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_65 : ∀ P Q : Prop,
   ¬(¬P → Q) ↔ (¬P ∧ ¬Q).
@@ -2553,7 +2609,7 @@ Theorem n4_65 : ∀ P Q : Prop,
       ((¬P → Q)↔(P ∨ Q)).
   intros n4_21a.
   apply n4_21a.
-  Qed.
+Qed.
 
 Theorem n4_66 : ∀ P Q : Prop,
   (¬P → ¬Q) ↔ (P ∨ ¬Q).
@@ -2561,7 +2617,7 @@ Theorem n4_66 : ∀ P Q : Prop,
   specialize n4_64 with P (¬Q).
   intros n4_64a.
   apply n4_64a.
-  Qed.
+Qed.
 
 Theorem n4_67 : ∀ P Q : Prop,
   ¬(¬P → ¬Q) ↔ (¬P ∧ Q).
@@ -2587,7 +2643,7 @@ Theorem n4_67 : ∀ P Q : Prop,
      ((¬P → ¬Q)↔(P ∨ ¬Q)).
   intros n4_21a.
   apply n4_21a.
-  Qed.
+Qed.
 
   (*Return to this proof.*)
   (*We did get one half of the ↔.*)
@@ -2616,7 +2672,7 @@ Theorem n4_7 : ∀ P Q : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_71 : ∀ P Q : Prop,
   (P → Q) ↔ (P ↔ (P ∧ Q)).
@@ -2651,7 +2707,7 @@ Theorem n4_71 : ∀ P Q : Prop,
   apply Equiv4_01.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_72 : ∀ P Q : Prop,
   (P → Q) ↔ (Q ↔ (P ∨ Q)).
@@ -2705,7 +2761,7 @@ Theorem n4_72 : ∀ P Q : Prop,
   specialize n4_21 with (Q ∨ P) (¬(¬Q ∧ ¬P)).
   intros n4_21b.
   apply n4_21b.
-  Qed.
+Qed.
 
 Theorem n4_73 : ∀ P Q : Prop,
   Q → (P ↔ (P ∧ Q)).
@@ -2723,7 +2779,7 @@ Theorem n4_73 : ∀ P Q : Prop,
   Syll Simp2_02a Simp3_26a Sa.
   apply Sa.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_74 : ∀ P Q : Prop,
   ¬P → (Q ↔ (P ∨ Q)).
@@ -2742,7 +2798,7 @@ Theorem n4_74 : ∀ P Q : Prop,
   specialize n4_21 with (Q↔(P ∨ Q)) (P → Q).
   intros n4_21a.
   apply n4_21a.
-  Qed.
+Qed.
 
 Theorem n4_76 : ∀ P Q R : Prop,
   ((P → Q) ∧ (P → R)) ↔ (P → (Q ∧ R)).
@@ -2762,7 +2818,7 @@ Theorem n4_76 : ∀ P Q R : Prop,
   apply Impl1_01.
   apply Impl1_01.
   apply Impl1_01.
-  Qed.
+Qed.
 
 Theorem n4_77 : ∀ P Q R : Prop,
   ((Q → P) ∧ (R → P)) ↔ ((Q ∨ R) → P).
@@ -2796,7 +2852,7 @@ Theorem n4_77 : ∀ P Q R : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed. 
+Qed. 
 
 Theorem n4_78 : ∀ P Q R : Prop,
   ((P → Q) ∨ (P → R)) ↔ (P → (Q ∨ R)).
@@ -2859,7 +2915,7 @@ Theorem n4_78 : ∀ P Q R : Prop,
   rewrite <- Impl1_01.
   rewrite <- Impl1_01.
   reflexivity.
-  Qed.
+Qed.
 
 Theorem n4_79 : ∀ P Q R : Prop,
   ((Q → P) ∨ (R → P)) ↔ ((Q ∧ R) → P).
@@ -2933,7 +2989,7 @@ Theorem n4_79 : ∀ P Q R : Prop,
     rewrite <- Prod3_01 in n4_22b.
     apply n4_22b.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_8 : ∀ P : Prop,
   (P → ¬P) ↔ ¬P.
@@ -2949,7 +3005,7 @@ Theorem n4_8 : ∀ P : Prop,
     Equiv H.
     apply H.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_81 : ∀ P : Prop,
   (¬P → P) ↔ P.
@@ -2965,7 +3021,7 @@ Theorem n4_81 : ∀ P : Prop,
     Equiv H.
     apply H.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_82 : ∀ P Q : Prop,
   ((P → Q) ∧ (P → ¬Q)) ↔ ¬P.
@@ -2995,7 +3051,7 @@ Theorem n4_82 : ∀ P Q : Prop,
     Equiv H.
     apply H.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_83 : ∀ P Q : Prop,
   ((P → Q) ∧ (¬P → Q)) ↔ Q.
@@ -3025,7 +3081,7 @@ Theorem n4_83 : ∀ P Q : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_84 : ∀ P Q R : Prop,
   (P ↔ Q) → ((P → R) ↔ (Q → R)).
@@ -3055,7 +3111,7 @@ Theorem n4_84 : ∀ P Q R : Prop,
     apply n4_21a.
     apply Equiv4_01.
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n4_85 : ∀ P Q R : Prop,
   (P ↔ Q) → ((R → P) ↔ (R → Q)).
@@ -3111,7 +3167,7 @@ Theorem n4_86 : ∀ P Q R : Prop,
   specialize n4_21 with P Q.
   intros n4_21a.
   apply n4_21a.
-  Qed.
+Qed.
 
 Theorem n4_87 : ∀ P Q R : Prop,
   (((P ∧ Q) → R) ↔ (P → Q → R)) ↔ 
@@ -3167,7 +3223,7 @@ Theorem n4_87 : ∀ P Q R : Prop,
   apply Equiv4_01.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 End No4.
 
@@ -3205,7 +3261,7 @@ Theorem n5_1 : ∀ P Q : Prop,
   reflexivity.
   apply EqBi.
   apply n4_76a.
-  Qed. 
+Qed. 
 
 Theorem n5_11 : ∀ P Q : Prop,
   (P → Q) ∨ (¬P → Q).
@@ -3216,7 +3272,7 @@ Theorem n5_11 : ∀ P Q : Prop,
   intros n2_54a.
   MP n2_54a n2_5a.
   apply n2_54a.
-  Qed.
+Qed.
   (*The proof sketch cites n2_51, 
       but this may be a misprint.*)
 
@@ -3229,7 +3285,7 @@ Theorem n5_12 : ∀ P Q : Prop,
   intros n2_54a.
   MP n2_54a n2_5a.
   apply n2_54a.
-  Qed.
+Qed.
   (*The proof sketch cites n2_52, 
       but this may be a misprint.*)
 
@@ -3248,7 +3304,7 @@ Theorem n5_13 : ∀ P Q : Prop,
   apply n4_13a.
   rewrite <- Impl1_01.
   reflexivity.
-  Qed. 
+Qed. 
 
 Theorem n5_14 : ∀ P Q R : Prop,
   (P → Q) ∨ (Q → R).
@@ -3271,7 +3327,7 @@ Theorem n5_14 : ∀ P Q R : Prop,
   apply n4_13a.
   rewrite <- Impl1_01.
   reflexivity.
-  Qed.
+Qed.
 
 Theorem n5_15 : ∀ P Q : Prop,
   (P ↔ Q) ∨ (P ↔ ¬Q).
@@ -3357,7 +3413,7 @@ Theorem n5_15 : ∀ P Q : Prop,
   apply n4_12a.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_16 : ∀ P Q : Prop,
   ¬((P ↔ Q) ∧ (P ↔ ¬Q)).
@@ -3466,7 +3522,7 @@ Theorem n5_16 : ∀ P Q : Prop,
   specialize n4_32 with (P→Q) (P→¬Q) (Q→P).
   intros n4_32a.
   apply n4_32a.
-  Qed.
+Qed.
 
 Theorem n5_17 : ∀ P Q : Prop,
   ((P ∨ Q) ∧ ¬(P ∧ Q)) ↔ (P ↔ ¬Q).
@@ -3525,7 +3581,7 @@ Theorem n5_17 : ∀ P Q : Prop,
   apply n4_31a.
   apply EqBi.
   apply n4_21a.
-  Qed.
+Qed.
 
 Theorem n5_18 : ∀ P Q : Prop,
   (P ↔ Q) ↔ ¬(P ↔ ¬Q).
@@ -3545,7 +3601,7 @@ Theorem n5_18 : ∀ P Q : Prop,
   apply H.
   apply EqBi.
   apply n5_17a.
-  Qed.
+Qed.
 
 Theorem n5_19 : ∀ P : Prop,
   ¬(P ↔ ¬P).
@@ -3558,7 +3614,7 @@ Theorem n5_19 : ∀ P : Prop,
   apply n4_2a.
   apply EqBi.
   apply n5_18a.
-  Qed.
+Qed.
 
 Theorem n5_21 : ∀ P Q : Prop,
   (¬P ∧ ¬Q) → (P ↔ Q).
@@ -3571,7 +3627,7 @@ Theorem n5_21 : ∀ P Q : Prop,
   apply n5_1a.
   apply EqBi.
   apply Transp4_11a.
-  Qed.
+Qed.
 
 Theorem n5_22 : ∀ P Q : Prop,
   ¬(P ↔ Q) ↔ ((P ∧ ¬Q) ∨ (Q ∧ ¬P)).
@@ -3598,7 +3654,7 @@ Theorem n5_22 : ∀ P Q : Prop,
   apply Equiv4_01.
   apply EqBi.
   apply n4_51a.
-  Qed.
+Qed.
 
 Theorem n5_23 : ∀ P Q : Prop,
   (P ↔ Q) ↔ ((P ∧ Q) ∨ (¬P ∧ ¬Q)).
@@ -3626,9 +3682,9 @@ Theorem n5_23 : ∀ P Q : Prop,
   specialize n4_13 with Q.
   intros n4_13a.
   apply n4_13a.
-  Qed. 
+Qed. 
   (*The proof sketch in Principia offers n4_36. 
-      This seems to be a misprint. We used n4_3.*)
+    This seems to be a misprint. We used n4_3.*)
 
 Theorem n5_24 : ∀ P Q : Prop,
   ¬((P ∧ Q) ∨ (¬P ∧ ¬Q)) ↔ ((P ∧ ¬Q) ∨ (Q ∧ ¬P)).
@@ -3654,7 +3710,7 @@ Theorem n5_24 : ∀ P Q : Prop,
   intros Transp4_11a.
   apply EqBi.
   apply Transp4_11a. (*Not cited*)
-  Qed. 
+Qed. 
 
 Theorem n5_25 : ∀ P Q : Prop,
   (P ∨ Q) ↔ ((P → Q) → Q).
@@ -3670,7 +3726,7 @@ Theorem n5_25 : ∀ P Q : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_3 : ∀ P Q R : Prop,
   ((P ∧ Q) → R) ↔ ((P ∧ Q) → (P ∧ R)).
@@ -3698,7 +3754,7 @@ Theorem n5_3 : ∀ P Q R : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed. 
+Qed. 
 
 Theorem n5_31 : ∀ P Q R : Prop,
   (R ∧ (P → Q)) → (P → (Q ∧ R)).
@@ -3719,7 +3775,7 @@ Theorem n5_31 : ∀ P Q R : Prop,
   intros Imp3_31a. (*Not cited*)
   MP Imp3_31a Sb.
   apply Imp3_31a.
-  Qed. 
+Qed. 
 
 Theorem n5_32 : ∀ P Q R : Prop,
   (P → (Q ↔ R)) ↔ ((P ∧ Q) ↔ (P ∧ R)).
@@ -3779,7 +3835,7 @@ Theorem n5_32 : ∀ P Q R : Prop,
   apply H.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_33 : ∀ P Q R : Prop,
   (P ∧ (Q → R)) ↔ (P ∧ ((P ∧ Q) → R)).
@@ -3811,7 +3867,7 @@ Theorem n5_33 : ∀ P Q R : Prop,
     intros n4_3a.
     apply n4_3a. (*Not cited*)
     apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_35 : ∀ P Q R : Prop,
   ((P → Q) ∧ (P → R)) → (P → (Q ↔ R)).
@@ -3825,7 +3881,7 @@ Theorem n5_35 : ∀ P Q R : Prop,
   MP Syll2_05a n5_1a.
   Syll Comp3_43a Syll2_05a Sa.
   apply Sa.
-  Qed.
+Qed.
 
 Theorem n5_36 : ∀ P Q : Prop,
   (P ∧ (P ↔ Q)) ↔ (Q ∧ (P ↔ Q)).
@@ -3852,7 +3908,7 @@ Theorem n5_36 : ∀ P Q : Prop,
   reflexivity.
   apply EqBi.
   apply n5_32a.
-  Qed. 
+Qed. 
   (*The proof sketch cites Ass3_35 and n4_38, 
     but the sketch was indecipherable.*)
 
@@ -3870,7 +3926,7 @@ Theorem n5_4 : ∀ P Q : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_41 : ∀ P Q R : Prop,
   ((P → Q) → (P → R)) ↔ (P → Q → R).
@@ -3886,7 +3942,7 @@ Theorem n5_41 : ∀ P Q R : Prop,
   Equiv H.
   apply H.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_42 : ∀ P Q R : Prop,
   (P → Q → R) ↔ (P → Q → P ∧ R).
@@ -3925,7 +3981,7 @@ Theorem n5_42 : ∀ P Q R : Prop,
   apply EqBi.
   apply H.
   apply Equiv4_01.
-  Qed. 
+Qed. 
 
 Theorem n5_44 : ∀ P Q R : Prop,
   (P→Q) → ((P → R) ↔ (P → (Q ∧ R))).
@@ -3992,7 +4048,7 @@ Theorem n5_44 : ∀ P Q R : Prop,
   apply EqBi.
   apply n4_21a.
   apply Equiv4_01.
-  Qed. 
+Qed. 
 
 Theorem n5_5 : ∀ P Q : Prop,
   P → ((P → Q) ↔ Q).
@@ -4027,7 +4083,7 @@ Theorem n5_5 : ∀ P Q : Prop,
   specialize n4_24 with P.
   intros n4_24a. (*Not cited*)
   apply n4_24a. 
-  Qed.
+Qed.
 
 Theorem n5_501 : ∀ P Q : Prop,
   P → (Q ↔ (P ↔ Q)).
@@ -4075,7 +4131,7 @@ Theorem n5_501 : ∀ P Q : Prop,
   specialize n4_32 with P (P→Q) (Q→P).
   intros n4_32a. (*Not cited*)
   apply n4_32a.
-  Qed.
+Qed.
 
 Theorem n5_53 : ∀ P Q R S : Prop,
   (((P ∨ Q) ∨ R) → S) ↔ (((P → S) ∧ (Q → S)) ∧ (R → S)).
@@ -4098,7 +4154,7 @@ Theorem n5_53 : ∀ P Q R S : Prop,
   apply n4_21a. (*Not cited*)
   apply EqBi.
   apply n4_77b.
-  Qed.
+Qed.
 
 Theorem n5_54 : ∀ P Q : Prop,
   ((P ∧ Q) ↔ P) ∨ ((P ∧ Q) ↔ Q).
@@ -4162,7 +4218,7 @@ Theorem n5_54 : ∀ P Q : Prop,
   specialize n4_3 with P Q.
   intros n4_3a. (*Not cited*)
   apply n4_3a.
-  Qed. 
+Qed. 
 
 Theorem n5_55 : ∀ P Q : Prop,
   ((P ∨ Q) ↔ P) ∨ ((P ∨ Q) ↔ Q).
@@ -4231,7 +4287,7 @@ Theorem n5_55 : ∀ P Q : Prop,
   specialize n4_31 with P (P ∧ Q). 
   intros n4_31d. (*Not cited*)
   apply n4_31d.
-  Qed.
+Qed.
 
 Theorem n5_6 : ∀ P Q R : Prop,
   ((P ∧ ¬Q) → R) ↔ (P → (Q ∨ R)).
@@ -4271,7 +4327,7 @@ Theorem n5_6 : ∀ P Q R : Prop,
   apply n4_64a.
   apply Equiv4_01.
   apply Equiv4_01.  
-  Qed. 
+Qed. 
 
 Theorem n5_61 : ∀ P Q : Prop,
   ((P ∨ Q) ∧ ¬Q) ↔ (P ∧ ¬Q).
@@ -4309,7 +4365,7 @@ Theorem n5_61 : ∀ P Q : Prop,
   reflexivity.
   apply EqBi.
   apply n5_32a.
-  Qed.
+Qed.
 
 Theorem n5_62 : ∀ P Q : Prop,
   ((P ∧ Q) ∨ ¬Q) ↔ (P ∨ ¬Q).
@@ -4344,7 +4400,7 @@ Theorem n5_62 : ∀ P Q : Prop,
   reflexivity.
   rewrite <- Impl1_01.
   reflexivity.
-  Qed.
+Qed.
 
 Theorem n5_63 : ∀ P Q : Prop,
   (P ∨ Q) ↔ (P ∨ (¬P ∧ Q)).
@@ -4378,7 +4434,7 @@ Theorem n5_63 : ∀ P Q : Prop,
   specialize n4_13 with P.
   intros n4_13a. (*Not cited*)
   apply n4_13a.
-  Qed.
+Qed.
 
 Theorem n5_7 : ∀ P Q R : Prop,
   ((P ∨ R) ↔ (Q ∨ R)) ↔ (R ∨ (P ↔ Q)).
@@ -4582,7 +4638,7 @@ Theorem n5_71 : ∀ P Q R : Prop,
   intros n4_31b. (*Not cited*)
   apply n4_31b.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_74 : ∀ P Q R : Prop,
   (P → (Q ↔ R)) ↔ ((P → Q) ↔ (P → R)).
@@ -4621,7 +4677,7 @@ Theorem n5_74 : ∀ P Q R : Prop,
   apply n4_76a.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 Theorem n5_75 : ∀ P Q R : Prop,
   ((R → ¬Q) ∧ (P ↔ Q ∨ R)) → ((P ∧ ¬Q) ↔ R).
@@ -4695,6 +4751,6 @@ Theorem n5_75 : ∀ P Q R : Prop,
   apply Equiv4_01.
   apply Equiv4_01.
   apply Equiv4_01.
-  Qed.
+Qed.
 
 End No5.
