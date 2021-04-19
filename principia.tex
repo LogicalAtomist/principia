@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{principia}[2021/04/19 principia package version 1.3] %This is the principia package is for representing notations in Whitehead and Russell's ``Principia Mathematica" close to their appearance in the original.
+%Version 1.0 (superseded by Version 1.1): Covers typesetting of notation through Volume I. 2020/10/24
+%Version 1.1 (superseded by Version 1.2) minor updates: fixed the spacing of scope dots around parentheses; fixed spacing of theorem sign; fixed spacing around primitive proposition and definition signs. 2020/10/25
+%Licensed under LaTeX Project Public License 1.3c. 
+%Version 1.2 (superseded by Version 1.3) (minor updates): boldfaced (`thickened') the truth-functional connectives, existential quantifier, set and relation symbols; added numerous commands for typesetting brackets and substitutions into theorems. 2021/02/25
+%Version 1.3 (minor update): removes package dependency on marvosym; updates Section A and Section B notations. 2021/04/19
+%Licensed under LaTeX Project Public License 1.3c. 
+%Copyright Landon D. C. Elkind, 2021.  (https://landondcelkind.com/contact/).
+
+\usepackage{fullpage}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+
+%Principia package requirements
+\usepackage{amssymb} %This loads the relation domain and converse domain limitation symbols.
+\usepackage{amsmath} %This loads the circumflex, substitution into theorems, \text{}, \mathbf{}, \boldsymbol{}, \overleftarrow{}, \overrightarrow{}, etc.
+\usepackage{pifont} %This loads the eight-pointed asterisk.
+\usepackage{graphicx} %This loads commands that flip iota for definite descriptions, Lambda for the universal class, and so on. The (superseded) graphics package should also work here, but is not recommended.
+
+%Volume I
+%Mathematical logic
+%The theory of deduction
+%Meta-logical symbols
+\newcommand{\pmfd}{\begin{center} \rule{5cm}{.5pt} \end{center}} %Dividing line between introductory remarks in a starred number and the formal deductions.
+\newcommand{\pmdem}{\textit{Dem}.} %This notation begins a proof.
+\newcommand{\pmdemi}{\indent \pmdem} %This idents the notation that begins a proof.
+\newcommand{\pmhp}{\text{Hp}} %This typesets Hp (short for antecedent), which occurs at the beginning of a proof.
+\newcommand{\pmprop}{\text{Prop}} %This occurs at the end of a proof.
+\newcommand{\pmithm}{\pmimp\;\pmthm} %This occurs when a meta-theoretic implication is asserted.
+\newcommand{\pmbr}[1]{\bigg \lbrack \normalsize #1 \bigg \rbrack} %These are larger brackets for substitution.
+\newcommand{\pmsub}[2]{\bigg \lbrack \small \begin{array}{c} #1 \\ \hline #2 \end{array} \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsubb}[4]{\bigg \lbrack \small \begin{array}{c c} #1, & #3 \\ \hline #2, & #4 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsubbb}[6]{\bigg \lbrack \small \begin{array}{c c c} #1, & #3, & #5 \\ \hline #2, & #4, & #6 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsubbbb}[8]{\bigg \lbrack \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSub}[3]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c} #2 \\ \hline #3 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubb}[5]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c} #2, & #4 \\ \hline #3, & #5 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubbb}[7]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c} #2, & #4, & #6 \\ \hline #3, & #5, & #7 \end{array}  \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmSubbbb}[9]{\bigg \lbrack \normalsize #1 \text{ } \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array} \bigg \rbrack} %This is the substitution command.
+\newcommand{\pmsUb}[2]{\small \begin{array}{c} #1 \\ \hline #2 \end{array}} %This is the substitution command.
+\newcommand{\pmsUbb}[4]{\small \begin{array}{c c} #1, & #3 \\ \hline #2, & #4 \end{array}} %This is the substitution command.
+\newcommand{\pmsUbbb}[6]{\small \begin{array}{c c c} #1, & #3, & #5 \\ \hline #2, & #4, & #6 \end{array}} %This is the substitution command.
+\newcommand{\pmsUbbbb}[8]{\small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}} %This is the substitution command.
+\newcommand{\pmSUb}[3]{\normalsize #1 \text{ } \small \begin{array}{c} #2 \\ \hline #3 \end{array}} %This is the substitution command.
+\newcommand{\pmSUbb}[5]{\normalsize #1 \text{ } \small \begin{array}{c c} #2, & #4 \\ \hline #3, & #5 \end{array}} %This is the substitution command.
+\newcommand{\pmSUbbb}[7]{\normalsize #1 \text{ } \small \begin{array}{c c c} #2, & #4, & #6 \\ \hline #3, & #5, & #7 \end{array}} %This is the substitution command.
+\newcommand{\pmSUbbbb}[9]{\normalsize #1 \text{ } \small \begin{array}{c c c c} #1, & #3, & #5, & #7 \\ \hline #2, & #4, & #6, & #8 \end{array}} %This is the substitution command.
+\newcommand{\pmthm}{\mathpunct{\text{\scalebox{.5}[1]{$\boldsymbol\vdash$}}}} %This is the theorem sign.
+\newcommand{\pmast}{\text{\resizebox{!}{.75\height}{\ding{107}}}} %This is the sign introducing a theorem number.
+\newcommand{\pmcdot}{\text{\raisebox{.05cm}{$\boldsymbol\cdot$}}} %This is a sign introducing a theorem sub-number.
+\newcommand{\pmiddf}{\mathbin{=}}
+\newcommand{\pmdf}{\quad \text{Df}}
+\newcommand{\pmpp}{\quad \text{Pp}}
+
+%Square dots for scope, defined for up to six dots
+\newcommand{\pmdot}{\mathrel{\hbox{\rule{.3ex}{.3ex}}}}
+\newcommand{\pmdott}{\mathrel{\overset{\pmdot}{\pmdot}}}
+\newcommand{\pmdottt}{\pmdott\hspace{.1em}\pmdot}
+\newcommand{\pmdotttt}{\pmdott\hspace{.1em}\pmdott}
+\newcommand{\pmdottttt}{\pmdott\hspace{.1em}\pmdott\hspace{.1em}\pmdot}
+\newcommand{\pmdotttttt}{\pmdott\hspace{.1em}\pmdott\hspace{.1em}\pmdott}
+
+%Logical connectives
+\newcommand{\pmnot}{\mathord{\ooalign{$\boldsymbol{\sim}\mkern.5mu$\hidewidth\cr$\boldsymbol{\sim}$\cr\hidewidth$\mkern.5mu\boldsymbol{\sim}$}}}
+\newcommand{\pmor}{\mathbin{\ooalign{$\boldsymbol{\vee}\mkern.5mu$\hidewidth\cr$\boldsymbol{\vee}$\cr\hidewidth$\mkern.5mu\boldsymbol{\vee}$}}}
+\newcommand{\pmimp}{\mathbin{\ooalign{$\boldsymbol{\supset}\mkern.5mu$\hidewidth\cr$\boldsymbol{\supset}$\cr\hidewidth$\mkern.5mu\boldsymbol{\supset}$}}} %1.01
+\newcommand{\pmand}{\mathrel{\hbox{\rule{.3ex}{.3ex}}}} %3.01
+\newcommand{\pmandd}{\overset{\pmand}{\pmand}}
+\newcommand{\pmanddd}{\pmandd\hspace{.1em}\pmand}
+\newcommand{\pmandddd}{\pmandd\hspace{.1em}\pmandd}
+\newcommand{\pmanddddd}{\pmandd\hspace{.1em}\pmandd\hspace{.1em}\pmand}
+\newcommand{\pmandddddd}{\pmandd\hspace{.1em}\pmandd\hspace{.1em}\pmandd}
+\newcommand{\pmprod}{\mathbin{\ooalign{$\boldsymbol{\wedge}\mkern.5mu$\hidewidth\cr$\boldsymbol{\wedge}$\cr\hidewidth$\mkern.5mu\boldsymbol{\wedge}$}}} %Not in Principia, but added here as a dual of its symbol for disjunction.
+\newcommand{\pmiff}{\mathbin{\ooalign{$\boldsymbol{\equiv}\mkern.5mu$\hidewidth\cr$\boldsymbol{\equiv}$\cr\hidewidth$\mkern.5mu\boldsymbol{\equiv}$}}} %4.01
+
+%The theory of apparent variables
+\newcommand{\pmall}[1]{(#1)}
+\newcommand{\pmsome}[1]{(\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}#1)} %10.01
+\newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}}
+
+%Additional defined logic signs
+\newcommand{\pmhat}[1]{\mathbf{\hat{\text{$#1$}}}}
+\newcommand{\pmbreve}[1]{\mathbf{\breve{\text{$#1$}}}}
+\newcommand{\pmcirc}[1]{\mathbf{\dot{\text{$#1$}}}}
+\newcommand{\pmpf}[2]{#1#2} %for propositional functions of one variable
+\newcommand{\pmpff}[3]{#1(#2, #3)} %for propositional functions of two variables
+\newcommand{\pmpfff}[4]{#1(#2, #3, #4)} %for propositional functions of three variables
+\newcommand{\pmshr}{\textbf{!}} %*12.1 and *12.11, used for predicative propositional functions
+\newcommand{\pmpred}[2]{#1\pmshr#2} %for predicates (``predicative functions'') of one variable
+\newcommand{\pmpredd}[3]{#1\pmshr(#2, #3)} %for predicates (``predicative functions'') of two variables
+\newcommand{\pmpreddd}[4]{#1\pmshr(#2, #3, #4)} %for predicates (``predicative functions'') of three variables
+\newcommand{\pmnid}{\mathrel{\ooalign{$=$\cr\hidewidth\footnotesize\rotatebox[origin=c]{210}{\textbf{/}}\hidewidth\cr}}} %*13.02
+\newcommand{\pmiota}{\ooalign{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}\cr\hidewidth\raisebox{.0125em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.025em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.0375em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.05em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}}} %the rotated Greek iota used in definite descriptions
+\newcommand{\pmdsc}[1]{(\pmiota#1)} %*14.01
+\newcommand{\pmDsc}{\pmiota} 
+\newcommand{\pmexists}{\textbf{E}\hspace{.1em}\pmshr} %*14.02
+
+\title{\texttt{principia.sty}\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 1.3)}
+\author{Landon D. C. Elkind \texttt{elkind@ualberta.ca}}
+\date{\today}
+
+\begin{document}
+\maketitle
+\onehalfspacing
+The \texttt{principia} package is designed for typesetting the Peanese notation of \textit{Principia Mathematica}. ``Peanese'' is something of a misnomer: Whitehead and Russell invented much of the notations used in \textit{Principia Mathematica} even while borrowing from many others.
+
+\texttt{principia}'s style has antecedents in Kevin C. Klement's excellent \textit{Tractatus} typesetting, to which we owe the device of adding `d's and `t's to typeset further square dots. The device of beginning all \texttt{principia} commands with `\texttt{$\backslash$pm}' is owed to the \texttt{begriff} package, a style that was mimicked in both the \texttt{frege} package and the \texttt{Grundgesetze} package. 
+
+In \textit{Principia Mathematica} some symbols occur with an argument and sometimes that same symbol occurs without an argument. For example, `$\pmsome{x}$' occurs in some formulas, but sometimes `$\pmSome$' occurs in the text when they talk about the symbol itself. \texttt{principia} is designed to accommodate these different occurrences of symbols. When a symbol is to occur without an argument, capitalize the first letter following the `\texttt{$\backslash$pm}' part of the command. E.g. \verb|\pmsome{x}| produces $\pmsome{x}$ and \verb|\pmSome| produces `$\pmSome$'. Note the former command requires an argument and the latter command does not. Not all commands in the \texttt{principia} package admit of such dual use because some symbols in \textit{Principia Mathematica} never occur without an argument or do not take an argument in the usual sense. For example, the propositional connectives do not take an `argument' in the way singular or plural descriptions do.
+
+Version 1.3 of \texttt{principia} is adequate to typeset all notations throughout Sections A and B of \textit{Principia}'s Volume I and includes some minor fixes. See the package documentation for details. 
+
+\texttt{principia}'s dependencies are \texttt{amsmath}, \texttt{amssymb}, \texttt{pifont}, and \texttt{graphicx}. Make sure to load these package by typing \texttt{$\backslash$usepackage\{graphicx\}}, etc., into the document preamble. 
+
+To load \texttt{principia}, type \texttt{$\backslash$usepackage\{principia\}} in the document's preamble.
+
+\noindent \begin{tabular}{@{}p{3cm} | p{5cm} | p{8.25cm}}
+	\textbf{Symbol} & \textbf{\LaTeX command} & \textbf{Notes} \\ \hline
+	$\pmthm$ & \verb|\pmthm| & Theorem. \\
+	$\pmast$ & \verb|\pmast| & As in $\pmast1$.  \\ 
+	$\pmcdot$ & \verb|\pmcdot| & As in, $\pmast1\pmcdot1$. \\
+	$\pmpp$ & \verb|\pmpp| & Primitive proposition. Note the indentation. \\
+	$\pmiddf$ & \verb|\pmiddf| & Identity for definitions (`$=$' differs in spacing).  \\
+	$\pmdf$ & \verb|\pmdf| & Definition. Note the indentation.  \\
+	$\pmdem$ & \verb|\pmdem| & This symbol begins a proof. \\  
+	$\pmsub{p}{q}$, $\pmsubb{p}{q}{r}{s}$, $\pmsubbb{p}{q}{r}{s}{t}{u}$, ... $\pmSub{\text{Add}}{p}{q}$, ... & \verb|\pmsub{p}{q}|, \verb|\pmsubb{p}{q}{r}{s}|, \verb|\pmsubbb{p}{q}| \par \hfill \verb|{r}{s}{t}{u}|, ... \verb|\pmSub{\text{Add}{p}{q}| & Substitution into theorems. Add `b's to the end of \verb|\pmsub| to increase the number of substitutions (up to four `b's). Each extra `b' adds two arguments. To substitute and specify the theorem as well, capitalize the `s' in \verb|\pmsub|. \\
+	$\pmdot$, $\pmdott$, $\pmdottt$, $\pmdotttt$, $\pmdottttt$, $\pmdotttttt$ & \verb|\pmdot|, \verb|\pmdott|, \verb|\pmdottt|, ... & Add `t's to the end of \verb|\pmdot| to increase the number of dots (up to six `t's). \\ 
+	$\pmand$, $\pmandd$, $\pmanddd$, $\pmandddd$, $\pmanddddd$, $\pmandddddd$ & \verb|\pmand|, \verb|\pmandd|, \verb|\pmanddd|, ...& Add `d's to the end of \verb|\pmand| command to increase the number of dots (up to six `d's). \\ 
+	$\pmor$ & \verb|\pmor| & Disjunction. \\
+	$\pmnot$ & \verb|\pmnot| & Negation. Note its spacing differs from \verb|\sim|. \\
+	$\pmimp$ & \verb|\pmimp| & Material implication. \\
+	$\pmiff$ & \verb|\pmiff| & Material biconditional. \\
+	$\pmimp_x, \pmimp_{x,y}$ & \verb|\pmimp_x|, \verb|\pmimp_{x,y}| & And so on for more subscripts. \\
+	$\pmiff_x, \pmiff_{x,y}$ & \verb|\pmiff_x|, \verb|\pmiff_{x,y}| & And so on for more subscripts. \\
+	$\pmhat{x}$ & \verb|\pmhat{x}| & This command requires one argument. It can be embedded in other commands. E.g., \verb|\pmpf{\phi}{\pmhat{x}}| renders `$\pmpf{\phi}{\pmhat{x}}$'. \\
+	$\pmpf{\phi}{x}$ & \verb|\pmpf{\phi}{x}| & This command requires two arguments. \\
+	$\pmpff{\phi}{x}{y}$ & \verb|\pmpff{\phi}{x}{y}| & This command requires three arguments. \\
+	$\pmpfff{\phi}{x}{y}{z}$ & \verb|\pmpfff{\phi}{x}{y}{z}| & This command requires four arguments. \\
+	$\pmall{x}$ &\verb|\pmall{x}| & Universal quantifier. \\
+	$\pmsome{x}$, $\pmSome$ & \verb|\pmsome{x}|, \verb|\pmSome| & Existential quantifier. \\
+	$\pmshr$ & \verb|\pmshr| & The predicative propositional functions. \\
+	$\pmpred{\phi}{x}$ & \verb|\pmpred{\phi}{x}| & This command requires two arguments. \\
+	$\pmpredd{\phi}{x}{y}$ & \verb|\pmpredd{\phi}{x}{y}| & This command requires three arguments. \\
+	$\pmpreddd{\phi}{x}{y}{z}$ & \verb|\pmpreddd{\phi}{x}{y}{z}| & This command requires four arguments.
+\end{tabular}
+
+\noindent \begin{tabular}{@{}p{3cm} | p{5cm} | p{8.25cm}}
+	$=$, $\pmnid$ & \verb|=|, \verb|\pmnid| & Identity and its negation. \\
+	$\pmdsc{x}$ & \verb|\pmdsc{x}| & Definite description. \\
+	$\pmexists$ & \verb|\pmexists| & Existence. 
+\end{tabular}
+
+\end{document}
