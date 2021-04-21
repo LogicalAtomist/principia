@@ -34,6 +34,9 @@ The principal investigator is your resident logical atomist, [Landon D. C. Elkin
 # Updates
 The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
 
+## April 20, 2021
+The source code for the verification of *Principia*'s propositional logic proof sketches has been updated. Many proofs have been rewritten with the `Coq` standard library's modules on classical logic and classical logic facts: notably, the axioms of *Principia* have also been proven from these standard libraries. So assuming the `Coq` standard libraries and kernel are kosher, then all the propositional logic proofs are verified on that background system. See the Github repository for the updated code. 
+
 ## February 15, 2021
 The project has formally verified *Principia*'s propositional logic proof sketches - for all 189 theorems in \*1-to-\*5 - for the very first time. This improves significantly on the earlier computer verification work of Allen Newell *et al*., Hao Wang, and Daniel O'Leary. In all three cases, either some theorems were not verified or their proofs were not reconstructed according to *Principia*'s proof sketches. Our project in contrast reconstructs all the proofs in a way that is faithful to the text: each completion of *Principia*'s proof in `Coq` makes use of every theorem cited in *Principia*'s proof sketch.
 
