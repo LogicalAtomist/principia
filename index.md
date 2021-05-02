@@ -34,6 +34,9 @@ The principal investigator is your resident logical atomist, [Landon D. C. Elkin
 # Updates
 The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
 
+## May 1, 2021
+Happy International Workers' Day! The source code for the verification of *Principia*'s propositional logic proof sketches in `Coq` has been updated again. Now all the proofs are *forward-directed* - steps in the proofs involve only transformations of premises - rather than *backward-directed* - steps in the proofs do not involve transformations of the theorem (or proof goal). Also, the conjunction Ltac `Conj` and the equivalence Ltac `Equiv` have both been updated to abbreviate the proofs. The code is now only 4,4000 lines.
+
 ## April 20, 2021
 The source code for the verification of *Principia*'s propositional logic proof sketches has been updated. Many proofs have been rewritten with the `Coq` standard library's modules on classical logic and classical logic facts: notably, the axioms of *Principia* have also been proven from these standard libraries. So assuming the `Coq` standard libraries and kernel are kosher, then all the propositional logic proofs are verified on that background system. See the Github repository for the updated code. 
 
