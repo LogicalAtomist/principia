@@ -29,7 +29,7 @@ We also want to create a subway-style map of *Principia* that allows one to clic
 It is definitely a lot. We would be very happy to get Volume I done by 2025, which will be exactly one hundred years since *Principia*'s second edition was published. So we might give a rough estimate of one volume every five years.
 
 # Who is doing this?
-The principal investigator is yours truly, and Western Kentucky University's resident logical atomist, [Landon D. C. Elkind](https://landonelkind.com). The project began while I was a [Izaak Walton Killam Postdoctoral Fellow](https://www.ualberta.ca/graduate-studies/about/celebrating-our-killam-laureates/2020-izaak-walton-killam-postdoctoral.html) in the Department of Philosophy at the University of Alberta.
+The principal investigator is yours truly, and Western Kentucky University's resident logical atomist, [Landon D. C. Elkind](https://landonelkind.com). The project began on September 1st, 2020, and was first undertaken while I was a [Izaak Walton Killam Postdoctoral Fellow](https://www.ualberta.ca/graduate-studies/about/celebrating-our-killam-laureates/2020-izaak-walton-killam-postdoctoral.html) in the Department of Philosophy at the University of Alberta.
 
 # Updates
 The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
