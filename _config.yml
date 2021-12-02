@@ -90,14 +90,14 @@ defaults:
       share: true
 
 # Site Author
-author:
-  name:
+author: Landon D. C. Elkind
+  name: Landon D. C. Elkind
   picture:
-  email:
-  twitter:
+  email: landon.elkind@wku.edu
+  twitter: LogicalAtomist
   links:
-    - title:
-      url:
+    - title: Website
+      url: https://www.landonelkind.com/
       icon:
 
 # Footer Links
