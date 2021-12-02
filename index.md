@@ -47,7 +47,7 @@ The principal investigator is Western Kentucky University's resident logical ato
 - Graham Stevens ([University of Manchester](https://www.research.manchester.ac.uk/portal/en/researchers/graham-stevens(007e6671-876a-4dee-b2df-e45bb74dc710).html))
 - Russell Wahl ([Idaho State University](https://idahostate.academia.edu/RussellWahl))
 
-*Note: this advisory board is for the new critical edition of Principia Mathematica edited by the principal investigator, not necessarily for other components of the Principia Rewrite project, e.g., the use of interactive proof assistants to reconstruct the proofs in Principia.*
+*Note: this advisory board is for the new critical edition of Principia Mathematica edited by the principal investigator (under contract with Cambridge University Press), not necessarily for other components of the Principia Rewrite project, e.g., the use of interactive proof assistants to reconstruct the proofs in Principia.*
 
 ## Additional Team Members
 - Guanda Yuan (University of Iowa, M.S. in Computer Science, 2021), Intern (2021-present)
