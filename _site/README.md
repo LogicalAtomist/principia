@@ -1,2 +1,0 @@
-# principia
-The Principia Rewrite
