@@ -19,7 +19,7 @@ skin: "/assets/css/skins/default.css"
 locale: en-US
 title: "The Principia Rewrite Project"
 description: "PI: Landon D. C. Elkind"
-baseurl: /principia # the subpath of your site, e.g. "/blog"
+baseurl: # the subpath of your site, e.g. "/blog"
 url: https://github.com/LogicalAtomist # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 logo: /images/logo.png # path of site logo, e.g. "/images/logo.png"
 date_format: "%B %-d, %Y"
