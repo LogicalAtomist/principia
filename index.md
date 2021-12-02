@@ -29,10 +29,36 @@ We also want to create a subway-style map of *Principia* that allows one to clic
 It is definitely a lot. We would be very happy to get Volume I done by 2025, which will be exactly one hundred years since *Principia*'s second edition was published. So we might give a rough estimate of one volume every five years.
 
 # Who is doing this?
-The principal investigator is yours truly, and Western Kentucky University's resident logical atomist, [Landon D. C. Elkind](https://landonelkind.com) ([Assistant Professor of Philosophy](https://www.wku.edu/philosophy-religion/), [Department of Political Science](https://www.wku.edu/political-science/)). The project began on September 1st, 2020, and was first undertaken while I was a Izaak Walton Killam Postdoctoral Fellow in the [Department of Philosophy](https://www.ualberta.ca/philosophy/index.html) at the University of Alberta.
+There is a team of people involved in this project.
+
+## Principal Investigator
+The principal investigator is Western Kentucky University's resident logical atomist, [Landon D. C. Elkind](https://landonelkind.com) ([Assistant Professor of Philosophy](https://www.wku.edu/philosophy-religion/), [Department of Political Science](https://www.wku.edu/political-science/)). The project began on September 1st, 2020, and was first undertaken while Elkind was a Izaak Walton Killam Postdoctoral Fellow in the [Department of Philosophy](https://www.ualberta.ca/philosophy/index.html) at the University of Alberta.
+
+## Advisory Board
+- Rodrigo Ferreira ([Federal University of Rio Grande do Sul-Brazil](https://sites.google.com/view/rsferreira))
+- Peter Hylton ([University of Illinois-Chicago](https://phil.uic.edu/profiles/hylton-peter/) and [Boston University](https://www.bu.edu/philo/profile/peter-hylton/))
+- Kevin Klement ([University of Massachusetts-Amherst](https://www.umass.edu/philosophy/member/kevin-klement))
+- Gregory Landini ([University of Iowa](https://clas.uiowa.edu/philosophy/people/gregory-landini))
+- James Levine ([Trinity College-Dublin](https://www.tcd.ie/research/profiles/?profile=jlevine))
+- Albert Lewis ([Educational Advancement Foundation](https://www.neomon.us/))
+- Bernard Linsky ([University of Alberta](https://sites.ualberta.ca/~blinsky/blinsky.html))
+- Daniel O'Leary ([Ombu Enterprises, LLC](https://www.linkedin.com/in/dan-o-leary-78579111/))
+- Anne-Francoise Schmid ([Institut National des Sciences Appliquees de Lyon](https://schmidannefrancoise.academia.edu/))
+- Graham Stevens ([University of Manchester](https://www.research.manchester.ac.uk/portal/en/researchers/graham-stevens(007e6671-876a-4dee-b2df-e45bb74dc710).html))
+- Russell Wahl ([Idaho State University](https://idahostate.academia.edu/RussellWahl))
+
+## Additional Team Members
+- Guanda Yuan (University of Iowa, M.S. in Computer Science, 2021), Intern (2021-present)
 
 # Updates
 The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
+
+## December 1, 2021
+Happy Hanukkah! We are happy to announce that Cambridge University Press has agreed to publish a critical edition of *Principia Mathematica*. This will be a beautifully typeset accurate edition that preserves the original work's notations and proofs. The new edition will also include some new editorial material, including tables showing everywhere a given starred number is used and every starred number cited in a given theorem's proof. There will also be contextualizing footnotes indicating antecedents of a given starred number or its proof in nineteenth-or-early-twentieth-century texts, which will make perspicuous the intellectual context for *Principia*.
+
+We are also happy to announce that our project is growing! We have a new advisory board (see above) that will of course advise the editor on this project. And we also have our first intern with the project, Guanda Yuan, who will be helping us complete a *Principia* database in [Neo4j](https://www.neo4j.com). This database will be used to create the new editorial material, helping us map the dependencies and intellectual context for *Principia*'s Logicization of mathematics. Welcome, Guanda!
+
+Finally, the typesetting of Volume I is about 38% complete (i.e. the informal introductions, the second edition material, and the entirety of Part I, §§A-B). We expect the entire Volume I to be completely typeset by the end of 2022. Stay tuned for more updates!
 
 ## May 1, 2021
 Happy International Workers' Day! The source code for the verification of *Principia*'s propositional logic proof sketches in `Coq` has been updated again. Now all the proofs are *forward-directed* - steps in the proofs involve only transformations of premises - rather than *backward-directed* - steps in the proofs do not involve transformations of the theorem (or proof goal). Also, the conjunction Ltac `Conj` and the equivalence Ltac `Equiv` have both been updated to abbreviate the proofs. The code is now only 4,400 lines.
