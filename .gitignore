@@ -1,29 +1,14 @@
-# Vim
-*~
-*.sw[p_]
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Ruby Gem
-*.gem
+_asset_bundler_cache
+_site
 .bundle
-Gemfile.lock
-**/vendor/bundle
-
-# Node.js and NPM
-node_modules
-npm-debug.log*
-package-lock.json
-codekit-config.json
-
-# macOS
 .DS_Store
-
-# Jekyll generated files
 .jekyll-cache
 .jekyll-metadata
 .sass-cache
-_asset_bundler_cache
-_site
+*.gem
+*.sublime-project
+*.sublime-workspace
+codekit-config.json
+Gemfile.lock
+node_modules
+npm-debug.log*
