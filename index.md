@@ -85,7 +85,7 @@ As of February 15, 2021, the *Principia* Rewrite project has also produced:
 
 1. a `LaTeX` package, `principia`, for typesetting any symbol in *Principia*'s Volume I
 2. a `Coq` file of *Principia*'s propositional logic (\*1-\*5), running about [4,700 lines of code](https://github.com/LogicalAtomist/principia/blob/master/PL.v) / [113 pages](https://github.com/LogicalAtomist/principia/blob/master/PL.pdf)
-3. a pleasingly typeset edition of *Principia*'s first 288 pages in `LaTeX`, going from its introductions (first and second editions), appendices, and preface through the end of its quantifier logic (up through Part I, §B, Chapter \*14).
+3. a pleasingly typeset edition of *Principia*'s first 131 pages in LaTeX, going from its introduction through the end of its propositional logic (up to \*5).
 
 There are further developments to come: a high priority for the project is to build a map of the first five chapters ("starred numbers") of *Principia* - because maps are fun and cool, besides being informative when done well.
 
