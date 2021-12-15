@@ -51,6 +51,7 @@ The principal investigator is Western Kentucky University's resident logical ato
 - James Levine ([Trinity College-Dublin](https://www.tcd.ie/research/profiles/?profile=jlevine))
 - Albert Lewis ([Educational Advancement Foundation](https://www.neomon.us/))
 - Bernard Linsky ([University of Alberta](https://sites.ualberta.ca/~blinsky/blinsky.html))
+- Gülberk Koç Maclean ([Mount Royal University](https://www.mtroyal.ca/ProgramsCourses/FacultiesSchoolsCentres/Arts/Departments/Humanities/Faculty/GulberkKocMaclean.htm))
 - Daniel O'Leary ([Ombu Enterprises, LLC](https://www.linkedin.com/in/dan-o-leary-78579111/))
 - Anne-Francoise Schmid ([Institut National des Sciences Appliquees de Lyon](https://schmidannefrancoise.academia.edu/))
 - Graham Stevens ([University of Manchester](https://www.research.manchester.ac.uk/portal/en/researchers/graham-stevens(007e6671-876a-4dee-b2df-e45bb74dc710).html))
