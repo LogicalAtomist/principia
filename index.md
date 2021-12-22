@@ -91,7 +91,7 @@ As of February 15, 2021, the *Principia* Rewrite project has also produced:
 There are further developments to come: a high priority for the project is to build a map of the first five chapters ("starred numbers") of *Principia* - because maps are fun and cool, besides being informative when done well.
 
 # Contact
-If you have any questions, criticisms, or thoughts related to the *Principia* Rewrite project, write to `elkind at ualberta dot ca`.
+If you have any questions, criticisms, or thoughts related to the *Principia* Rewrite project, write to `landon dot elkind at wku dot edu`.
 
 ![*Principia* & `Coq` side-by-side](PM2.14-2.15.png)
 ![Sample page of *Principia* digitized with `LaTeX` using the `principia` package](SamplePMalphabeticallistofprops.png)
