@@ -87,6 +87,14 @@ Qed. *)
 
 Theorem Sum1_6 : ∀ P Q R : Prop, 
   (Q → R) → (P ∨ Q → P ∨ R). (*Summation*)
+Proof. intros P Q R. intro QR. intros [H | H].
+  - left. apply H.
+  - apply QR in H. right. apply H.
+Qed.
+
+
+(* Theorem Sum1_6 : ∀ P Q R : Prop, 
+  (Q → R) → (P ∨ Q → P ∨ R). (*Summation*)
 Proof. intros P Q R.
   specialize imply_and_or2 with Q R P.
   intros imply_and_or2a.
@@ -97,7 +105,7 @@ Proof. intros P Q R.
   apply or_comm.
   apply propositional_extensionality.
   apply or_comm.
-Qed.
+Qed. *)
 
 Ltac MP H1 H2 :=
   match goal with 
