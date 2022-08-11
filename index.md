@@ -1,4 +1,4 @@
-Welcome to the *Principia* Rewrite project website!
+Welcome to the *Principia* Rewrite project website! To receive updates about project milestones, you can subscribe to our email list here: https://lists.wku.edu/mailman/listinfo/principia.rewrite.
 
 # Table of contents
 
