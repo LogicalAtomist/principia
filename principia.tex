@@ -1,13 +1,13 @@
 \documentclass[12pt]{article}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{principia}[2021/04/19 principia package version 1.3] %This is the principia package is for representing notations in Whitehead and Russell's ``Principia Mathematica" close to their appearance in the original.
+\ProvidesPackage{principia}[2023/03/13 principia package version 2.0] %This is the principia package is for representing notations in Whitehead and Russell's ``Principia Mathematica" close to their appearance in the original.
 %Version 1.0 (superseded by Version 1.1): Covers typesetting of notation through Volume I. 2020/10/24
 %Version 1.1 (superseded by Version 1.2) minor updates: fixed the spacing of scope dots around parentheses; fixed spacing of theorem sign; fixed spacing around primitive proposition and definition signs. 2020/10/25
 %Licensed under LaTeX Project Public License 1.3c. 
-%Version 1.2 (superseded by Version 1.3) (minor updates): boldfaced (`thickened') the truth-functional connectives, existential quantifier, set and relation symbols; added numerous commands for typesetting brackets and substitutions into theorems. 2021/02/25
-%Version 1.3 (minor update): removes package dependency on marvosym; updates Section A and Section B notations. 2021/04/19
+%Version 1.2 (superseded by Version 2.0) (minor updates): boldfaced (`thickened') the truth-functional connectives, existential quantifier, set and relation symbols; added numerous commands for typesetting brackets and substitutions into theorems. 2021/02/25
+%Version 2.0 (major update): extends the package to cover typesetting of all notations in Volume II; removes package dependency on marvosym. 2023/03/13
 %Licensed under LaTeX Project Public License 1.3c. 
-%Copyright Landon D. C. Elkind, 2021.  (https://landondcelkind.com/contact/).
+%Copyright Landon D. C. Elkind, 2022.  (https://landonelkind.com/contact/).
 
 \usepackage{fullpage}
 \usepackage[T1]{fontenc}
@@ -24,6 +24,26 @@
 %Mathematical logic
 %The theory of deduction
 %Meta-logical symbols
+\newcommand{\ie}{\textit{i}.\textit{e}.\ }
+\newcommand{\Ie}{\textit{I}.\textit{e}.\ }
+\newcommand{\eg}{\textit{e}.\textit{g}.\ }
+\newcommand{\Eg}{\textit{E}.\textit{g}.\ }
+\newcommand{\pmsch}[1]{\pmast#1} %Starred chapter
+\newcommand{\pmschs}[2]{\pmast#1\text{---}\pmast#2} %Starred chapter
+\newcommand{\pmsns}[3]{\pmast#1\pmcdot#2\text{---}\pmcdot#3}%Starred number
+\newcommand{\pmpsn}[2]{(\pmast#1\pmcdot#2)} 
+\newcommand{\pmpsnn}[3]{(\pmast#1\pmcdot#2\pmcdot#3)} 
+\newcommand{\pmsn}[2]{\pmast#1\pmcdot#2} 
+\newcommand{\pmnsn}[1]{\text{#1}}
+\newcommand{\pmsnn}[3]{\pmast#1\pmcdot#2\pmcdot#3}
+\newcommand{\pmsnnn}[4]{\pmast#1\pmcdot#2\pmcdot#3\pmcdot#4}
+\newcommand{\pmsnnnn}[5]{\pmast#1\pmcdot#2\pmcdot#3\pmcdot#4\pmcdot#5}
+\newcommand{\pmsnnnnn}[6]{\pmast#1\pmcdot#2\pmcdot#3\pmcdot#4\pmcdot#5\pmcdot#6}
+\newcommand{\pmsnb}[2]{\boldsymbol{\pmast#1\pmcdot#2}} %Starred number boldface
+\newcommand{\pmsnnb}[3]{\boldsymbol{\pmast#1\pmcdot#2\pmcdot#3}}
+\newcommand{\pmsnnnb}[4]{\boldsymbol{\pmast#1\pmcdot#2\pmcdot#3\pmcdot#4}}
+\newcommand{\pmsnnnnb}[5]{\boldsymbol{\pmast#1\pmcdot#2\pmcdot#3\pmcdot#4\pmcdot#5}}
+\newcommand{\pmsnnnnnb}[6]{\boldsymbol{\pmast#1\pmcdot#2\pmcdot#3\pmcdot#4\pmcdot#5\pmcdot#6}}
 \newcommand{\pmfd}{\begin{center} \rule{5cm}{.5pt} \end{center}} %Dividing line between introductory remarks in a starred number and the formal deductions.
 \newcommand{\pmdem}{\textit{Dem}.} %This notation begins a proof.
 \newcommand{\pmdemi}{\indent \pmdem} %This idents the notation that begins a proof.
@@ -52,6 +72,7 @@
 \newcommand{\pmcdot}{\text{\raisebox{.05cm}{$\boldsymbol\cdot$}}} %This is a sign introducing a theorem sub-number.
 \newcommand{\pmiddf}{\mathbin{=}}
 \newcommand{\pmdf}{\quad \text{Df}}
+\newcommand{\pmDf}{\text{Df}}
 \newcommand{\pmpp}{\quad \text{Pp}}
 
 %Square dots for scope, defined for up to six dots
@@ -74,6 +95,7 @@
 \newcommand{\pmandddddd}{\pmandd\hspace{.1em}\pmandd\hspace{.1em}\pmandd}
 \newcommand{\pmprod}{\mathbin{\ooalign{$\boldsymbol{\wedge}\mkern.5mu$\hidewidth\cr$\boldsymbol{\wedge}$\cr\hidewidth$\mkern.5mu\boldsymbol{\wedge}$}}} %Not in Principia, but added here as a dual of its symbol for disjunction.
 \newcommand{\pmiff}{\mathbin{\ooalign{$\boldsymbol{\equiv}\mkern.5mu$\hidewidth\cr$\boldsymbol{\equiv}$\cr\hidewidth$\mkern.5mu\boldsymbol{\equiv}$}}} %4.01
+\newcommand{\pminc}{\mathbin{|}} %8.01
 
 %The theory of apparent variables
 \newcommand{\pmall}[1]{(#1)}
@@ -81,24 +103,574 @@
 \newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}}
 
 %Additional defined logic signs
-\newcommand{\pmhat}[1]{\mathbf{\hat{\text{$#1$}}}}
-\newcommand{\pmbreve}[1]{\mathbf{\breve{\text{$#1$}}}}
-\newcommand{\pmcirc}[1]{\mathbf{\dot{\text{$#1$}}}}
+\newcommand{\pmhat}[1]{\boldsymbol{\hat{\text{$#1$}}}}
+\newcommand{\pmbreve}[1]{\boldsymbol{\breve{\text{$#1$}}}}
+\newcommand{\pmcirc}[1]{\boldsymbol{\dot{\text{$#1$}}}}
 \newcommand{\pmpf}[2]{#1#2} %for propositional functions of one variable
 \newcommand{\pmpff}[3]{#1(#2, #3)} %for propositional functions of two variables
 \newcommand{\pmpfff}[4]{#1(#2, #3, #4)} %for propositional functions of three variables
+\newcommand{\pmpffff}[5]{#1(#2, #3, #4, #5)} %for propositional functions of four variables (including ellipses)
+\newcommand{\pmppf}[2]{#1\pmshr#2} %for propositional predicative functions of one variable
+\newcommand{\pmppff}[3]{#1\pmshr(#2, #3)} %for propositional predicative functions of two variables
 \newcommand{\pmshr}{\textbf{!}} %*12.1 and *12.11, used for predicative propositional functions
 \newcommand{\pmpred}[2]{#1\pmshr#2} %for predicates (``predicative functions'') of one variable
 \newcommand{\pmpredd}[3]{#1\pmshr(#2, #3)} %for predicates (``predicative functions'') of two variables
 \newcommand{\pmpreddd}[4]{#1\pmshr(#2, #3, #4)} %for predicates (``predicative functions'') of three variables
+\newcommand{\pmpredddd}[5]{#1\pmshr(#2, #3, #4, #5)} %for predicates (``predicative functions'') of four variables
+\newcommand{\pmpreddddd}[6]{#1\pmshr(#2, #3, #4, #5, #6)} %for predicates (``predicative functions'') of five variables
+\newcommand{\pmpredddddd}[7]{#1\pmshr(#2, #3, #4, #5, #6, #7)} %for predicates (``predicative functions'') of six variables
+\newcommand{\pmid}{\mathbin{=}}
 \newcommand{\pmnid}{\mathrel{\ooalign{$=$\cr\hidewidth\footnotesize\rotatebox[origin=c]{210}{\textbf{/}}\hidewidth\cr}}} %*13.02
-\newcommand{\pmiota}{\ooalign{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}\cr\hidewidth\raisebox{.0125em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.025em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.0375em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}\cr\hidewidth\raisebox{.05em}{\rotatebox[origin=c]{180}{$\mathbf{\iota}$}}}} %the rotated Greek iota used in definite descriptions
+\newcommand{\pmiota}{\ooalign{\rotatebox[origin=c]{180}{$\boldsymbol{\iota}$}\cr\hidewidth\raisebox{.0125em}{\rotatebox[origin=c]{180}{$\boldsymbol{\iota}$}}\cr\hidewidth\raisebox{.025em}{\rotatebox[origin=c]{180}{$\boldsymbol{\iota}$}}\cr\hidewidth\raisebox{.0375em}{\rotatebox[origin=c]{180}{$\boldsymbol{\iota}$}}\cr\hidewidth\raisebox{.05em}{\rotatebox[origin=c]{180}{$\boldsymbol{\iota}$}}}} %the rotated Greek iota used in definite descriptions
 \newcommand{\pmdsc}[1]{(\pmiota#1)} %*14.01
+\newcommand{\pmthe}[2]{(\pmiota#1)(#2 #1)} %*14.01
+\newcommand{\pmtheb}[2]{[(\pmiota#1)(#2 #1)]} %*14.01
 \newcommand{\pmDsc}{\pmiota} 
 \newcommand{\pmexists}{\textbf{E}\hspace{.1em}\pmshr} %*14.02
 
-\title{\texttt{principia.sty}\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 1.3)}
-\author{Landon D. C. Elkind \texttt{elkind@ualberta.ca}}
+%Classes and relations
+%Class signs
+\newcommand{\pmcls}[2]{\pmhat{#1}(#2)} %20.01
+\newcommand{\pmcin}{\mathop{\boldsymbol{\epsilon}}} %20.02
+\newcommand{\pmCls}{\text{Cls}} %20.03
+\newcommand{\pmClsn}[1]{\text{Cls}^{#1}}
+\newcommand{\pmcinn}{\pmnot\pmcin} %20.06
+\newcommand{\pmcinc}{\mathop{\ooalign{$\boldsymbol{\subset}$\cr\hidewidth$\hspace{.1em}\boldsymbol{\subset}$\cr\hidewidth$\hspace{.15em}\boldsymbol{\subset}$\cr\hidewidth$\hspace{.2em}\boldsymbol{\subset}$}}} %22.01
+\newcommand{\pmccap}{\mathop{\ooalign{\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.1em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.2em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.3em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.4em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.5em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}\cr\hidewidth\hspace{.6em}\scalebox{1.3}[1.75]{$\put(3, 2){\oval(4,1)[t]}\phantom{\circ}$}}}} %22.02
+\newcommand{\pmccup}{\mathop{\ooalign{\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.1em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.2em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.3em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.4em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.5em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}\cr\hidewidth\hspace{.6em}\scalebox{1.3}[1.75]{$\put(3, 2.5){\oval(4,4)[b]}\phantom{\circ}$}}}} %22.03
+\newcommand{\pmccmp}[1]{\boldsymbol{-}#1} %22.04
+\newcommand{\pmcmin}[2]{#1\boldsymbol{-}#2} %22.05
+\newcommand{\pmcuni}{\text{\rotatebox[origin=c]{180}{$\Lambda$}}} %24.01
+\newcommand{\pmcnull}{\Lambda} %24.02
+\newcommand{\pmcexists}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}\hspace{-.1em}\mathop{\pmshr}} %24.03
+
+%Relation signs
+\newcommand{\pmrel}[3]{\pmhat{#1}\pmhat{#2}#3} %21.01
+\newcommand{\pmrele}[5]{#1\{\pmhat{#2}\pmhat{#3}#4(#2, #3)\}#5} %21.02
+\newcommand{\pmrelep}[3]{#1\{#2\}#3} %21.08, 21.081, 21.082, etc.
+\newcommand{\pmrcmp}[1]{\ooalign{$\hidewidth\raisebox{.25em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccmp}$}#1} %23.04
+\newcommand{\pmrmin}[2]{#1\mathrel{\ooalign{$\hidewidth\raisebox{.25em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccmp}$}}#2} %23.05
+\newcommand{\pmruni}{\pmcirc{\text{\rotatebox[origin=c]{180}{$\Lambda$}}}} %25.01
+\newcommand{\pmrnull}{\pmcirc{\Lambda}} %25.02
+\newcommand{\pmrexists}{\pmcirc{\mathop{\text{\raisebox{.5em}{\rotatebox{180}{E}}}}}\mathop{\pmshr}} %25.03
+\newcommand{\pmrinc}{\mathrel{\ooalign{$\hidewidth\boldsymbol{\cdot}\hidewidth$\cr$\boldsymbol{\pmcinc}$}}} %23.01
+\newcommand{\pmrcap}{\mathrel{\ooalign{$\hidewidth\raisebox{.3em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccap}$}}} %23.02
+\newcommand{\pmrcup}{\mathrel{\ooalign{$\hidewidth\raisebox{.1em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccup}$}}} %23.03
+
+%Logic of Relations
+\newcommand{\pmdscf}[2]{#1\textbf{`}#2} %30.01
+\newcommand{\pmcnv}[1]{\text{Cnv}\textbf{`}#1} %31.01
+\newcommand{\pmCnv}{\text{Cnv}}
+\newcommand{\pmcrel}[1]{\pmbreve{#1}} %31.02
+\newcommand{\pmrrf}[2]{\overset{\boldsymbol{\rightarrow}}{#1\textbf{`}}#2} %32.01
+\newcommand{\pmRrf}[1]{\overset{\boldsymbol{\rightarrow}}{#1}} 
+\newcommand{\pmrrl}[2]{\overset{\boldsymbol{\leftarrow}}{#1\textbf{`}}#2} %32.02
+\newcommand{\pmRrl}[1]{\overset{\boldsymbol{\leftarrow}}{#1}}
+\newcommand{\pmsg}[1]{\text{sg}\textbf{`}#1} %32.03
+\newcommand{\pmSg}{\text{sg}}
+\newcommand{\pmgs}[1]{\text{gs}\textbf{`}#1} %32.04
+\newcommand{\pmGs}{\text{gs}}
+\newcommand{\pmdm}[1]{\text{D}\textbf{`}#1} %33.01
+\newcommand{\pmDm}{\text{D}} 
+\newcommand{\pmcdm}[1]{\text{\rotatebox[origin=c]{180}{D}}\textbf{`}#1} %33.02
+\newcommand{\pmCdm}{\text{\rotatebox[origin=c]{180}{D}}}
+\newcommand{\pmcmp}[1]{C\textbf{`}#1} %33.03
+\newcommand{\pmCmp}{C}
+\newcommand{\pmfld}[1]{F\textbf{`}#1} %33.04
+\newcommand{\pmFld}{F}
+\newcommand{\pmrprd}[2]{{#1}\mathop{|}{#2}} %34.01
+\newcommand{\pmRprd}{\mathop{|}}
+\newcommand{\pmrprdn}[2]{#1^{#2}} %34.02, 34.03, etc.
+\newcommand{\pmrld}[2]{#1 \boldsymbol{\upharpoonleft} #2} %35.01
+\newcommand{\pmrlcd}[2]{#1 \boldsymbol{\upharpoonright} #2} %35.02
+\newcommand{\pmrlf}[3]{#1 \boldsymbol{\upharpoonleft} #2 \boldsymbol{\upharpoonright} #3} %35.03
+\newcommand{\pmrl}[2]{#1 \boldsymbol{\uparrow} #2} %35.04
+\newcommand{\pmrlF}[2]{#1 \mathbin{\ooalign{$\upharpoonright$\cr\hidewidth\rotatebox[origin=c]{180}{\text{$\upharpoonleft$}}\hidewidth\cr}} #2} %36.01
+\newcommand{\pmdscff}[2]{#1\textbf{`}\textbf{`}#2} %37.01
+\newcommand{\pmdscfr}[2]{#1_{\pmcin}\textbf{`}#2} %37.02
+\newcommand{\pmdscfR}[1]{#1_{\pmcin}} 
+\newcommand{\pmdscfcr}[2]{\pmbreve{#1}_{\pmcin}\textbf{`}#2} %37.03
+\newcommand{\pmdscfcR}[1]{\pmbreve{#1}_{\pmcin}} 
+\newcommand{\pmdscfff}[2]{#1\textbf{`}\textbf{`}\textbf{`}#2} %37.04
+\newcommand{\pmdscfe}[2]{\mathop{\text{E}}\mathop{\pmshr\pmshr}\pmdscff{#1}{#2}} %37.05
+\newcommand{\Female}{{\usefont{U}{mvs}{m}{n}\symbol{126}}} %from the Marvosym package
+\newcommand{\pmop}{\mathop{\text{\Female}}} %38.01, 38.02 
+\newcommand{\pmopc}[2]{#1 \mathop{\underset{\textbf{''}}{\text{\Female}}} #2} %38.03
+
+%Products and sums of classes of classes or relations
+\newcommand{\pmccsum}[1]{p\textbf{`}#1} %40.01
+\newcommand{\pmccprd}[1]{s\textbf{`}#1} %40.02
+\newcommand{\pmcrsum}[1]{\pmcirc{p}\textbf{`}#1} %41.01
+\newcommand{\pmcrprd}[1]{\pmcirc{s}\textbf{`}#1} %41.02
+\newcommand{\pmrprdd}[2]{{#1}\mathop{||}{#2}} %43.01
+\newcommand{\pmRprdd}{\mathop{||}} 
+
+%Prolegomena to Cardinal Arithmetic
+%Unit Classes and Couples
+%Identity and Diversity
+\newcommand{\pmrid}{I} %50.01
+\newcommand{\pmrdiv}{J} %50.02
+\newcommand{\pmcunit}[1]{\iota\textbf{`}#1} %51.01
+\newcommand{\pmcUnit}{\iota} 
+\newcommand{\pmcunits}[1]{\pmbreve{\iota}\textbf{`}#1} %52.01
+
+%Cardinal numbers
+\newcommand{\pmcn}[1]{#1} %52.01, 54.01, 54.02, etc.
+
+%Ordinal numbers
+\newcommand{\pmoc}[2]{#1 \boldsymbol{\downarrow} #2} %55.01, 55.02, etc.
+\newcommand{\pmdn}[1]{\pmcirc{#1}} %56.01
+\newcommand{\pmorn}[1]{#1_r} %56.02, 56.03, etc.
+
+%Sub-classes, Sub-relations, and Relative Types
+%Sub-classes
+\newcommand{\pmscl}[1]{\text{Cl}\textbf{`}#1} %60.01
+\newcommand{\pmsCl}{\text{Cl}}
+\newcommand{\pmscle}[1]{\text{Cl ex}\textbf{`}#1} %60.02
+\newcommand{\pmsCle}{\text{Cl ex}}
+\newcommand{\pmscls}[1]{\text{Cls}\textbf{`}#1} %60.03
+\newcommand{\pmsrl}[1]{\text{Rl}\textbf{`}#1} %61.01
+\newcommand{\pmsRl}{\text{Rl}}
+\newcommand{\pmsrle}[1]{\text{Rl ex}\textbf{`}#1} %61.02
+\newcommand{\pmsRle}{\text{Rl ex}} 
+\newcommand{\pmsrel}[1]{\text{Rel}\textbf{`}#1} %61.03
+\newcommand{\pmRel}{\text{Rel}}
+\newcommand{\pmReln}[1]{\text{Rel}^{#1}} %61.04
+\newcommand{\pmrin}{\mathop{\boldsymbol{\epsilon}}} %62.01
+
+%Relative type symbols
+\newcommand{\pmrt}[1]{t\textbf{`}#1} %63.01
+\newcommand{\pmrti}[2]{t^{#1}\textbf{`}#2} %63.011
+\newcommand{\pmrtc}[2]{t_{#1}\textbf{`}#2} %63.02, 63.03, etc.
+\newcommand{\pmrtri}[2]{t^{#1}\textbf{`}#2} %63.04
+\newcommand{\pmrtrc}[2]{t_{#1}\textbf{`}#2} %64.02, 64.021, 64.022, etc.
+\newcommand{\pmrtrci}[3]{t_{#1}^{\text{ }#2}\textbf{`}#3} %64.03, 64.031, etc.
+\newcommand{\pmrtric}[3]{{}^{#1}t_{#2}\textbf{`}#3} %64.04, 64.041, etc.
+\newcommand{\pmrtdi}[2]{#1_{#2}} %65.01
+\newcommand{\pmrtdc}[2]{#1(#2)} %65.02
+\newcommand{\pmrtdri}[2]{#1_{#2}} %65.03
+\newcommand{\pmrtdrc}[2]{#1(#2)} %65.04
+
+%One-many, Many-one, and One-one relations
+%Similarity relation signs
+\newcommand{\pmrdc}[2]{#1\boldsymbol{\to}#2} %70.01
+\newcommand{\pmsmbar}{\mathrel{\overline{\text{sm}}}} %73.01
+\newcommand{\pmsm}{\mathrel{\text{sm}}} %73.02
+\newcommand{\pmSM}{\text{sm}}
+\newcommand{\pmsmarr}{\overrightarrow{{\pmsm}}}
+\newcommand{\pmonemany}{1\boldsymbol{\to}\pmCls}
+\newcommand{\pmmanyone}{\pmCls\boldsymbol{\to}1}
+\newcommand{\pmoneone}{1\boldsymbol{\to}1}
+
+%Selections
+\newcommand{\pmselp}[1]{P_{\small\Delta}\boldsymbol{`}#1} %80.01
+\newcommand{\pmSelp}{P_{\Delta}}
+\newcommand{\pmsele}[1]{\pmcin_{\small\Delta}\boldsymbol{`}#1} 
+\newcommand{\pmSele}{\pmcin_{\Delta}}
+\newcommand{\pmself}[1]{F_{\small\Delta}\boldsymbol{`}#1}
+\newcommand{\pmSelf}{F_{\Delta}}
+\newcommand{\pmexc}{\text{Cls}^2 \mathop{\text{excl}}} %84.01
+\newcommand{\pmexcc}[1]{\text{Cl} \mathop{\text{excl}}\textbf{`}#1} %84.02
+\newcommand{\pmex}{\text{Cls excl}} 
+\newcommand{\pmexcn}{\text{Cls} \mathop{\text{ex}^2} \mathop{\text{excl}}} %84.03
+\newcommand{\pmselc}[2]{#1 \mathrel{\ooalign{\rotatebox[origin=c]{270}{$\boldsymbol{\mapsto}$}}} #2}
+\newcommand{\pmmultr}{\mathop{\text{Rel}} \mathop{\text{Mult}}} %88.01
+\newcommand{\pmmultc}{\mathop{\text{Cls}^2} \mathop{\text{Mult}}} %88.02
+\newcommand{\pmmultax}{\mathop{\text{Mult}} \mathop{\text{ax}}} %88.03
+
+%Inductive relations
+\newcommand{\pmanc}[1]{#1_\pmast} %90.01
+\newcommand{\pmancc}[1]{\pmcrel{#1}_\pmast} %90.02
+\newcommand{\pmrst}[1]{#1_\text{st}} %91.01
+\newcommand{\pmrts}[1]{#1_\text{ts}} %91.02
+\newcommand{\pmpot}[1]{\text{Pot}\boldsymbol{`}#1} %91.03
+\newcommand{\pmpotid}[1]{\text{Potid}\boldsymbol{`}#1} %91.04
+\newcommand{\pmpo}[1]{#1_\text{po}} %91.05
+\newcommand{\pmB}{B} %93.01
+\newcommand{\pmmin}[1]{\text{min}_{#1}} %93.02
+\newcommand{\pmMin}{\text{min}} 
+\newcommand{\pmmax}[1]{\text{max}_{#1}} %93.021
+\newcommand{\pmMax}{\text{max}}
+\newcommand{\pmgen}[1]{\text{gen}\boldsymbol{`}#1} %93.03
+\newcommand{\pmGen}{\text{gen}}
+\newcommand{\pmefr}[2]{#1\pmast#2} %95.05
+\newcommand{\pmipr}[2]{I_{#1}\textbf{`}#2} %96.01
+\newcommand{\pmjpr}[2]{J_{#1}\textbf{`}#2} %96.02
+\newcommand{\pmfr}[2]{\overset{\boldsymbol{\leftrightarrow}}{#1}\textbf{`}#2} %97.01
+
+%Volume II
+%Cardinal arithmetic
+%Definition and Logical Properties of Cardinal Numbers
+\newcommand{\pmnc}[1]{\text{Nc}\textbf{`}#1} %100.01
+\newcommand{\pmNc}{\text{Nc}} 
+\newcommand{\pmNC}{\text{NC}} %100.02
+\newcommand{\pmNCat}[2]{\text{NC}^{#1}({#2})} %102.01
+\newcommand{\pmnoc}[1]{\text{N}_0\text{c}\textbf{`}#1} %103.01
+\newcommand{\pmNoc}{\text{N}_0\text{c}}
+\newcommand{\pmNoC}{\text{N}_0\text{C}} %103.02
+\newcommand{\pmnca}[2]{\text{N}^{#1}\text{c}\textbf{`}#2} %104.01, 104.011, etc.
+\newcommand{\pmNca}[1]{\text{N}^{#1}\text{C}} %104.02, 104.021, etc.
+\newcommand{\pmch}[2]{#1^{(#2)}} %104.03, 104.031, etc.
+\newcommand{\pmncd}[2]{\text{N}_{#1}\text{c}\textbf{`}#2} %105.01
+\newcommand{\pmNcd}[1]{\text{N}_{#1}\text{C}} %105.02, 105.021, etc.
+\newcommand{\pmcl}[2]{#1_{(#2)}} %105.03, 105.031, etc.
+\newcommand{\pmncll}[3]{\text{N}_{#1#2}\text{c}\textbf{`}#3} %106.01, 106.012, etc.
+\newcommand{\pmnchh}[3]{\text{N}^{#1#2}\text{c}\textbf{`}#3} %106.011
+\newcommand{\pmncaa}[3]{\text{N}_{#1}{}^{#2}\text{c}\textbf{`}#3} %106.02
+\newcommand{\pmncdd}[3]{{}^{#1}\text{N}_{#2}\text{c}\textbf{`}#3} %106.021
+\newcommand{\pmNCll}[2]{\text{N}_{#1#2}\text{C}} %106.03
+\newcommand{\pmNChh}[2]{\text{N}^{#1#2}\text{C}} 
+\newcommand{\pmcll}[3]{#1_{(#2#3)}} %106.04
+\newcommand{\pmchh}[3]{#1^{(#2#3)}} %106.041
+\newcommand{\pmncr}[1]{\text{N}_{00}\text{c}\textbf{`}#1} %106.01
+
+%Addition, Multiplication, Exponentiation
+\newcommand{\pmarsumc}{\mathrel{+}} %110.01
+\newcommand{\pmarsumnc}{\mathrel{{+}_{\text{c}}}} %110.02
+\newcommand{\pmsmsmb}{\mathrel{\overline{\text{sm}}\;\overline{\text{sm}}}} %111.01
+\newcommand{\pmcrp}[2]{\text{Crp}(#1)\textbf{`}#2} %111.02
+\newcommand{\pmsmsm}{\mathrel{\text{sm}\;\text{sm}}} %111.03
+\newcommand{\pmarsumcc}[1]{\Sigma\textbf{`}#1} %112.01
+\newcommand{\pmarsumcnc}[1]{\Sigma\pmNc\textbf{`}#1} %112.02
+\newcommand{\pmarprodc}{\times} %113.02
+\newcommand{\pmarprodnc}{\times_\text{c}} %113.03
+\newcommand{\pmarprodcnc}[1]{\Pi\pmNc\textbf{`}#1} %114.01
+\newcommand{\pmarprodcc}[1]{\text{Prod}\textbf{`}#1} %115.01
+\newcommand{\pmarcls}{\pmClsn{3}\text{arithm}} %115.02
+\newcommand{\pmarexp}[2]{#1 \mathrel{\text{exp}} #2} %116.01
+\newcommand{\pmArexp}{\text{exp}} 
+\newcommand{\pmarncexp}[2]{#1^{#2}} %116.02
+\newcommand{\pmarg}{\mathrel{\boldsymbol{>}}} %117.01
+\newcommand{\pmarl}{\mathrel{\boldsymbol{<}}} %117.04
+\newcommand{\pmargeq}{\mathrel{\ooalign{$\boldsymbol{>}$\hidewidth\cr${\hspace{-.4ex}\raise-.75ex\hbox{\rotatebox[origin=c]{-155}{$\scalebox{1.1}{$\boldsymbol{-}$}$}}}$}}} %117.05
+\newcommand{\pmarleq}{\mathrel{\ooalign{$\boldsymbol{<}$\cr\hidewidth${\raise-.75ex\hbox{\rotatebox[origin=c]{155}{$\scalebox{1.1}{$\boldsymbol{-}$}$}}}\hspace{-.375ex}$}}} %117.06
+
+%Finite and infinite
+\newcommand{\pmarsubt}[2]{#1 \mathrel{{-}_\text{c}} #2} %119.01
+\newcommand{\pmArsubt}{{-}_\text{c}} 
+\newcommand{\pmNCinduct}{\text{NC}\,\text{induct}} %120.01
+\newcommand{\pmncinduct}[1]{\text{N}_#1\text{C}\,\text{induct}} %120.011
+\newcommand{\pmClsinduct}{\text{Cls}\,\text{induct}} %120.02
+\newcommand{\pmclsinduct}[1]{\text{Cls}_{#1}\,\text{induct}} %120.021
+\newcommand{\pmInfinax}{\text{Infin}\,\text{ax}} %120.03
+\newcommand{\pminfinax}[1]{\text{Infin}\,\text{ax}(#1)} %120.04
+\newcommand{\pmspec}[1]{\text{spec}\textbf{`}#1} %120.43
+\newcommand{\pmintoo}[2]{P(#1\mathbin{\boldsymbol{-}}#2)} %121.01
+\newcommand{\pmintoc}[2]{P({#1}\mathbin{\scalebox{1.2}[.7]{$\boldsymbol{\dashv}$}}{#2})} %121.011
+\newcommand{\pmintco}[2]{P({#1}\mathbin{\scalebox{1.2}[.7]{$\boldsymbol{\vdash}$}}{#2})} %121.012
+\newcommand{\pmintcc}[2]{P({#1} \mathbin{\ooalign{$\scalebox{1.2}[.7]{$\boldsymbol{\dashv}$}$\hidewidth\cr$\scalebox{1.2}[.7]{$\boldsymbol{\vdash}$}$}} {#2})} %121.013
+\newcommand{\pmintnc}[1]{P_{#1}} %121.02
+\newcommand{\pmfinid}[1]{\text{finid}\textbf{`}#1} %121.03
+\newcommand{\pmfin}[1]{\text{fin}\textbf{`}#1} %121.031
+\newcommand{\pmintt}[2]{#1_{#2}} %121.04
+\newcommand{\pmprog}{\text{Prog}} %122.01
+\newcommand{\pmaleph}{\boldsymbol{\aleph}} %123.01
+\newcommand{\pmsucc}{\text{N}} %123.02
+\newcommand{\pmclsrefl}{\text{Cls}\;\text{refl}} %124.01
+\newcommand{\pmncrefl}{\text{NC}\;\text{refl}} %124.02
+\newcommand{\pmncmult}{\text{NC}\;\text{mult}} %124.03
+\newcommand{\pmncind}{\text{NC}\;\text{ind}} %126.01
+\newcommand{\pmnocind}[1]{\text{N}_0\text{Cinduct}\textbf{`}#1}
+\newcommand{\pmNocind}{\text{N}_0\text{Cinduct}}
+
+%Relation-arithmetic
+%Ordinal similarity and relation-numbers
+\newcommand{\pmrnsm}[2]{{#1}{\raise.4ex\hbox{\textbf{\large;}}}{#2}} %150.01
+\newcommand{\pmrnsmd}[2]{#1 \mathop{\boldsymbol{\dagger}} #2} %150.02
+\newcommand{\pmrnsmdf}[1]{#1\boldsymbol{\dagger}} 
+\newcommand{\pmopsc}[2]{#1 \mathrel{\ooalign{${\raise-.7ex\hbox{$\pmdot$}}$\hidewidth\cr$\text{\Female}$\hidewidth\cr${\raise-.8ex\hbox{\hspace{.15cm}\textbf{,}}}$}} #2} %150.03
+\newcommand{\pmsmorb}[2]{#1 \mathrel{\overline{\text{smor}}} #2} %151.01
+\newcommand{\pmSmorb}{\overline{\text{smor}}} %151.01
+\newcommand{\pmsmor}[2]{#1 \mathrel{\text{smor}} #2} %151.02
+\newcommand{\pmSmor}{\text{smor}} 
+\newcommand{\pmnr}[1]{\text{Nr}\textbf{`}#1} %152.01
+\newcommand{\pmNr}{\text{Nr}} 
+\newcommand{\pmNR}{\text{NR}} %152.02
+\newcommand{\pmsrrn}[1]{{#1}_{s}} %153.01
+\newcommand{\pmNRat}[2]{\text{NR}^{#1}({#2})} %154.01
+\newcommand{\pmnor}[1]{\text{N}_0\text{r}\textbf{`}#1} %155.01
+\newcommand{\pmNor}{\text{N}_0\text{r}}
+\newcommand{\pmNoR}{\text{N}_0\text{R}} %155.02
+
+%Addition of Relations, and the Product of Two Relations
+\newcommand{\pmrsum}[2]{#1\mathrel{\ooalign{${\raise-.21ex\hbox{$\boldsymbol{-}$}}$\cr\hidewidth$\boldsymbol{\uparrow}$\hidewidth\cr${\raise-.19ex\hbox{$\boldsymbol{-}$}}$}} #2} %160.01
+\newcommand{\pmRsum}{\mathrel{\ooalign{${\raise-.21ex\hbox{$\boldsymbol{-}$}}$\cr\hidewidth$\boldsymbol{\uparrow}$\hidewidth\cr${\raise-.19ex\hbox{$\boldsymbol{-}$}}$}}} 
+\newcommand{\pmrsume}[2]{#1 \mathrel{\rotatebox[origin=c]{90}{$\pmRsum$}} #2} %161.01
+\newcommand{\pmRsume}{\rotatebox[origin=c]{90}{$\pmRsum$} }
+\newcommand{\pmrsumb}[2]{#1 \mathrel{\rotatebox[origin=c]{270}{$\pmRsum$}} #2} %161.02
+\newcommand{\pmRsumb}{\rotatebox[origin=c]{270}{$\pmRsum$}}
+\newcommand{\pmrsumr}[1]{\Sigma\textbf{`}#1} %162.01
+\newcommand{\pmRsumr}{\Sigma} 
+\newcommand{\pmrsumrex}[1]{\mathrel{\text{Rel}^{#1}\text{excl}}} %163.01
+\newcommand{\pmsmorsmorb}[2]{#1 \mathrel{\overline{\text{smor}}\,\overline{\text{smor}}} #2} %164.01
+\newcommand{\pmSmorsmorb}{\overline{\text{smor}}\,\overline{\text{smor}}}
+\newcommand{\pmsmorsmor}[2]{#1 \mathrel{\pmSmor\,\pmSmor} #2} %164.02
+\newcommand{\pmSmorsmor}{\pmSmor\,\pmSmor}
+\newcommand{\pmrprod}[2]{#1 \times #2} %166.01
+
+%First differences and the multiplication and exponentiation of relations
+%On the relation of first differences among the sub-classes of a given class
+\newcommand{\pmrfdcl}[3]{#2 \mathrel{#1_{\text{cl}}} #3} %170.01
+\newcommand{\pmRfdcl}[1]{#1_{\text{cl}}}
+\newcommand{\pmrfdlc}[3]{#2 \mathrel{#1_{\text{lc}}} #3} %170.02
+\newcommand{\pmRfdlc}[1]{#1_{\text{lc}}} 
+\newcommand{\pmrfddf}[3]{#2 \mathrel{#1_{\text{df}}} #3} %171.01
+\newcommand{\pmRfddf}[1]{#1_{\text{df}}}
+\newcommand{\pmrfdfd}[3]{#2 \mathrel{#1_{\text{fd}}} #3} %171.02
+\newcommand{\pmRfdfd}[1]{#1_{\text{fd}}} 
+\newcommand{\pmrfprod}[1]{\Pi\textbf{`}#1} %172.01
+\newcommand{\pmRfprod}[1]{\text{Prod}\textbf{`}#1} %173.01
+\newcommand{\pmrarrel}[1]{\mathrel{\text{Rel}^{#1}\text{arithm}}} %174.01
+\newcommand{\pmrexp}{\mathrel{\text{exp}}} %176.01
+\newcommand{\pmRexp}[2]{{#1}^{#2}} %176.02
+\newcommand{\pmrnsum}[2]{{#1} + {#2}} %180.01
+\newcommand{\pmRnsum}{+} 
+\newcommand{\pmrndsum}[2]{{#1} \mathrel{\pmcirc{+}} {#2}} %180.02
+\newcommand{\pmRndsum}{\pmcirc{+}} 
+\newcommand{\pmrnsumru}[2]{#1 \mathrel{\pmcirc{\pmRsumb}} #2} %181.01
+\newcommand{\pmRnsumru}{\pmcirc{\pmRsumb}} 
+\newcommand{\pmrnsumur}[2]{#1 \mathrel{\pmcirc{\pmRsume}} #2} %181.011
+\newcommand{\pmRnsumur}{\pmcirc{\pmRsume}} 
+\newcommand{\pmrn}[1]{\pmcirc{#1}} %181.02
+\newcommand{\pmrsep}[1]{\ooalign{${\raise1.5ex\hbox{\rotatebox[origin=c]{180}{\scalebox{1.4}[1.4]{$\pmbreve{\phantom{.}}$}}}}$\cr\hidewidth$#1$\hidewidth}} %182.01
+\newcommand{\pmrnsumf}[1]{\Sigma\pmNr\textbf{`}#1} %183.01
+\newcommand{\pmrnprod}[2]{#1 \mathrel{\pmcirc{\times}} #2} %184.01
+\newcommand{\pmRnprod}{\pmcirc{\times}} 
+\newcommand{\pmrnprodf}[1]{\Pi\pmNr\textbf{`}#1} %185.01
+\newcommand{\pmrnexp}[3]{#2 \mathrel{\pmArexp_{#1}} #3} %186.01
+\newcommand{\pmRnexp}[1]{\pmArexp_{#1}}
+
+%Series
+%General theory of series
+\newcommand{\pmtrans}{\text{trans}} %201.01
+\newcommand{\pmconnex}{\text{connex}} %202.01
+\newcommand{\pmser}{\text{Ser}} %204.01
+\newcommand{\pmseq}[3]{#1 \mathrel{\text{seq}_{#1}} #2} %206.01
+\newcommand{\pmSeq}[1]{\text{seq}_{#1}} 
+\newcommand{\pmprec}[3]{#1 \mathrel{\text{prec}_{#1}} #2} %206.02
+\newcommand{\pmPrec}[1]{\text{prec}_{#1}} 
+\newcommand{\pmlt}[1]{\text{lt}_{#1}} %207.01
+\newcommand{\pmtl}[1]{\text{tl}_{#1}} %207.01
+\newcommand{\pmlimax}[2]{\text{limax}_{#1}\textbf{`}#2} %207.03
+\newcommand{\pmLimax}[1]{\text{limax}_{#1}} 
+\newcommand{\pmlimin}[2]{\text{limin}_{#1}\textbf{`}#2} %207.04
+\newcommand{\pmLimin}[1]{\text{limin}_{#1}} 
+\newcommand{\pmcr}[1]{\text{cr}\textbf{`}{#1}} 
+\newcommand{\pmCr}{\text{cr}} 
+\newcommand{\pmcror}[1]{\text{cror}\textbf{`}{#1}} %208.01
+\newcommand{\pmCror}{\text{cror}} 
+
+%On sections, segments, stretches, and derivatives
+\newcommand{\pmsect}[1]{\text{sect}\textbf{`}{#1}} %211.01
+\newcommand{\pmSect}{\text{sect}} 
+\newcommand{\pmseg}[1]{\boldsymbol{\varsigma}\textbf{`}{#1}} %212.01
+\newcommand{\pmSeg}{\boldsymbol{\varsigma}} 
+\newcommand{\pmsym}[1]{\text{sym}\textbf{`}{#1}} %212.02
+\newcommand{\pmSym}{\text{sym}} 
+\newcommand{\pmsectr}[1]{{#1}_{\pmSeg}} %213.01
+\newcommand{\pmded}{\mathrel{\text{Ded}}}  %214.01
+\newcommand{\pmsded}{\mathrel{\text{semi}\;\text{Ded}}} %214.02
+\newcommand{\pmstr}[1]{\text{str}\textbf{`}{#1}} %215.01
+\newcommand{\pmStr}{\text{str}} 
+\newcommand{\pmder}[2]{\delta_{#1}\textbf{`}#2} %216.01
+\newcommand{\pmDer}[1]{\delta_{#1}} 
+\newcommand{\pmdern}[3]{\delta_{#1}^{#2}\textbf{`}#3} 
+\newcommand{\pmden}[1]{\text{dense}\textbf{`}{#1}} %216.02
+\newcommand{\pmDen}{\text{dense}} 
+\newcommand{\pmclsd}[1]{\text{closed}\textbf{`}{#1}} %216.03
+\newcommand{\pmClsd}{\text{closed}} 
+\newcommand{\pmperf}[1]{\text{perf}\textbf{`}{#1}} %216.04
+\newcommand{\pmPerf}{\text{perf}} 
+\newcommand{\pmders}[1]{\rotatebox[origin=c]{180}{$\Delta$}\textbf{`}#1} %216.05
+\newcommand{\pmDers}{\rotatebox[origin=c]{180}{$\Delta$}} 
+
+%On convergence, and the limits of functions
+\newcommand{\pmconv}[3]{#1\bar{#2}_{\text{cn}}#3} %230.01
+\newcommand{\pmConv}[1]{{#1}_{\text{cn}}} %230.02
+\newcommand{\pmconvg}[3]{#1\bar{#2}_{\text{cng}}#3} 
+\newcommand{\pmConvg}[1]{{#1}_{\text{cng}}} 
+\newcommand{\pmlsc}[3]{#1\bar{#2}_{\text{sc}}#3} %231.01
+\newcommand{\pmosc}[3]{#1\bar{#2}_{\text{os}}#3} %231.02
+\newcommand{\pmlscl}[4]{(#1\bar{#2}#3)_{\text{sc}}\textbf{`}#4} %232.01
+\newcommand{\pmoscl}[4]{(#1\bar{#2}#3)_{\text{os}}\textbf{`}#4} %232.02
+\newcommand{\pmlmx}[4]{(#1\bar{#2}#3)_{\text{lmx}}\textbf{`}#4} %233.01
+\newcommand{\pmLmx}[3]{(#1\bar{#2}#3)_{\text{lmx}}}
+\newcommand{\pmlimf}[4]{#1(#2#3)\textbf{`}#4} %233.02
+\newcommand{\pmLimf}[3]{#1(#2#3)} 
+\newcommand{\pmscf}[3]{\text{sc}(#1, #2)\boldsymbol{`}#3} %234.01
+\newcommand{\pmosf}[3]{\text{os}(#1, #2)\boldsymbol{`}#3} %234.02
+\newcommand{\pmctf}[3]{\text{ct}(#1#2)\boldsymbol{`}#3} %234.03
+\newcommand{\pmcontinf}[3]{\text{contin}(#1#2)\boldsymbol{`}#3} %234.04
+\newcommand{\pmcontin}[2]{#1 \mathrel{\text{contin}} #2} %234.05
+\newcommand{\pmContin}{\text{contin}} 
+
+%Volume III
+%Well-Ordered Series
+\newcommand{\pmbord}{\text{Bord}} %250.01
+\newcommand{\pmword}{\Omega} %250.02
+\newcommand{\pmordn}{\text{NO}} %251.01
+\newcommand{\pmless}{\mathrel{\text{less}}} %254.01
+\newcommand{\pmLess}{\text{less}}
+\newcommand{\pmpsc}[2]{#1 \mathrel{P_{\text{sm}}} #2} %254.02
+\newcommand{\pmPsc}{P_{\text{sm}}} 
+\newcommand{\pmorle}{\mathrel{\ooalign{$\boldsymbol{<}$\cr\hidewidth$\boldsymbol{\cdot}$}}} %255.01
+\newcommand{\pmorgr}{\mathrel{\ooalign{$\boldsymbol{>}$\hidewidth\cr$\boldsymbol{\cdot}$\hidewidth}}} %255.02
+\newcommand{\pmnoo}{\text{N}_0\text{O}} %255.03
+\newcommand{\pmorleq}{\mathrel{\ooalign{$\boldsymbol{<}$\cr\hidewidth$\boldsymbol{\cdot}$\cr\hidewidth${\raise-.75ex\hbox{\rotatebox[origin=c]{155}{$\scalebox{1.1}{$\boldsymbol{-}$}$}}}\hspace{-.375ex}$}}} %255.04
+\newcommand{\pmorgrq}{\mathrel{\ooalign{$\boldsymbol{>}$\hidewidth\cr$\boldsymbol{\cdot}$\hidewidth\cr${\hspace{-.4ex}\raise-.75ex\hbox{\rotatebox[origin=c]{-155}{$\scalebox{1.1}{$\boldsymbol{-}$}$}}}$\hidewidth}}} %255.05
+\newcommand{\pmm}{\emph{M}} %256.01
+\newcommand{\pmn}{\emph{N}} %256.02, 263.02
+\newcommand{\pmtranc}[3]{(#1\pmast#2)\textbf{`}#3} %257.01
+\newcommand{\pmTranc}[2]{(#1\pmast#2)} %257.01
+\newcommand{\pmtrpot}[3]{#1_{#2#3}} %257.02
+\newcommand{\pma}{\emph{A}} %259.01
+\newcommand{\pmaw}{\emph{A}_{\emph{W}}} %259.02
+\newcommand{\pmwa}{\emph{W}_{\emph{A}}} %259.03
+
+%Finite and Infinite Series and Ordinals
+\newcommand{\pmintf}{P_{\text{fn}}} %260.01
+\newcommand{\pmserinf}{\text{Ser infin}} %261.01
+\newcommand{\pmwordinf}{\pmword\text{ infin}} %261.02
+\newcommand{\pmserfin}{\text{Ser fin}} %261.03
+\newcommand{\pmwordfin}{\pmword\text{ fin}} %261.04
+\newcommand{\pmwordind}{\pmword\text{ induct}} %261.04
+\newcommand{\pmordnfin}{\text{NO fin}} %262.01
+\newcommand{\pmordninf}{\text{NO infin}} %262.02
+\newcommand{\pmfinord}[1]{#1_r} %262.03
+\newcommand{\pmom}{\boldsymbol{\omega}} %263.01
+\newcommand{\pmpr}[1]{#1_{\text{pr}}} %264.01
+\newcommand{\pmomn}[1]{\pmom_{#1}} %265.01, 265.03, etc.
+\newcommand{\pmalephn}[1]{\pmaleph_{#1}} %265.02, 265.04, etc.
+
+%Compact series, rational series, and continuous series
+\newcommand{\pmcomp}{\mathrel{\text{comp}}} %270.01
+\newcommand{\pmComp}{\text{Comp}} 
+\newcommand{\pmmed}{\mathrel{\text{med}}} %271.01
+\newcommand{\pmMed}{\text{med}} 
+\newcommand{\pmsimp}[3]{\mathrel{#1_{#2#3}}} %272.01
+\newcommand{\pmsimps}[3]{{#1}_{#2}\textbf{`}{#3}} %273.02
+\newcommand{\pmSimp}[3]{({#1}{#2})_{#3}} %273.03
+\newcommand{\pmSimps}[2]{{#1}_{#2}} %273.04
+\newcommand{\pmrats}{\eta} %273.01
+\newcommand{\pmsfcls}[1]{#1_\pmrats} %274.01
+\newcommand{\pmsfclsm}[2]{#1_m\textbf{`}#2} %274.02
+\newcommand{\pmsfclsp}[2]{\pmbreve{#1}_P\textbf{`}{#2}} %274.03
+\newcommand{\pmsfclsmp}[1]{M_P\textbf{`}{#1}} %274.04
+\newcommand{\pmcser}{\theta} %275.01
+\newcommand{\pmcsercl}[1]{#1_\pmcser} %276.01
+\newcommand{\pmcsercls}[2]{{#1}_{#2}} %276.04
+\newcommand{\pmCsercls}[2]{{#1}_{\text{tl}}\textbf{`}{#2}} %264.05
+%Skipped some temprary definitions as repetitious
+
+%Quantity 
+%Generalization of Number
+\newcommand{\pmu}{\textit{U}} %300.01
+\newcommand{\pmrnum}{\text{Rel num}} %300.02
+\newcommand{\pmrnumid}{\text{Rel num id}} %300.03
+\newcommand{\pmrpwr}[2]{#1^#2} %301.03
+\newcommand{\pmPrm}{\text{Prm}} %302.01
+\newcommand{\pmrprm}[4]{(#1,#2)\mathbin{\pmPrm_\tau}(#3,#4)} %302.02
+\newcommand{\pmprm}[4]{(#1,#2)\mathbin{\pmPrm}(#3,#4)} %302.03
+\newcommand{\pmhcf}[2]{\text{hcf}(#1,#2)} %302.04
+\newcommand{\pmHcf}{\text{hcf}}
+\newcommand{\pmlcm}[2]{\text{lcm}(#1,#2)} %302.05
+\newcommand{\pmLcm}{\text{lcm}} 
+\newcommand{\pmrat}[2]{#1 \rotatebox[origin=c]{10}{$\boldsymbol{/}$} #2} %303.01 
+\newcommand{\pmqn}[1]{#1_q} %303.02
+\newcommand{\pmqnil}{\infty_q} %303.03
+\newcommand{\pmRat}{\text{Rat}} %303.04
+\newcommand{\pmRatdef}{\text{Rat def}} %303.05
+\newcommand{\pmqnle}[2]{#1 \mathrel{\boldsymbol{<}_r} #2} %304.01
+\newcommand{\pmQnle}{\boldsymbol{<}_r} 
+\newcommand{\pmqnLe}{H} %304.02
+\newcommand{\pmqnlez}{H'} %304.03
+\newcommand{\pmprodsr}[2]{#1 \times_s #2} %305.01
+\newcommand{\pmProdsr}{\times_s} 
+\newcommand{\pmsumsr}[2]{#1 +_s #2} %306.01
+\newcommand{\pmSumsr}{+_s} 
+\newcommand{\pmratn}{\text{Rat}_n} %307.01
+\newcommand{\pmratg}{\text{Rat}_g} %307.011
+\newcommand{\pmratnle}[2]{#1 \mathrel{\boldsymbol{<}_n} #2} %307.02
+\newcommand{\pmRatnle}{\boldsymbol{<}_n} 
+\newcommand{\pmatngr}[2]{#1 \mathrel{\boldsymbol{>}_n} #2} %307.021
+\newcommand{\pmRatngr}{\boldsymbol{>}_n} 
+\newcommand{\pmratgle}[2]{#1 \mathrel{\boldsymbol{<}_g} #2} %307.03
+\newcommand{\pmRatgle}{\boldsymbol{<}_g} 
+\newcommand{\pmratggr}[2]{#1 \mathrel{\boldsymbol{>}_g} #2} %307.031
+\newcommand{\pmRatggr}{\boldsymbol{>}_g} 
+\newcommand{\pmratnLe}{H_n} %307.04
+\newcommand{\pmratgLe}{H_g} %307.05
+\newcommand{\pmratssub}[2]{#1 \boldsymbol{-}_s #2} %308.01
+\newcommand{\pmsumgr}[2]{#1 +_g #2} %308.02
+\newcommand{\pmprodgr}[2]{#1 \times_g #2} %309.01
+\newcommand{\pmrenp}{\Theta} %310.01
+\newcommand{\pmrenpz}{\Theta'} %310.011
+\newcommand{\pmrenn}{\Theta_n} %310.02
+\newcommand{\pmrennz}{\Theta_n'} %310.021
+\newcommand{\pmreng}{\Theta_g} %310.03
+\newcommand{\pmconc}[1]{\text{concord}(#1)} %311.01
+\newcommand{\pmConc}{\text{concord}} 
+\newcommand{\pmrensumc}[2]{#1 +_p #2} %311.02
+\newcommand{\pmrensub}[2]{#1 -_p #2} %312.01
+\newcommand{\pmrensuma}[2]{#1 +_a #2} %312.02
+\newcommand{\pmrenproda}[2]{#1 \times_a #2} %313.01
+\newcommand{\pmrenrsum}[2]{#1 +_r #2} %314.01
+\newcommand{\pmrenrprod}[2]{#1 \times_r #2} %314.02
+\newcommand{\Male}{{\usefont{U}{mvs}{m}{n}\symbol{124}}} %from the Marvosym package
+\newcommand{\pmrenr}{\mathop{\text{\Male}}} %314.03
+\newcommand{\pmrenrssum}[2]{#1 +_\sigma #2} %314.04
+\newcommand{\pmrenrsprod}[2]{#1 \times_\sigma #2} %313.05
+
+%Vector Families
+\newcommand{\pmcorr}[1]{\text{cr}\textbf{`}#1} %330.01
+\newcommand{\pmabel}{\text{Abel}} %330.02
+\newcommand{\pmvfm}[1]{\text{fm}\textbf{`}#1} %330.03
+\newcommand{\pmVfm}{\text{fm}} 
+\newcommand{\pmvfmcl}{\textit{FM}} %330.04
+\newcommand{\pmvffb}[1]{#1_\iota} %330.05
+\newcommand{\pmconx}[1]{\text{conx}\textbf{`}#1} %331.01
+\newcommand{\pmconxfm}{\textit{FM}\text{ conx}} %331.02
+\newcommand{\pmfrep}[2]{\text{rep}_#1\textbf{`}#2} %332.01
+\newcommand{\pmfopen}[1]{#1_\partial} %333.01 
+\newcommand{\pmfopennid}[1]{#1_{\iota\partial}} %333.011
+\newcommand{\pmfmap}{\textit{FM}\text{ ap}} %333.02
+\newcommand{\pmfmapconx}{\textit{FM}\text{ ap conx}} %333.03
+\newcommand{\pmtrsp}[1]{\text{trs}\textbf{`}#1} %334.01
+\newcommand{\pmfmtrs}{\textit{FM}\text{ trs}} %334.02
+\newcommand{\pmfmconnex}{\textit{FM}\text{ connex}} %334.03
+\newcommand{\pmfmsr}{\textit{FM}\text{ sr}} %334.02
+\newcommand{\pmfmasym}{\textit{FM}\text{ asym}} %334.05
+\newcommand{\pminit}[1]{\text{init}\textbf{`}#1} %335.01
+\newcommand{\pmfminit}{\textit{FM}\text{ init}} %335.02
+\newcommand{\pmvr}[1]{\textit{V}_#1} %336.01
+\newcommand{\pmvrnid}[1]{\textit{U}_#1} %336.011
+\newcommand{\pmarvs}[1]{A_{#1}} %336.02
+
+%Measurement
+\newcommand{\pmfmsubm}{\textit{FM}\text{ subm}} %351.01
+\newcommand{\pmvrm}[2]{#1_#2} %352.01
+\newcommand{\pmvrmg}[2]{#1_{#2\iota}} %352.02
+\newcommand{\pmfmrt}{\textit{FM}\text{ rt}} %353.01
+\newcommand{\pmfmcx}{\textit{FM}\text{ cx}} %353.02
+\newcommand{\pmfmrtcx}{\textit{FM}\text{ rt cx}} %353.03
+\newcommand{\pmfmg}[1]{#1_g} %354.01
+\newcommand{\pmrtnet}[2]{\text{cx}_#1\textbf{`}#2} %354.02
+\newcommand{\pmfmgrp}{\textit{FM}\text{ grp}} %354.03
+\newcommand{\pmrems}[2]{#1_#2} %356.01
+
+%Cyclic Families
+\newcommand{\pmfmcycl}{\textit{FM}\text{ cycl}} %370.01
+\newcommand{\pmcycl}[2]{#1_#2} %370.02
+\newcommand{\pmcycli}[2]{#1_#2} %370.03
+\newcommand{\pmvser}[2]{#1_#2} %371.01
+\newcommand{\pmintsecvser}[2]{#1_#2} %372.01
+\newcommand{\pmprime}{\text{Prime}} %373.01
+\newcommand{\pmsfmid}[3]{#1_{#2#3}} %373.02
+\newcommand{\pmsmltid}[2]{(#1, #2)} %373.03
+\newcommand{\pmprrt}[3]{(#1 \rotatebox[origin=c]{10}{$\boldsymbol{/}$} #2)_{#3}} %375.01
+
+\title{\texttt{principia.sty}\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 2.0)}
+\author{Landon D. C. Elkind \texttt{landon.elkind@wku.edu}}
 \date{\today}
 
 \begin{document}
@@ -110,7 +682,7 @@ The \texttt{principia} package is designed for typesetting the Peanese notation 
 
 In \textit{Principia Mathematica} some symbols occur with an argument and sometimes that same symbol occurs without an argument. For example, `$\pmsome{x}$' occurs in some formulas, but sometimes `$\pmSome$' occurs in the text when they talk about the symbol itself. \texttt{principia} is designed to accommodate these different occurrences of symbols. When a symbol is to occur without an argument, capitalize the first letter following the `\texttt{$\backslash$pm}' part of the command. E.g. \verb|\pmsome{x}| produces $\pmsome{x}$ and \verb|\pmSome| produces `$\pmSome$'. Note the former command requires an argument and the latter command does not. Not all commands in the \texttt{principia} package admit of such dual use because some symbols in \textit{Principia Mathematica} never occur without an argument or do not take an argument in the usual sense. For example, the propositional connectives do not take an `argument' in the way singular or plural descriptions do.
 
-Version 1.3 of \texttt{principia} is adequate to typeset all notations throughout Sections A and B of \textit{Principia}'s Volume I and includes some minor fixes. See the package documentation for details. 
+Version 2.0 of \texttt{principia} is adequate to typeset all notations throughout Volumes I-III of \textit{Principia} and includes some minor fixes. Below are commands for Volume I.
 
 \texttt{principia}'s dependencies are \texttt{amsmath}, \texttt{amssymb}, \texttt{pifont}, and \texttt{graphicx}. Make sure to load these package by typing \texttt{$\backslash$usepackage\{graphicx\}}, etc., into the document preamble. 
 
@@ -125,7 +697,7 @@ To load \texttt{principia}, type \texttt{$\backslash$usepackage\{principia\}} in
 	$\pmiddf$ & \verb|\pmiddf| & Identity for definitions (`$=$' differs in spacing).  \\
 	$\pmdf$ & \verb|\pmdf| & Definition. Note the indentation.  \\
 	$\pmdem$ & \verb|\pmdem| & This symbol begins a proof. \\  
-	$\pmsub{p}{q}$, $\pmsubb{p}{q}{r}{s}$, $\pmsubbb{p}{q}{r}{s}{t}{u}$, ... $\pmSub{\text{Add}}{p}{q}$, ... & \verb|\pmsub{p}{q}|, \verb|\pmsubb{p}{q}{r}{s}|, \verb|\pmsubbb{p}{q}| \par \hfill \verb|{r}{s}{t}{u}|, ... \verb|\pmSub{\text{Add}{p}{q}| & Substitution into theorems. Add `b's to the end of \verb|\pmsub| to increase the number of substitutions (up to four `b's). Each extra `b' adds two arguments. To substitute and specify the theorem as well, capitalize the `s' in \verb|\pmsub|. \\
+	$\pmsub{p}{q}$, $\pmsubb{p}{q}{r}{s}$, $\pmsubbb{p}{q}{r}{s}{t}{u}$, ... $\pmSub{\text{Add}}{p}{q}$, ... & \verb|\pmsub{p}{q}|, \verb|\pmsubb{p}{q}{r}{s}|, \verb|\pmsubbb{p}{q}| \par \hfill \verb|{r}{s}{t}{u}|, ... \verb|\pmSub{\text{Add}}{p}{q}| & Substitution into theorems. Add `b's to the end of \verb|\pmsub| to increase the number of substitutions (up to four `b's). Each extra `b' adds two arguments. To substitute and specify the theorem as well, capitalize the `s' in \verb|\pmsub|. \\
 	$\pmdot$, $\pmdott$, $\pmdottt$, $\pmdotttt$, $\pmdottttt$, $\pmdotttttt$ & \verb|\pmdot|, \verb|\pmdott|, \verb|\pmdottt|, ... & Add `t's to the end of \verb|\pmdot| to increase the number of dots (up to six `t's). \\ 
 	$\pmand$, $\pmandd$, $\pmanddd$, $\pmandddd$, $\pmanddddd$, $\pmandddddd$ & \verb|\pmand|, \verb|\pmandd|, \verb|\pmanddd|, ...& Add `d's to the end of \verb|\pmand| command to increase the number of dots (up to six `d's). \\ 
 	$\pmor$ & \verb|\pmor| & Disjunction. \\
@@ -149,7 +721,105 @@ To load \texttt{principia}, type \texttt{$\backslash$usepackage\{principia\}} in
 \noindent \begin{tabular}{@{}p{3cm} | p{5cm} | p{8.25cm}}
 	$=$, $\pmnid$ & \verb|=|, \verb|\pmnid| & Identity and its negation. \\
 	$\pmdsc{x}$ & \verb|\pmdsc{x}| & Definite description. \\
-	$\pmexists$ & \verb|\pmexists| & Existence. 
+	$\pmexists$ & \verb|\pmexists| & Existence. \\
+	$\pmcls{z}{\psi z}$ & \verb|\pmcls{z}{\psi z}| & The class of $z$s satisfying $\psi$. \\
+	$\pmcin$ & \verb|\pmcin| & The class membership symbol. \\
+	$\pmClsn{n}$, $\pmCls$ &  \verb|\pmClsn{n}|, \verb|\pmCls| & The class of classes of individuals. \\
+	 $\pmscl{\alpha}$, $\pmsCl$ & \verb|\pmscl{\alpha}|, \verb|\pmsCl| & The subclasses of a class $\alpha$. \\
+	 $\pmsrl{R}$, $\pmsRl$ & \verb|\pmsrl{R}|, \verb|\pmsRl| & The sub-relations of a relation $R$. \\
+	$\pmcuni$ & \verb|\pmcuni| & The universal class. \\
+	$\pmcnull$ & \verb|\pmcnull| & The null class. \\
+	$\pmcexists$ & \verb|\pmcexists| & The existence of a class. \\
+	$\pmccmp{\alpha}$ & \verb|\pmccmp{\alpha}| & This command requires one argument. \\
+	$\pmcmin{\alpha}{\beta}$ & \verb|\pmcmin{\alpha}{\beta}| & This command requires two arguments. \\
+	$\pmccup$ & \verb|\pmccup| & Class union. \\
+	$\pmccap$ & \verb|\pmccap| & Class intersection. \\
+	$\pmcinc$ & \verb|\pmcinc| & Class inclusion. \\
+	$\pmrel{x}{y}{\phi(x,y)}$ & \verb|\pmrel{x}{y}{\phi(x,y)}| & The relation in extension given by $\phi$. \\
+	$\pmrele{a}{x}{y}{R}{b}$ & \verb|\pmrele{a}{x}{y}{R}{b}| & This command requires five arguments. \\
+	$\pmrelep{a}{R}{b}$ & \verb|\pmrelep{a}{R}{b}| & This command requires three arguments. \\
+	$\pmrin$ & \verb|\pmrin| & The relation membership symbol. \\
+	$\pmReln{n}$, $\pmRel$ & \verb|\pmReln{n}|, \verb|\pmRel| & The class of relations ($n$-many `of relations'). \\
+	$\pmruni$ & \verb|\pmruni| & The universal relation. \\
+	$\pmrnull$ & \verb|\pmrnull| & The null relation. \\
+	$\pmrexists$ & \verb|\pmrexists| & This symbol prefixes relations. \\
+	$\pmrcmp{R}$ & \verb|\pmrcmp{\alpha}| & This command requires one argument. \\
+	$\pmrmin{R}{S}$ & \verb|\pmcmin{R}{S}| & This command requires two arguments. \\
+	$\pmrcup$ & \verb|\pmrcup| & Relation union. \\
+	$\pmrcap$ & \verb|\pmrcap| & Relation intersection. \\
+	$\pmrinc$ & \verb|\pmrinc| & Relation inclusion. \\
+	$\pmcrel{R}$ & \verb|\pmcrel{R}| & The converse of a relation. \\
+	$\pmCnv$ & \verb|\pmCnv| & The command for `Cnv'. \\
+	$\pmdscf{R}{x}$ & \verb|\pmdscf{R}{x}| & A singular descriptive function. \\
+	$\pmdscff{R}{\beta}$ & \verb|\pmdscff{R}{\beta}| & A plural descriptive function. \\
+	$\pmdscfff{R}{\kappa}$ & \verb|\pmdscfff{R}{\kappa}| & A plural descriptive function.   \\
+	$\pmdscfe{R}{\beta}$ & \verb|\pmdscfe{R}{\beta}| & The existence of a plural descriptive function.
+\end{tabular}
+
+\noindent \begin{tabular}{@{}p{3cm} | p{5cm} | p{8.25cm}}
+	$\pmdscfr{R}{x}$, `$\pmdscfR{R}$'& \verb|\pmdscfr{R}{x}|, \verb|\pmdscfR{R}| & The relation of $\pmdscfr{R}{\beta}$ to $\beta$. \\
+	$\pmdm{R}$, $\pmDm$ & \verb|\pmdm{R}|, \verb|\pmDm| & The domain of a relation $R$.  \\
+	$\pmcdm{R}$, $\pmCdm$ & \verb|\pmcdm{R}|, \verb|\pmCdm| & The converse domain of a relation $R$. \\
+	$\pmcmp{R}$, $\pmCmp$ & \verb|\pmcmp{R}|, \verb|\pmCmp| & The campus of a relation $R$.  \\
+	$\pmfld{R}$, $\pmFld$ & \verb|\pmfld{R}|, \verb|\pmFld| & The field of a relation $R$. \\
+	$\pmrrf{R}{x}$, $\pmRrf{R}$ & \verb|\pmrrf{R}{x}|, \verb|\pmRrf{R}| & The referents of a given relation. \\
+	$\pmrrl{R}{x}$, $\pmRrl{R}$ & \verb|\pmrrl{R}{x}|, \verb|\pmRrl{R}| & The relata of a given relation. \\
+	$\pmsg{R}$, $\pmSg$ & \verb|\pmsg{R}|, \verb|\pmSg| &  \\
+	$\pmgs{R}$, $\pmGs$ & \verb|\pmgs{R}|, \verb|\pmGs| &  \\
+	$\pmrprd{R}{S}$, $\pmRprd$ & \verb|\pmrprd{R}{S}|, \verb|\pmrprd| &  The relative product of $R$ and $S$. \\
+	$\pmrprdn{R}{n}$ & \verb|\pmrprdn{R}{n}| & The $n$th relative product of $R$. \\
+	$\pmrprdd{R}{S}$, $\pmRprdd$ & \verb|\pmrprdd{R}{S}|, \verb|\pmrprdd| &  The double relative product of $R$ and $S$. \\
+	$\pmrlcd{\alpha}{R}$ & \verb|\pmrld{\alpha}{R}| & The limitation of $R$'s domain to $\alpha$. \\
+	$\pmrlcd{R}{\beta}$ & \verb|\pmrld{R}{\beta}| & The limitation of $R$'s converse domain to $\beta$. \\
+	$\pmrlf{\alpha}{R}{\beta}$ & \verb|\pmrlf{\alpha}{R}{\beta}| & The limitation of $R$'s field to $\alpha$ and $\beta$, resp. \\ 
+	$\pmrlF{P}{\alpha}$ & \verb|\pmrlF{\alpha}{R}{\beta}| & The limitation of $P$'s field to $\alpha$. \\ 
+	$\pmrl{\alpha}{\beta}$ & \verb|\pmrl{\alpha}{\beta}| & The relation made of all $x$s in $\alpha$ and $y$s in $\beta$. \\
+	$\pmop$ & \verb|\pmop| & The operation symbol. \\
+	$\pmopc{\alpha}{y}$ & \verb|\pmopc{\alpha}{y}| & The relation of $x$s in $\alpha$ taken to $y$ by $\pmop$. \\
+	$\pmccsum{\alpha}$ & \verb|\pmccsum{\alpha}| & The sum of a class of classes. \\
+	$\pmccprd{\alpha}$ & \verb|\pmccprd{\alpha}| & The product of a class of classes. \\
+	$\pmcrsum{\alpha}$ & \verb|\pmcrsum{\alpha}| & The sum of a class of relations. \\
+	$\pmcrprd{\alpha}$ & \verb|\pmcrprd{\alpha}| & The product of a class of relations. \\
+	$\pmrid$, $\pmrdiv$ & \verb|\pmrid|, \verb|\pmrdiv| & The relations of identity and diversity. \\
+	$\pmcunit{x}$, $\pmcUnit$ & \verb|\pmcunit{x}|, \verb|\pmcUnit| & The unit class. \\
+	$\pmcunits{\alpha}$ & \verb|\pmcunits{\alpha}| & The sum of unit classes of $\alpha$'s elements. \\
+	$\pmrn{n}$ & \verb|\pmrn{n}| & The ordinal number $n$. \\
+	$\pmdn{n}$ & \verb|\pmdn{n}| & The class of relations equal to an $n$-tuple. \\
+	$\pmoc{x}{y}$ & \verb|\pmoc{x}{y}| & The ordinal number restricted to $R=(x,y)$. \\
+	$\pmrt{x}$, $\pmrti{n}{x}$ & \verb|\pmrt{x}|, \verb|\pmrti{n}{x}| & The relative type of $x$ ($n$-many `type of's). \\
+	$\pmrtc{n}{\alpha}$ & \verb|\pmrtc{n}{\alpha}| & The relative type of $\alpha$ ($n$-many `type of's). \\
+	$\pmrtri{n}{R}$, $\pmrtrc{n}{R}$ & \verb|\pmrtri{n}{R}|,  \verb|\pmrtrc{n}{R}| & The relative type of (with $n$-many `type of's) $R$ from individuals to individuals, or from classes to classes. `$nm$' can replace `$n$'. 
+\end{tabular}
+
+\noindent \begin{tabular}{@{}p{3cm} | p{5cm} | p{8.25cm}}
+	$\pmrtric{n}{m}{R}$, $\pmrtrci{n}{m}{R}$ & \verb|\pmrtric{n}{R}|,  \verb|\pmrtrci{n}{R}| & The relative type of $R$ from individuals to classes, or from classes to individuals. \\
+	$\pmrtdi{\alpha}{x}$, $\pmrtdri{R}{(x,y)}$ & \verb|\pmrtdi{\alpha}{x}|, \verb|\pmrtdri{R}{(x,y)}| & The result of determining that the members of $\alpha$ ($R$) belong to the relative type of $x$ (in the domain, and of $y$ in the converse domain). \\
+	$\pmrtdc{\alpha}{x}$, $\pmrtdrc{R}{x,y}$ & \verb|\pmrtdc{\alpha}{x}|, \verb|\pmrtdrc{R}{x,y}| & The result of determining that the members of $\alpha$ ($R$) belong to the relative type of $\pmrt{x}$ (in the domain, and of $\pmrt{y}$ in the converse domain). \\
+	$\pmrdc{\alpha}{\beta}$ & \verb|\pmrdc{\alpha}{\beta}| & The class of relations $R$ with domain contained in $\alpha$ and converse domain in $\beta$.  \\
+	$\pmoneone$, $\pmonemany$, $\pmmanyone$ &  \verb|\pmoneone|, \verb|\pmonemany|, \verb|\pmmanyone| & The class of one-one, or one-many, or many-one, relations. Note \verb|\pmrdc| can be used here. \\
+	$\pmsm$, $\pmsmbar$ & \verb|\pmsm|, \verb|\pmsmbar| & The similarity relation. \\
+	$\pmselp{\kappa}$, $\pmSelp$ & \verb|\pmselp{\kappa}|, \verb|\pmSelp| &  The $P$-selections from $\kappa$ \\
+	$\pmsele{\kappa}$, $\pmSele$ & \verb|\pmsele{\kappa}|, \verb|\pmSele| &  The $\pmcin$-selections from $\kappa$ \\
+	$\pmself{\kappa}$, $\pmSelf$ & \verb|\pmself{\kappa}|, \verb|\pmSelf| &  The $F$-selections from $\kappa$ \\
+	$\pmexc$ & \verb|\pmexc| & The class of pairwise-disjoint classes. \\
+	$\pmexcn$ & \verb|\pmexcn| & The class of pairwise-disjoint non-null classes. \\
+	$\pmexcc{\gamma}$ & \verb|\pmexcc{\gamma}| & A class of mutually exclusive classes in $\gamma$. \\
+	$\pmselc{P}{y}$ & \verb|\pmselc{P}{y}| & The class of couples $(y, \pmdscf{P}{y})$. \\
+	$\pmmultc$ & \verb|\pmmultc| & The class of multipliable classes. \\
+	$\pmmultr$ & \verb|\pmmultr| & The class of multipliable relations. \\
+	$\pmmultax$ & \verb|\pmmultax| & The multiplicative axiom. \\
+	$\pmanc{R}$, $\pmancc{R}$ & \verb|\pmanc{R}|, \verb|\pmancc{R}| & The ancestral and its converse. \\
+	$\pmrst{R}$, $\pmrts{R}$ & \verb|\pmrst{R}|, \verb|\pmrts{R}| & The powers of the ancestral and its converse. \\
+	$\pmmin{P}$, $\pmmax{P}$ & \verb|\pmmin{P}|, \verb|\pmmax{P}| & The minimum and maximum under $P$. \\
+	$\pmpot{R}$, $\pmpotid{R}$ & \verb|\pmpot{R}|, \verb|\pmpotid{R}| & The products (strict and not) of an ancestral. \\
+	 $\pmpo{R}$ & \verb|\pmpo{R}| & The product of a class of ancestrals $R$. \\
+	 $\pmB$ & \verb|\pmB| & The relation of beginning under $P$. \\
+	$\pmgen{P}$ & \verb|\pmgen{P}| & The generation of $P$. \\
+	$\pmefr{P}{Q}$ & \verb|\pmefr{P}{Q}| & The equi-factor relation. \\
+	$\pmipr{R}{x}$ & \verb|\pmipr{R}{x}| &  The non-distinct posterity of $x$ under $R$. \\
+	$\pmjpr{R}{x}$ & \verb|\pmjpr{R}{x}| &  The distinct posterity of $x$ under $R$. \\
+	$\pmfr{R}{x}$ & \verb|\pmfr{R}{x}| & The ancestry and posterity of $x$ under $R$. \\
+	$\pmnc{\kappa}$, $\pmNc$ & \verb|\pmnc{\kappa}|, \verb|\pmNc| & The cardinal number of $\kappa$.
 \end{tabular}
 
 \end{document}
