@@ -1,12 +1,12 @@
 principia.sty - a LaTeX2e package for typesetting the "Peanese" notation of Whitehead and Russell's 1910 "Principia Mathematica".
 
-The file principia.sty is the original work of Landon D. C. Elkind (Copyright (c) 2021). It is released under the LaTeX Project Public License 1.3c.
+The file principia.sty is the original work of Landon D. C. Elkind (Copyright (c) 2023). It is released under the LaTeX Project Public License 1.3c.
 
-This is principia package Version 1.3 (2021/04/19). This version covers typesetting the notations through Sections A and B in Volume I of "Principia Mathematica". See the file principia.pdf for information on these changes and for further information on how to typeset Peanese symbols in LaTeX with the principia package.
+This is principia package Version 2.0 (2023/03/13).  extends the package to cover typesetting of all notations in Volumes II and III; removes package dependency on marvosym. See the file principia.pdf for information on these changes and for further information on how to typeset Principia's symbols in LaTeX with the principia package.
 
 Changes between version updates can be found at https://logicalatomist.github.io/principia/
 
 Comments and suggestions are welcomed by the package maintainer, signed below.
 
 Landon D. C. Elkind
-University of Alberta
+Western Kentucky University
