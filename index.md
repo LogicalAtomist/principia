@@ -1,4 +1,4 @@
-Welcome to the *Principia* Rewrite project website! To receive updates about project milestones, [subscribe to our email list here](https://lists.wku.edu/mailman/listinfo/principia.rewrite).
+Welcome to the Principia Rewrite project website! To receive updates about project milestones, [subscribe to our email list here](https://lists.wku.edu/mailman/listinfo/principia.rewrite).
 
 # Table of contents
 
@@ -63,7 +63,7 @@ The principal investigator is Western Kentucky University's resident logical ato
 - Guanda Yuan (University of Iowa, M.S. in Computer Science, 2021), Intern (2021-present)
 
 # Updates
-The *Principia* Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
+The Principia Rewrite project has a [GitHub repository](https://github.com/LogicalAtomist/principia). Regular updates and the source code are made available there. Project milestones will be announced below.
 
 ## December 1, 2021
 Happy Hanukkah! We are happy to announce that Cambridge University Press has agreed to publish a critical edition of *Principia Mathematica*. This will be a beautifully typeset accurate edition that preserves the original work's notations and proofs. The new edition will also include some new editorial material, including tables showing everywhere a given starred number is used and every starred number cited in a given theorem's proof. There will also be contextualizing footnotes indicating antecedents of a given starred number or its proof in nineteenth-or-early-twentieth-century texts, which will make perspicuous the intellectual context for *Principia*.
@@ -82,7 +82,7 @@ The source code for the verification of *Principia*'s propositional logic proof 
 The project has formally verified *Principia*'s propositional logic proof sketches - for all 189 theorems in \*1-to-\*5 - for the very first time. This improves significantly on the earlier computer verification work of Allen Newell *et al*., Hao Wang, and Daniel O'Leary. In all three cases, either some theorems were not verified or their proofs were not reconstructed according to *Principia*'s proof sketches. Our project in contrast reconstructs all the proofs in a way that is faithful to the text: each completion of *Principia*'s proof in `Coq` makes use of every theorem cited in *Principia*'s proof sketch.
 
 # Digital publications
-As of February 15, 2021, the *Principia* Rewrite project has also produced:
+As of February 15, 2021, the Principia Rewrite project has also produced:
 
 1. a `LaTeX` package, `principia`, for typesetting any symbol in *Principia*'s Volume I
 2. a `Coq` file of *Principia*'s propositional logic (\*1-\*5), running about [4,700 lines of code](https://github.com/LogicalAtomist/principia/blob/master/PL.v) / [113 pages](https://github.com/LogicalAtomist/principia/blob/master/PL.pdf)
@@ -91,7 +91,7 @@ As of February 15, 2021, the *Principia* Rewrite project has also produced:
 There are further developments to come: a high priority for the project is to build a map of the first five chapters ("starred numbers") of *Principia* - because maps are fun and cool, besides being informative when done well.
 
 # Contact
-If you have any questions, criticisms, or thoughts related to the *Principia* Rewrite project, write to `landon dot elkind at wku dot edu`.
+If you have any questions, criticisms, or thoughts related to the Principia Rewrite project, write to `landon dot elkind at wku dot edu` (or create an issue in our GitHub repository).
 
 ![*Principia* & `Coq` side-by-side](PM2.14-2.15.png)
 ![Sample page of *Principia* digitized with `LaTeX` using the `principia` package](SamplePMalphabeticallistofprops.png)
