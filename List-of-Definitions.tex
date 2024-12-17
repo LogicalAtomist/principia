@@ -1,21 +1,29 @@
-%Package Identification
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{principia}[2024/12/16 principia package version 3.0] %This is the principia package is for representing notations in Whitehead and Russell's ``Principia Mathematica" close to their appearance in the original.
-%Version 1.0 (superseded by Version 1.1): Covers typesetting of notation through Volume I. 2020/10/24
-%Version 1.1 (superseded by Version 1.2) minor updates: fixed the spacing of scope dots around parentheses; fixed spacing of theorem sign; fixed spacing around primitive proposition and definition signs. 2020/10/25
+\documentclass[12pt,openany,leqno,twocolumn]{book}
 %Licensed under LaTeX Project Public License 1.3c. 
-%Version 1.2 (superseded by Version 2.0) (minor updates): boldfaced (`thickened') the truth-functional connectives, existential quantifier, set and relation symbols; added numerous commands for typesetting brackets and substitutions into theorems. 2021/02/25
-%Version 2.0 (major update): extends the package to cover typesetting of all notations in Volumes II and III; removes package dependency on marvosym. 2022/09/04
-%Version 3.0 (major update): adds command for typesetting Appendix B; removed boldfacing in \pmcnv command; edited \pmrrf, \pmrrl, \pmhat commands, changes to dot spacing. 2024/12/16
-%Licensed under LaTeX Project Public License 1.3c. 
-%Copyright Landon D. C. Elkind, 2024  (https://landonelkind.com/contact/).
+%This is a list of definitions for use with the principia package, Version 2.0.
+%Copyright Landon D. C. Elkind, 2021  (https://landonelkind.com/contact/).
+
+\usepackage{newtxtext}
+%\usepackage{mathptmx}
 
 %Principia package requirements
-\RequirePackage{amssymb} %This loads the relation domain and converse domain limitation symbols.
-\RequirePackage{amsmath} %This loads the circumflex, substitution into theorems, \text{}, \mathbf{}, \boldsymbol{}, \overleftarrow{}, \overrightarrow{}, etc.
-\RequirePackage{graphicx} %This loads commands that flip iota for definite descriptions, Lambda for the universal class, and so on. The (superseded) graphics package should also work here, but is not recommended.
-\RequirePackage{pifont} %This loads the symbols such as the eight-pointed asterisk.
-%The \Female and \Male symbols are imported directly from Marvosym.
+\usepackage{pifont} %This loads the eight-pointed asterisk.
+\usepackage{amssymb} %This loads the relation domain and converse domain limitation symbols.
+\usepackage{graphicx} %This loads commands that flip iota for definite descriptions, Lambda for the universal class, and so on. The (superseded) graphics package should also work here, but is not recommended.
+%\usepackage{amssymb} 
+\usepackage{amsmath} %This loads the circumflex, substitution into theorems, \text{}, \mathbf{}, \boldsymbol{}, \overleftarrow{}, \overrightarrow{}, etc.
+
+\usepackage{fullpage}
+\usepackage{perpage}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+\usepackage[hidelinks,pdfencoding=unicode]{hyperref}
+\usepackage{enumitem}
+\usepackage{moreenum}
+\usepackage[normalem]{ulem}
+\usepackage[perpage,symbol]{footmisc}
+\usepackage{setspace}
 
 %Volume I
 %Mathematical logic
@@ -691,3 +699,556 @@
 \newcommand{\pmsfmid}[3]{#1_{#2#3}} %373.02
 \newcommand{\pmsmltid}[2]{(#1, #2)} %373.03
 \newcommand{\pmprrt}[3]{(#1 \rotatebox[origin=c]{10}{$\boldsymbol{/}$} #2)_{#3}} %375.01
+
+\begin{document}
+	
+\chapter*{\centering LIST OF DEFINITIONS}
+\onehalfspacing
+\begin{tabular}{l l}
+	\text{ }$\pmast1\pmcdot01$. & $p \pmimp q$ \\
+	\text{ }$\pmast2\pmcdot33$. & $p \pmor q \pmor r$ \\
+	\text{ }$\pmast3\pmcdot01$. & $p \pmand q$ \\
+	\text{ }$\pmast3\pmcdot02$. & $p \pmimp q \pmimp r$ \\
+	\text{ }$\pmast4\pmcdot01$. & $p \pmiff q$ \\
+	\text{ }$\pmast4\pmcdot02$. & $p \pmiff q \pmiff r$ \\
+	\text{ }$\pmast4\pmcdot34$. & $p \pmand q \pmand r$ \\
+	\text{ }$\pmast9\pmcdot01$. & $\pmnot\{\pmall{x}\pmdot \phi x\}$ \\
+	\text{ }$\pmast9\pmcdot011$. & $\pmnot\pmall{x}\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot02$. & $\pmnot\{\pmsome{x}\pmdot \phi x\}$ \\
+	\text{ }$\pmast9\pmcdot021$. & $\pmnot\pmsome{x}\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot03$. & $\pmall{x}\pmdot \phi x \pmdot \pmor \pmdot p$ \\
+	\text{ }$\pmast9\pmcdot04$. & $p \pmdot \pmor \pmdot \pmall{x}\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot05$. & $\pmsome{x}\pmdot \phi x \pmdot \pmor \pmdot p$ \\
+	\text{ }$\pmast9\pmcdot06$. & $p \pmdot \pmor \pmdot \pmsome{x}\pmdot \phi x$ \\
+	\text{ }$\pmast9\pmcdot07$. & $\pmall{x}\pmdot \phi x \pmdot \pmor \pmdot \pmsome{y}\pmdot \psi y$ \\
+	\text{ }$\pmast9\pmcdot08$. & $\pmsome{y}\pmdot \psi y \pmdot \pmor \pmdot \pmall{x}\pmdot \phi x$ \\
+	$\pmast10\pmcdot01$. & $\pmsome{x}\pmdot \phi x$ \\
+	$\pmast10\pmcdot02$. & $\phi x \pmimp_x \psi x$ \\
+	$\pmast10\pmcdot03$. & $\phi x \pmiff_x \psi x$ \\
+	$\pmast11\pmcdot01$. & $\pmall{x,y}\pmdot \phi(x, y)$ \\
+	$\pmast11\pmcdot02$. & $\pmall{x,y,z}\pmdot \phi(x, y, z)$ \\
+	$\pmast11\pmcdot03$. & $\pmsome{x,y}\pmdot \phi(x, y)$ \\
+	$\pmast11\pmcdot04$. & $\pmsome{x,y,z}\pmdot \phi(x, y, z)$ \\
+	$\pmast11\pmcdot05$. & $\phi(x, y) \pmdot\pmimp_{x, y}\pmdot \psi(x, y)$ \\
+	$\pmast11\pmcdot06$. & $\phi(x, y) \pmdot\pmiff_{x, y}\pmdot \psi(x, y)$ \\
+	$\pmast13\pmcdot01$. & $x = y$ \\
+	$\pmast13\pmcdot02$. & $x \pmnid y$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast13\pmcdot03$. & $x = y = z$ \\
+	$\pmast14\pmcdot01$. & $[\pmdsc{x}(\phi x)]\pmdot \psi\pmdsc{x}(\phi x)$ \\
+	$\pmast14\pmcdot02$. & $\pmexists\pmdsc{x}(\phi x)$ \\
+	$\pmast14\pmcdot03$. & $[\pmdsc{x}(\phi x), \pmdsc{x}(\psi x)]\pmdot f\{\pmdsc{x}(\phi x),$\\
+		& \indent $\pmdsc{x}(\psi x)\}$ \\
+	$\pmast14\pmcdot04$. & $[\pmdsc{x}(\psi x)]\pmdot f\{\pmdsc{x}(\phi x), \pmdsc{x}(\psi x)\}$ \\
+	$\pmast20\pmcdot01$. & $f\{\pmcls{z}{\psi z}\}$ \\
+	$\pmast20\pmcdot02$. & $x \mathrel{\pmcin} (\pmpred{\phi}{\pmhat{z}})$ \\
+	$\pmast20\pmcdot03$. & $\pmCls$ \\
+	$\pmast20\pmcdot04$. & $x, y \pmcin \alpha$ \\
+	$\pmast20\pmcdot05$. & $x, y, z \pmcin \alpha$ \\
+	$\pmast20\pmcdot06$. & $x \pmnot \pmcin \alpha$ \\
+	$\pmast20\pmcdot07$. & $\pmall{\alpha}\pmdot f\alpha$ \\
+	$\pmast20\pmcdot071$. & $\pmsome{\alpha}\pmdot f\alpha$ \\
+	$\pmast20\pmcdot072$. & $[\pmdsc{\alpha}(\phi \alpha)]\pmdot f\pmdsc{\alpha}(\phi \alpha)$ \\
+	$\pmast20\pmcdot08$. & $f\{\pmcls{\alpha}{\psi \alpha}\}$ \\
+	$\pmast20\pmcdot081$. & $\alpha \pmcin \pmpred{\psi}{\alpha}$ \\
+	$\pmast21\pmcdot01$. & $f\{\pmrel{x}{y}{\psi(x,y)}\}$ \\
+	$\pmast21\pmcdot02$. & $\pmrelep{a}{\pmpredd{\phi}{\pmhat{x}}{\pmhat{y}}}{b}$ \\
+	$\pmast21\pmcdot03$. & $\pmRel$ \\
+	$\pmast21\pmcdot07$. & $\pmall{R}\pmdot fR$ \\
+	$\pmast21\pmcdot071$. & $\pmsome{R}\pmdot fR$ \\
+	$\pmast21\pmcdot072$. & $[\pmdsc{R}(\phi R)]\pmdot f\pmdsc{R}(\phi R)$ \\
+	$\pmast21\pmcdot08$. & $f\{\pmrel{R}{S}{\psi(R, S)}\}$ \\
+	$\pmast21\pmcdot081$. & $\pmrelep{P}{\pmpredd{\phi}{\pmhat{R}}{\pmhat{S}}}{Q}$ \\
+	$\pmast21\pmcdot082$. & $f\{\pmcls{R}{\psi R}\}$ \\
+	$\pmast21\pmcdot083$. & $R \pmcin \pmpred{\phi}{\pmhat{R}}$ \\
+	$\pmast22\pmcdot01$. & $\alpha \pmcinc \beta$ \\
+	$\pmast22\pmcdot02$. & $\alpha \pmccap \beta$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast22\pmcdot03$. & $\alpha \pmccup \beta$ \\
+$\pmast22\pmcdot04$. & $\pmccmp{\alpha}$ \\
+$\pmast22\pmcdot05$. & $\pmcmin{\alpha}{\beta}$ \\
+$\pmast22\pmcdot53$. & $\alpha \pmccap \beta \pmccap \gamma$ \\
+$\pmast22\pmcdot71$. & $\alpha \pmccup \beta \pmccup \gamma$ \\
+$\pmast23\pmcdot01$. & $R \pmrinc S$ \\
+$\pmast23\pmcdot02$. & $R \pmrcap S$ \\
+$\pmast23\pmcdot03$. & $R \pmrcup S$ \\
+$\pmast23\pmcdot04$. & $\pmrcmp{R}$ \\
+$\pmast23\pmcdot05$. & $\pmrmin{R}{S}$ \\
+$\pmast23\pmcdot53$. & $R \pmrcap S \pmrcap T$ \\
+$\pmast23\pmcdot71$. & $R \pmrcup S \pmrcup T$ \\
+$\pmast24\pmcdot01$. & $\pmcuni$ \\
+$\pmast24\pmcdot02$. & $\pmcnull$ \\
+$\pmast24\pmcdot03$. & $\pmcexists \alpha$ \\
+$\pmast25\pmcdot01$. & $\pmruni$ \\
+$\pmast25\pmcdot02$. & $\pmrnull$ \\
+$\pmast25\pmcdot03$. & $\pmrexists R$ \\
+$\pmast30\pmcdot01$. & $\pmdscf{R}{y}$ \\
+$\pmast30\pmcdot02$. & $\pmdscf{R}{\pmdscf{S}{y}}$ \\
+$\pmast31\pmcdot01$. & $\pmCnv$ \\
+$\pmast31\pmcdot02$. & $\pmcrel{P}$ \\
+$\pmast32\pmcdot01$. & $\pmRrf{R}$ \\
+$\pmast32\pmcdot02$. & $\pmRrl{R}$ \\
+$\pmast32\pmcdot03$. & $\pmSg$ \\
+$\pmast32\pmcdot04$. & $\pmGs$ \\
+$\pmast33\pmcdot01$. & $\pmDm$ \\
+$\pmast33\pmcdot02$. & $\pmCdm$ \\
+$\pmast33\pmcdot03$. & $\pmCmp$ \\
+$\pmast33\pmcdot04$. & $\pmFld$ \\
+$\pmast34\pmcdot01$. & $\pmrprd{R}{S}$ \\
+$\pmast34\pmcdot02$. & $\pmrprdn{R}{2}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast34\pmcdot03$. & $\pmrprdn{R}{3}$ \\
+$\pmast35\pmcdot01$. & $\pmrld{\alpha}{R}$ \\
+$\pmast35\pmcdot02$. & $\pmrlcd{R}{\beta}$ \\
+$\pmast35\pmcdot03$. & $\pmrlf{\alpha}{R}{\beta}$ \\
+$\pmast35\pmcdot04$. & $\pmrl{\alpha}{\beta}$ \\
+$\pmast35\pmcdot05$. & $\pmrl{\pmdscf{R}{x}}{\beta}$ \\
+$\pmast35\pmcdot24$. & $\pmrld{\alpha}{\pmrprd{R}{S}}$ \\
+$\pmast35\pmcdot25$. & $\pmrlcd{\pmrprd{S}{R}}{\alpha}$ \\
+$\pmast36\pmcdot01$. & $\pmrlF{P}{\alpha}$ \\
+$\pmast37\pmcdot01$. & $\pmdscff{R}{\beta}$ \\
+$\pmast37\pmcdot02$. & $\pmdscfR{R}$ \\
+$\pmast37\pmcdot03$. & ${\pmdscfR{\pmcrel{R}}}$\\
+$\pmast37\pmcdot04$. & $\pmdscfff{R}{\kappa}$ \\
+$\pmast37\pmcdot05$. & $\pmdscfe{R}{\beta}$ \\
+$\pmast38\pmcdot01$. & $x \pmop$ \\
+$\pmast38\pmcdot02$. & $\pmop y$ \\
+$\pmast38\pmcdot03$. & $\pmopc{\alpha}{y}$\\
+$\pmast40\pmcdot01$. & $\pmccsum{\kappa}$ \\
+$\pmast40\pmcdot02$. & $\pmccprd{\kappa}$ \\
+$\pmast41\pmcdot01$. & $\pmcrsum{\lambda}$ \\
+$\pmast41\pmcdot02$. & $\pmcrprd{\lambda}$ \\
+$\pmast43\pmcdot01$. & $\pmrprdd{R}{S}$ \\
+$\pmast50\pmcdot01$. & $\pmrid$ \\
+$\pmast50\pmcdot02$. & $\pmrdiv$ \\
+$\pmast51\pmcdot01$. & $\pmcUnit$ \\
+$\pmast52\pmcdot01$. & $\pmcn{1}$ \\
+$\pmast54\pmcdot01$. & $\pmcn{0}$ \\
+$\pmast54\pmcdot02$. & $\pmcn{2}$ \\
+$\pmast55\pmcdot01$. & $\pmoc{x}{y}$ \\
+$\pmast55\pmcdot02$. & $\pmoc{\pmdscf{R}{x}}{y}$ \\
+$\pmast56\pmcdot01$. & $\pmdn{2}$ \\
+$\pmast56\pmcdot02$. & $\pmorn{2}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast56\pmcdot03$. & $\pmorn{0}$ \\
+$\pmast60\pmcdot01$. & $\pmsCl$ \\
+$\pmast60\pmcdot02$. & $\pmsCle$ \\
+$\pmast60\pmcdot03$. & $\pmClsn{2}$ \\
+$\pmast60\pmcdot04$. & $\pmClsn{3}$ \\
+$\pmast61\pmcdot01$. & $\pmsRl$ \\
+$\pmast61\pmcdot02$. & $\pmsRle$ \\
+$\pmast61\pmcdot03$. & $\pmReln{2}$ \\
+$\pmast61\pmcdot04$. & $\pmReln{3}$ \\
+$\pmast62\pmcdot01$. & $\pmrin$ \\
+$\pmast63\pmcdot01$. & $\pmrt{x}$ \\
+$\pmast63\pmcdot011$. & $\pmrti{1}{x}$ \\
+$\pmast63\pmcdot02$. & $\pmrtc{0}{\alpha}$ \\
+$\pmast63\pmcdot03$. & $\pmrtc{1}{\kappa}$ \\
+$\pmast63\pmcdot04$. & $\pmrti{2}{\kappa}$ \\
+$\pmast63\pmcdot041$. & $\pmrti{3}{\kappa}$ \\
+$\pmast63\pmcdot05$. & $\pmrtc{2}{\kappa}$ \\
+$\pmast63\pmcdot051$. & $\pmrtc{3}{\kappa}$ \\
+$\pmast64\pmcdot01$. & $\pmrtrc{00}{\alpha}$ \\
+$\pmast64\pmcdot011$. & $\pmrtri{11}{x}$ \\
+$\pmast64\pmcdot012$. & $\pmrti{12}{x}$ \\
+$\pmast64\pmcdot013$. & $\pmrti{21}{x}$ \\
+$\pmast64\pmcdot014$. & $\pmrti{22}{x}$ \\
+$\pmast64\pmcdot02$. & $\pmrtc{01}{\alpha}$ \\
+$\pmast64\pmcdot021$. & $\pmrtc{10}{\alpha}$ \\
+$\pmast64\pmcdot022$. & $\pmrtc{11}{\alpha}$ \\
+$\pmast64\pmcdot03$. & $\pmrtrci{0}{1}{\alpha}$ \\
+$\pmast64\pmcdot031$. & $\pmrtrci{1}{1}{\alpha}$ \\
+$\pmast64\pmcdot04$. & $\pmrtric{1}{0}{\alpha}$ \\
+$\pmast64\pmcdot041$. & $\pmrtric{1}{1}{\alpha}$ \\
+$\pmast65\pmcdot01$. & $\pmrtdi{\alpha}{x}$ \\
+$\pmast65\pmcdot02$. & $\pmrtdc{\alpha}{x}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast65\pmcdot03$. & $\pmrtdri{R}{x}$ \\
+$\pmast65\pmcdot04$. & $\pmrtdrc{R}{x}$ \\
+$\pmast65\pmcdot1$. & $\pmrtdri{R}{(x,y)}$ \\
+$\pmast65\pmcdot11$. & $\pmrtdrc{R}{x_y}$\\
+$\pmast65\pmcdot12$. & $\pmrtdrc{R}{x, y}$ \\
+$\pmast70\pmcdot01$. & $\pmrdc{\alpha}{\beta}$ \\
+$\pmast73\pmcdot01$. & $\alpha \pmsmbar \beta$ \\
+$\pmast73\pmcdot02$. & $\pmsm$\\
+$\pmast80\pmcdot01$. & $\pmSelp$ \\
+$\pmast84\pmcdot01$. & $\pmexc$ \\
+$\pmast84\pmcdot02$. & $\pmexcc{\gamma}$ \\
+$\pmast84\pmcdot03$. & $\pmexcn$\\
+$\pmast85\pmcdot5$. & $\pmselc{P}{\,y}$ \\
+$\pmast88\pmcdot01$. & $\pmmultr$ \\
+$\pmast88\pmcdot02$. & $\pmmultc$ \\
+$\pmast88\pmcdot03$. & $\pmmultax$ \\
+$\pmast90\pmcdot01$. & $\pmanc{R}$ \\
+$\pmast90\pmcdot02$. & $\pmancc{R}$ \\
+$\pmast91\pmcdot01$. & $\pmrst{R}$ \\
+$\pmast91\pmcdot02$. & $\pmrts{R}$ \\
+$\pmast91\pmcdot03$. & $\pmpot{R}$ \\
+$\pmast91\pmcdot04$. & $\pmpotid{R}$ \\
+$\pmast91\pmcdot05$. & $\pmpo{R}$ \\
+$\pmast93\pmcdot01$. & $\pmB$ \\
+$\pmast93\pmcdot02$. & $\pmmin{P}$ \\
+$\pmast93\pmcdot021$. & $\pmmax{P}$ \\
+$\pmast93\pmcdot03$. & $\pmgen{P}$ \\
+$\pmast95\pmcdot01$. & $\pmefr{P}{Q}$ \hspace{.3cm} Dft [$\pmast95$] \\
+$\pmast96\pmcdot01$. & $\pmipr{R}{x}$ \hspace{.415cm} Dft [$\pmast96$] \\
+$\pmast96\pmcdot02$. & $\pmjpr{R}{x}$ \hspace{.375cm} Dft [$\pmast96$] \\
+$\pmast97\pmcdot01$. & $\pmfr{R}{x}$ \\
+$\pmast100\pmcdot01$. & $\pmNc$ 
+\end{tabular}
+
+\onehalfspacing
+\begin{tabular}{l l}
+	$\pmast100\pmcdot02$. & $\pmNC$ \\
+	$\pmast102\pmcdot01$. & $\pmNCat{\beta}{\alpha}$ \\
+	$\pmast103\pmcdot01$. & $\pmnoc{\alpha}$ \\
+	$\pmast103\pmcdot02$. & $\pmNoC$ \\
+	$\pmast104\pmcdot01$. & $\pmnca{1}{\alpha}$ \\
+	$\pmast104\pmcdot011$. & $\pmnca{2}{\alpha}$ \\
+	$\pmast104\pmcdot02$. & $\pmNca{1}$ \\
+	$\pmast104\pmcdot021$. & $\pmNca{2}$ \\
+	$\pmast104\pmcdot03$. & $\pmch{\mu}{1}$ \\
+	$\pmast104\pmcdot031$. & $\pmch{\mu}{2}$ \\
+	$\pmast105\pmcdot01$. & $\pmncd{1}{\alpha}$ \\
+	$\pmast105\pmcdot011$. & $\pmncd{2}{\alpha}$ \\
+	$\pmast105\pmcdot02$. & $\pmNcd{1}$ \\
+	$\pmast105\pmcdot021$. & $\pmNcd{2}$ \\
+	$\pmast105\pmcdot03$. & $\pmcl{\mu}{1}$ \\
+	$\pmast105\pmcdot031$. & $\pmcl{\mu}{2}$ \\
+	$\pmast106\pmcdot01$. & $\pmncll{0}{0}{\alpha}$ \\
+	$\pmast106\pmcdot011$. & $\pmnchh{1}{1}{\alpha}$ \\
+	$\pmast106\pmcdot012$. & $\pmncll{0}{1}{\alpha}$ \\
+	$\pmast106\pmcdot02$. & $\pmncaa{0}{1}{\alpha}$ \\
+	$\pmast106\pmcdot021$. & $\pmncdd{1}{0}{\alpha}$ \\
+	$\pmast106\pmcdot03$. & $\pmNCll{0}{0}$ \\
+	$\pmast106\pmcdot04$. & $\pmcll{\mu}{0}{0}$ \\
+	$\pmast106\pmcdot041$. & $\pmchh{\mu}{1}{1}$ \\
+	$\pmast110\pmcdot01$. & $\alpha \pmarsumc \beta$ \\
+	$\pmast110\pmcdot02$. & $\mu \pmarsumnc \nu$ \\
+	$\pmast110\pmcdot03$. & $\pmnc{\alpha} \pmarsumnc \mu$ \\
+	$\pmast110\pmcdot04$. & $\mu \pmarsumnc \pmnc{\alpha}$ \\
+	$\pmast110\pmcdot0561$. & $\mu \pmarsumnc \nu \pmarsumnc \varpi$ \\
+	$\pmast111\pmcdot01$. & $\kappa \pmsmsmb \lambda$ \\
+	$\pmast111\pmcdot02$. & $\pmcrp{S}{\beta}$ \\
+	$\pmast111\pmcdot03$. & $\pmsmsm$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast112\pmcdot01$. & $\pmarsumcc{\kappa}$ \\
+	$\pmast112\pmcdot02$. & $\pmarsumcnc{\kappa}$ \\
+	$\pmast113\pmcdot02$. & $\beta \pmarprodc \alpha$ \\
+	$\pmast113\pmcdot03$. & $\mu \pmarprodnc \nu$ \\
+	$\pmast113\pmcdot04$. & $\pmnc{\beta} \pmarprodnc \mu$ \\
+	$\pmast113\pmcdot05$. & $\mu \pmarprodnc \pmnc{\alpha}$ \\
+	$\pmast113\pmcdot511$. & $\alpha \pmarprodc \beta \pmarprodc \gamma$ \\
+	$\pmast113\pmcdot541$. & $\mu \pmarprodnc \nu \pmarprodnc \varpi$ \\
+	$\pmast114\pmcdot01$. & $\pmarprodcnc{\kappa}$ \\
+	$\pmast115\pmcdot01$. & $\pmarprodcc{\kappa}$ \\
+	$\pmast115\pmcdot02$. & $\pmarcls$ \\
+	$\pmast116\pmcdot01$. & $\pmarexp{\alpha}{\beta}$ \\
+	$\pmast116\pmcdot02$. & $\pmarncexp{\mu}{\nu}$ \\
+	$\pmast116\pmcdot03$. & $\pmarncexp{(\pmnc{\alpha})}{\nu}$ \\
+	$\pmast116\pmcdot04$. & $\pmarncexp{\mu}{\pmnc{\beta}}$ \\
+	$\pmast117\pmcdot01$. & $\mu \pmarg \nu$ \\
+	$\pmast117\pmcdot02$. & $\mu \pmarg \pmnc{\alpha}$ \\
+	$\pmast117\pmcdot03$. & $\pmnc{\alpha} \pmarg \nu$ \\
+	$\pmast117\pmcdot04$. & $\mu \pmarl \nu$ \\
+	$\pmast117\pmcdot05$. & $\mu \pmargeq \nu$ \\
+	$\pmast117\pmcdot06$. & $\mu \pmarleq \nu$ \\
+	$\pmast119\pmcdot01$. & $\pmarsubt{\gamma}{\nu}$ \\
+	$\pmast119\pmcdot02$. & $\pmarsubt{\pmnc{\alpha}}{\nu}$ \\
+	$\pmast119\pmcdot03$. & $\pmarsubt{\gamma}{\pmnc{\beta}}$ \\
+	$\pmast120\pmcdot01$. & $\pmNCinduct$ \\
+	$\pmast120\pmcdot011$. & $\pmncinduct{\xi}$ \\
+	$\pmast120\pmcdot02$. & $\pmClsinduct$ \\
+	$\pmast120\pmcdot021$. & $\pmclsinduct{\xi}$ \\
+	$\pmast120\pmcdot03$. & $\pmInfinax$ \\
+	$\pmast120\pmcdot04$. & $\pminfinax{x}$ \\
+	$\pmast120\pmcdot43$. & $\pmspec{\beta}$ \\
+	$\pmast121\pmcdot01$. & $\pmintoo{x}{y}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast121\pmcdot011$. & $\pmintoc{x}{y}$ \\
+	$\pmast121\pmcdot012$. & $\pmintco{x}{y}$ \\
+	$\pmast121\pmcdot013$. & $\pmintcc{x}{y}$ \\
+	$\pmast121\pmcdot02$. & $\pmintnc{\nu}$ \\
+	$\pmast121\pmcdot03$. & $\pmfinid{P}$ \\
+	$\pmast121\pmcdot031$. & $\pmfin{P}$ \\
+	$\pmast121\pmcdot04$. & $\pmintt{\nu}{P}$ \\
+	$\pmast122\pmcdot01$. & $\pmprog$ \\
+	$\pmast123\pmcdot01$. & $\pmalephn{0}$ \\
+	$\pmast123\pmcdot02$. & $\pmsucc$ Dft [$\pmast123\textbf{---}4$] \\
+	$\pmast124\pmcdot01$. & $\pmclsrefl$ \\
+	$\pmast124\pmcdot02$. & $\pmncrefl$ \\
+	$\pmast124\pmcdot021$. & $\pmnc{\rho}\pmcin \pmncrefl$ \\
+	$\pmast124\pmcdot03$. & $\pmncmult$ \\
+	$\pmast126\pmcdot01$. & $\pmncind$ \\
+	$\pmast150\pmcdot01$. & $\pmrnsm{S}{Q}$ \\
+	$\pmast150\pmcdot02$. & $\pmrnsmd{S}{Q}$ \\
+	$\pmast150\pmcdot03$. & $\pmopsc{Q}{y}$ \\
+	$\pmast150\pmcdot04$. & $\pmdscf{R}{\pmrnsm{S}{Q}}$ \\
+	$\pmast150\pmcdot05$. & $\pmrnsm{R}{\pmrnsm{S}{Q}}$ \\
+	$\pmast151\pmcdot01$. & $\pmsmorb{P}{Q}$ \\
+	$\pmast151\pmcdot02$. & $\pmSmor$ \\
+	$\pmast152\pmcdot01$. & $\pmNr$ \\
+	$\pmast152\pmcdot02$. & $\pmNR$ \\
+	$\pmast153\pmcdot01$. & $\pmsrrn{1}$ \\
+	$\pmast154\pmcdot01$. & $\pmNRat{\gamma}{X}$ \\
+	$\pmast155\pmcdot01$. & $\pmnor{P}$ \\
+	$\pmast155\pmcdot02$. & $\pmNoR$ \\
+	$\pmast160\pmcdot01$. & $\pmrsum{P}{Q}$ \\
+	$\pmast161\pmcdot01$. & $\pmrsumb{P}{x}$ \\
+	$\pmast161\pmcdot02$. & $\pmrsume{x}{P}$ \\
+	$\pmast161\pmcdot212$. & $\pmrsumb{P}{\pmrsumb{x}{y}}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast161\pmcdot213$. & $\pmrsume{\pmrsume{x}{y}}{P}$ \\
+	$\pmast162\pmcdot01$. & $\pmrsumr{P}$ \\
+	$\pmast163\pmcdot01$. & $\pmrsumrex{2}$ \\
+	$\pmast164\pmcdot01$. & $\pmsmorsmorb{P}{Q}$ \\
+	$\pmast164\pmcdot02$. & $\pmSmorsmor$ \\
+	$\pmast166\pmcdot01$. & $\pmrprod{Q}{P}$ \\
+	$\pmast166\pmcdot421$. & $\pmrprod{P}{\pmrprod{Q}{R}}$ \\
+	$\pmast170\pmcdot01$. & $\pmRfdcl{P}$ \\
+	$\pmast170\pmcdot02$. & $\pmRfdlc{P}$ \\
+	$\pmast171\pmcdot01$. & $\pmRfddf{P}$ \\
+	$\pmast171\pmcdot02$. & $\pmRfdfd{P}$ \\
+	$\pmast172\pmcdot01$. & $\pmrfprod{P}$ \\
+	$\pmast173\pmcdot01$. & $\pmRfprod{P}$ \\
+	$\pmast174\pmcdot01$. & $\pmrarrel{3}$ \\
+	$\pmast176\pmcdot01$. & $P \pmrexp Q$ \\
+	$\pmast176\pmcdot02$. & $\pmRexp{P}{Q}$ \\
+	$\pmast180\pmcdot01$. & $\pmrnsum{P}{Q}$ \\
+	$\pmast180\pmcdot02$. & $\pmrndsum{\mu}{\nu}$ \\
+	$\pmast180\pmcdot03$. & $\pmrndsum{\pmnr{P}}{\nu}$ \\
+	$\pmast180\pmcdot04$. & $\pmrndsum{\mu}{\pmnr{Q}}$ \\
+	$\pmast180\pmcdot561$. & $\pmrndsum{\mu}{\pmrndsum{\nu}{\varpi}}$ \\
+	$\pmast181\pmcdot01$. & $\pmrnsumru{P}{x}$ \\
+	$\pmast181\pmcdot011$. & $\pmrnsumur{x}{P}$ \\
+	$\pmast181\pmcdot02$. & $\pmrndsum{\mu}{\pmrn{1}}$ \\
+	$\pmast181\pmcdot021$. & $\pmrndsum{\pmrn{1}}{\mu}$ \\
+	$\pmast181\pmcdot03$. & $\pmrndsum{\pmnr{P}}{\pmrn{1}}$ \\
+	$\pmast181\pmcdot031$. & $\pmrndsum{\pmrn{1}}{\pmnr{P}}$ \\
+	$\pmast181\pmcdot04$. & $\pmrndsum{\pmrn{1}}{\pmrn{1}}$ \\
+	$\pmast181\pmcdot561$. & $\pmrndsum{\mu}{\pmrndsum{\pmrn{1}}{\pmrn{1}}}$ \\
+	$\pmast181\pmcdot571$. & $\pmrndsum{\pmrn{1}}{\pmrndsum{\pmrn{1}}{\mu}}$ \\
+	$\pmast182\pmcdot01$. & $\pmrsep{\pmop}$ \\
+	$\pmast183\pmcdot01$. & $\pmrnsumf{P}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast184\pmcdot01$. & $\pmrnprod{\mu}{\nu}$ \\
+	$\pmast184\pmcdot02$. & $\pmrnprod{\pmnr{P}}{\nu}$ \\
+	$\pmast184\pmcdot03$. & $\pmrnprod{\mu}{\pmnr{Q}}$ \\
+	$\pmast184\pmcdot32$. & $\pmrnprod{\mu}{\pmrnprod{\nu}{\varpi}}$ \\
+	$\pmast185\pmcdot01$. & $\pmrnprodf{P}$ \\
+	$\pmast186\pmcdot01$. & $\pmrnexp{r}{\mu}{\nu}$ \\
+	$\pmast186\pmcdot02$. & $\pmrnexp{r}{(\pmnr{P})}{\nu}$ \\
+	$\pmast186\pmcdot03$. & $\pmrnexp{r}{\mu}{(\pmnr{Q})}$ \\
+	$\pmast201\pmcdot01$. & $\pmtrans$ \\
+	$\pmast202\pmcdot01$. & $\pmconnex$ \\
+	$\pmast204\pmcdot01$. & $\pmser$ \\
+	$\pmast206\pmcdot01$. & $\pmSeq{P}$ \\
+	$\pmast206\pmcdot02$. & $\pmPrec{P}$ \\
+	$\pmast207\pmcdot01$. & $\pmlt{P}$ \\
+	$\pmast207\pmcdot02$. & $\pmtl{P}$ \\
+	$\pmast207\pmcdot03$. & $\pmLimax{P}$ \\
+	$\pmast207\pmcdot04$. & $\pmLimin{P}$ \\
+	$\pmast208\pmcdot01$. & $\pmcror{P}$ \\
+	$\pmast211\pmcdot01$. & $\pmsect{P}$ \\
+	$\pmast212\pmcdot01$. & $\pmseg{P}$ \\
+	$\pmast212\pmcdot02$. & $\pmsym{P}$ \\
+	$\pmast213\pmcdot01$. & $\pmsectr{P}$ \\
+	$\pmast214\pmcdot01$. & $\pmded$ \\
+	$\pmast214\pmcdot02$. & $\pmsded$ \\
+	$\pmast215\pmcdot01$. & $\pmstr{P}$ \\
+	$\pmast216\pmcdot01$. & $\pmDer{P}$ \\
+	$\pmast216\pmcdot02$. & $\pmden{P}$ \\
+	$\pmast216\pmcdot03$. & $\pmclsd{P}$ \\
+	$\pmast216\pmcdot04$. & $\pmperf{P}$ \\
+	$\pmast216\pmcdot05$. & $\pmders{P}$ \\
+	$\pmast230\pmcdot01$. & $\pmconv{R}{Q}{\alpha}$ \\
+	$\pmast230\pmcdot02$. & $\pmConv{Q}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast231\pmcdot01$. & $\pmlsc{P}{R}{Q}$ \\
+	$\pmast231\pmcdot02$. & $\pmosc{P}{R}{Q}$ \\
+	$\pmast232\pmcdot01$. & $\pmlscl{P}{R}{Q}{\alpha}$ \\
+	$\pmast232\pmcdot02$. & $\pmoscl{P}{R}{Q}{\alpha}$ \\
+	$\pmast233\pmcdot01$. & $\pmLmx{P}{R}{Q}$ \\
+	$\pmast233\pmcdot02$. & $\pmLimf{R}{P}{Q}$ \\
+	$\pmast234\pmcdot01$. & $\pmscf{P}{Q}{R}$ \\
+	$\pmast234\pmcdot02$. & $\pmosf{P}{Q}{R}$ \\
+	$\pmast234\pmcdot03$. & $\pmctf{P}{Q}{R}$ \\
+	$\pmast234\pmcdot04$. & $\pmcontinf{P}{Q}{R}$ \\
+	$\pmast234\pmcdot05$. & $\pmcontin{P}{Q}$ \\
+	$\pmast250\pmcdot01$. & $\pmbord$ \\
+	$\pmast250\pmcdot02$. & $\pmword$ \\
+	$\pmast251\pmcdot01$. & $\pmordn$ \\
+	$\pmast254\pmcdot01$. & $\pmLess$ \\
+	$\pmast254\pmcdot02$. & $\pmPsc$ \\
+	$\pmast255\pmcdot01$. & $\pmorle$ \\
+	$\pmast255\pmcdot02$. & $\pmorgr$ \\
+	$\pmast255\pmcdot03$. & $\pmnoo$ \\
+	$\pmast255\pmcdot04$. & $\pmorleq$ \\
+	$\pmast255\pmcdot05$. & $\pmorgrq$ \\
+	$\pmast255\pmcdot06$. & $\mu \pmorle \pmnr{P}$ \\
+	$\pmast255\pmcdot07$. & $\pmnr{P} \pmorle \mu$ \\
+	$\pmast256\pmcdot01$. & $\pmm$ \hspace{2ex} Dft [\(\pmast256\)] \\
+	$\pmast256\pmcdot02$. & $\pmn \,$ \hspace{2ex} Dft [\(\pmast256\)] \\
+	$\pmast257\pmcdot01$. & $\pmtranc{R}{Q}{x}$ \\
+	$\pmast257\pmcdot02$. & $\pmtrpot{Q}{R}{x}$ \\
+	$\pmast259\pmcdot01$. & $\pma$ \hspace{2.75ex} Dft [\(\pmast256\)] \\
+	$\pmast259\pmcdot02$. & $\pmaw$  \hspace{1.2ex} Dft [\(\pmast256\)] \\
+	$\pmast259\pmcdot03$. & $\pmwa$ \\
+	$\pmast260\pmcdot01$. & $\pmintf$ \\
+	$\pmast261\pmcdot01$. & $\pmserinf$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast261\pmcdot02$. & $\pmwordinf$ \\
+	$\pmast261\pmcdot03$. & $\pmserfin$ \\
+	$\pmast261\pmcdot04$. & $\pmwordfin$ \\
+	$\pmast261\pmcdot05$. & $\pmwordind$ \\
+	$\pmast262\pmcdot01$. & $\pmordnfin$ \\
+	$\pmast262\pmcdot02$. & $\pmordninf$ \\
+	$\pmast262\pmcdot03$. & $\pmfinord{\mu}$ \\
+	$\pmast263\pmcdot01$. & $\pmom$ \\
+	$\pmast263\pmcdot02$. & $\pmn$ \hspace{3.4ex} Dft [\(\pmast263\)] \\
+	$\pmast264\pmcdot01$. & $\pmpr{P}$ \hspace{2ex} Dft [\(\pmast263\)] \\
+	$\pmast264\pmcdot429$. & $\pmrnprod{\pmrn{1}}{\alpha}$ \\
+	$\pmast265\pmcdot01$. & $\pmomn{1}$ \\
+	$\pmast265\pmcdot02$. & $\pmalephn{1}$ \\
+	$\pmast265\pmcdot03$. & $\pmomn{2}$ \\
+	$\pmast265\pmcdot04$. & $\pmalephn{2}$ \\
+	$\pmast265\pmcdot05$. & $\pmm$ \hspace{3.2ex} Dft [\(\pmast265\)] \\
+	$\pmast265\pmcdot06$. & $\pmn$ \hspace{3.5ex} Dft [\(\pmast265\)] \\
+	$\pmast270\pmcdot01$. & $\pmComp$ \\
+	$\pmast271\pmcdot01$. & $\pmmed$ \\
+	$\pmast272\pmcdot01$. & $\pmsimp{T}{P}{Q}$ \\
+	$\pmast273\pmcdot01$. & $\pmrats$ \\
+	$\pmast273\pmcdot02$. & $\pmsimps{R}{SPQ}{T}$ \hspace{3.4ex} Dft [\(\pmast273\)] \\
+	$\pmast273\pmcdot03$. & $\pmSimp{R}{S}{PQ}$ \hspace{3.5ex} Dft [\(\pmast273\)] \\
+	$\pmast273\pmcdot04$. & $\pmSimps{T}{RSPQ}$ \hspace{4.9ex} Dft [\(\pmast273\)] \\
+	$\pmast274\pmcdot01$. & $\pmsfcls{P}$ \\
+	$\pmast274\pmcdot02$. & $\pmsfclsm{P}{\kappa}$ \hspace{3.4ex} Dft [\(\pmast274\)] \\
+	$\pmast274\pmcdot03$. & $\pmsfclsp{T}{\kappa}$ \hspace{3.7ex} Dft [\(\pmast274\)] \\
+	$\pmast274\pmcdot04$. & $\pmsfclsmp{\kappa}$ \hspace{3ex} Dft [\(\pmast274\)] \\
+	$\pmast275\pmcdot01$. & $\pmcser$ \\
+	$\pmast276\pmcdot01$. & $\pmcsercl{P}$ \\
+	$\pmast276\pmcdot02$. & $\pma$ \hspace{7.3ex} Dft [\(\pmast276\)] \\
+	$\pmast276\pmcdot03$. & $\pmsfclsm{P}{\lambda}$ \hspace{4ex} Dft [\(\pmast276\)] 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast276\pmcdot04$. & $\pmcsercls{T}{P}$ \hspace{8.2ex} Dft [\(\pmast276\)] \\
+$\pmast276\pmcdot05$. & $\pmCsercls{P}{\kappa}$ \hspace{6.25ex} Dft [\(\pmast276\)] \\
+$\pmast300\pmcdot01$. & $\pmu$ \\
+$\pmast300\pmcdot02$. & $\pmrnum$ \\
+$\pmast300\pmcdot03$. & $\pmrnumid$ \\
+$\pmast301\pmcdot01$. & $R_p$ \hspace{8.2ex} Dft [\(\pmast301\)] \\
+$\pmast301\pmcdot02$. & $\text{num}(R)$ \hspace{3ex} Dft [\(\pmast301\)] \\
+$\pmast301\pmcdot03$. & $\pmrpwr{R}{\sigma}$ \\
+$\pmast302\pmcdot01$. & $\pmPrm$ \\
+$\pmast302\pmcdot02$. & $\pmrprm{\rho}{\sigma}{\mu}{\nu}$ \\
+$\pmast302\pmcdot03$. & $\pmprm{\rho}{\sigma}{\mu}{\nu}$ \\
+$\pmast302\pmcdot04$. & $\pmhcf{\mu}{\nu}$ \\
+$\pmast302\pmcdot05$. & $\pmlcm{\mu}{\nu}$ \\
+$\pmast303\pmcdot01$. & $\pmrat{\mu}{\nu}$ \\
+$\pmast303\pmcdot02$. & $\pmqn{0}$ \\
+$\pmast303\pmcdot03$. & $\pmqnil$ \\
+$\pmast303\pmcdot04$. & $\pmRat$ \\
+$\pmast303\pmcdot05$. & $\pmRatdef$ \\
+$\pmast304\pmcdot01$. & $\pmqnle{X}{Y}$ \\
+$\pmast304\pmcdot02$. & $\pmqnLe$ \\
+$\pmast304\pmcdot03$. & $\pmqnlez$ \\
+$\pmast305\pmcdot01$. & $\pmprodsr{X}{Y}$ \\
+$\pmast306\pmcdot01$. & $\pmsumsr{X}{Y}$ \\
+$\pmast307\pmcdot01$. & $\pmratn$ \\
+$\pmast307\pmcdot011$. & $\pmratg$ \\
+$\pmast307\pmcdot02$. & $\pmRatnle$ \\
+$\pmast307\pmcdot021$. & $\pmRatngr$ \\
+$\pmast307\pmcdot03$. & $\pmRatgle$ \\
+$\pmast307\pmcdot031$. & $\pmRatggr$ \\
+$\pmast307\pmcdot04$. & $\pmratnLe$ \\
+$\pmast307\pmcdot05$. & $\pmratgLe$ \\
+$\pmast308\pmcdot01$. & $\pmratssub{X}{Y}$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+$\pmast308\pmcdot02$. & $\pmsumgr{X}{Y}$ \\
+$\pmast309\pmcdot01$. & $\pmprodgr{X}{Y}$ \\
+$\pmast310\pmcdot01$. & $\pmrenp$ \\
+$\pmast310\pmcdot011$. & $\pmrenpz$ \\
+$\pmast310\pmcdot02$. & $\pmrenn$ \\
+$\pmast310\pmcdot021$. & $\pmrennz$ \\
+$\pmast310\pmcdot03$. & $\pmreng$ \\
+$\pmast311\pmcdot01$. & $\pmconc{\mu,\nu,...}$ \\
+$\pmast311\pmcdot02$. & $\pmrensumc{\mu}{\nu}$ \\
+$\pmast312\pmcdot01$. & $\pmrensub{\mu}{\nu}$ \\
+$\pmast312\pmcdot02$. & $\pmrensuma{\mu}{\nu}$ \\
+$\pmast313\pmcdot01$. & $\pmrenproda{\mu}{\nu}$ \\
+$\pmast314\pmcdot01$. & $\pmrenrsum{X}{Y}$ \\
+$\pmast314\pmcdot02$. & $\pmrenrprod{X}{Y}$ \\
+$\pmast314\pmcdot03$. & $\pmrenr$ \\
+$\pmast314\pmcdot04$. & $\pmrenrssum{M}{N}$ \\
+$\pmast314\pmcdot05$. & $\pmrenrsprod{M}{N}$ \\
+$\pmast330\pmcdot01$. & $\pmcr{\alpha}$ \\
+$\pmast330\pmcdot02$. & $\pmabel$ \\
+$\pmast330\pmcdot03$. & $\pmvfm{\alpha}$ \\
+$\pmast330\pmcdot04$. & $\pmvfmcl$ \\
+$\pmast330\pmcdot05$. & $\pmvffb{\kappa}$ \\
+$\pmast331\pmcdot01$. & $\pmconx{\kappa}$ \\
+$\pmast331\pmcdot02$. & $\pmconxfm$ \\
+$\pmast332\pmcdot01$. & $\pmfrep{\kappa}{P}$ \\
+$\pmast333\pmcdot01$. & $\pmfopen{\kappa}$ \\
+$\pmast333\pmcdot011$. & $\pmfopennid{\kappa}$ \\
+$\pmast333\pmcdot02$. & $\pmfmap$ \\
+$\pmast333\pmcdot03$. & $\pmfmapconx$ 
+\end{tabular}
+
+\begin{tabular}{l l}
+	$\pmast334\pmcdot01$. & $\pmtrsp{\kappa}$ \\
+	$\pmast334\pmcdot02$. & $\pmfmtrs$ \\
+	$\pmast334\pmcdot03$. & $\pmfmconnex$ \\
+	$\pmast334\pmcdot04$. & $\pmfmsr$ \\
+	$\pmast334\pmcdot05$. & $\pmfmasym$ \\
+	$\pmast335\pmcdot01$. & $\pminit{\kappa}$ \\
+	$\pmast335\pmcdot02$. & $\pmfminit$ \\
+	$\pmast336\pmcdot01$. & $\pmvr{\kappa}$ \\
+	$\pmast336\pmcdot011$. & $\pmvrnid{\kappa}$ \\
+	$\pmast336\pmcdot02$. & $\pmarvs{a}$ \\
+	$\pmast351\pmcdot01$. & $\pmfmsubm$ \\
+	$\pmast352\pmcdot01$. & $\pmvrm{T}{\kappa}$ \\
+	$\pmast352\pmcdot02$. & $\pmvrmg{T}{\kappa}$ \\
+	$\pmast353\pmcdot01$. & $\pmfmrt$ \\
+	$\pmast353\pmcdot02$. & $\pmfmcx$ \\
+	$\pmast353\pmcdot03$. & $\pmfmrtcx$ \\
+	$\pmast354\pmcdot01$. & $\pmfmg{\kappa}$ \\
+	$\pmast354\pmcdot02$. & $\pmrtnet{a}{\lambda}$ \\
+	$\pmast354\pmcdot03$. & $\pmfmgrp$ \\
+	$\pmast356\pmcdot01$. & $\pmrems{X}{\kappa}$ \\
+	$\pmast370\pmcdot01$. & $\pmfmcycl$ \\
+	$\pmast370\pmcdot02$. & $\pmcycl{K}{\kappa}$ \\
+	$\pmast370\pmcdot03$. & $\pmcycli{I}{\kappa}$ \\
+	$\pmast371\pmcdot01$. & $\pmvser{W}{\kappa}$ \\
+	$\pmast372\pmcdot01$. & $\pmintsecvser{\nu}{\kappa}$ \\
+	$\pmast373\pmcdot01$. & $\pmsfmid{M}{\nu}{\kappa}$ \hspace{2ex} Dft [\(\pmast373\text{---}5\)]\\
+	$\pmast373\pmcdot02$. & $\pmprime$ \\
+	$\pmast373\pmcdot03$. & $\pmsmltid{S}{\nu}$ \hspace{0.75ex} Dft [\(\pmast373\text{---}5\)]\\
+	$\pmast375\pmcdot01$. & $\pmprrt{\mu}{\nu}{\kappa}$ 
+\end{tabular}
+\end{document}
