@@ -1,7 +1,7 @@
 \documentclass[12pt,openany,leqno,twocolumn]{book}
 %Licensed under LaTeX Project Public License 1.3c. 
-%This is a list of definitions for use with the principia package, Version 2.0.
-%Copyright Landon D. C. Elkind, 2021  (https://landonelkind.com/contact/).
+%This is a list of definitions for use with the principia package, Version 3.2.
+%Copyright Landon D. C. Elkind, 2021 (https://landonelkind.com/contact/).
 
 \usepackage{newtxtext}
 %\usepackage{mathptmx}
@@ -110,9 +110,9 @@
 \newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}}
 
 %Additional defined logic signs
-\newcommand{\pmhat}[1]{\hat{#1}}
-\newcommand{\pmbreve}[1]{\boldsymbol{\breve{#1}}}
-\newcommand{\pmcirc}[1]{\boldsymbol{\dot{\text{$#1$}}}}
+\newcommand{\pmhat}[1]{\mathbf{\hat{\text{$#1$}}}}
+\newcommand{\pmbreve}[1]{\mathbf{\breve{\text{$#1$}}}}
+\newcommand{\pmcirc}[1]{\mathbf{\dot{\text{$#1$}}}}
 \newcommand{\pmpf}[2]{#1#2} %for propositional functions of one variable
 \newcommand{\pmpff}[3]{#1(#2, #3)} %for propositional functions of two variables
 \newcommand{\pmpfff}[4]{#1(#2, #3, #4)} %for propositional functions of three variables
@@ -163,8 +163,8 @@
 \newcommand{\pmrnull}{\pmcirc{\Lambda}} %25.02
 \newcommand{\pmrexists}{\pmcirc{\mathop{\text{\raisebox{.5em}{\rotatebox{180}{E}}}}}\mathop{\pmshr}} %25.03
 \newcommand{\pmrinc}{\mathrel{\ooalign{$\hidewidth\boldsymbol{\cdot}\hidewidth$\cr$\boldsymbol{\pmcinc}$}}} %23.01
-\newcommand{\pmrcap}{\mathrel{\ooalign{$\hidewidth\raisebox{.3em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccap}$}}} %23.02
-\newcommand{\pmrcup}{\mathrel{\ooalign{$\hidewidth\raisebox{.1em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccup}$}}} %23.03
+\newcommand{\pmrcap}{\mathrel{\ooalign{$\hidewidth\raisebox{.3em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\mathbf{\pmccap}$}}} %23.02
+\newcommand{\pmrcup}{\mathrel{\ooalign{$\hidewidth\raisebox{.1em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\mathbf{\pmccup}$}}} %23.03
 
 %Logic of Relations
 \newcommand{\pmdscf}[2]{#1\textbf{`}#2} %30.01
@@ -192,9 +192,9 @@
 \newcommand{\pmrprdn}[2]{#1^{#2}} %34.02, 34.03, etc.
 \newcommand{\pmrld}[2]{#1 \boldsymbol{\upharpoonleft} #2} %35.01
 \newcommand{\pmrlcd}[2]{#1 \boldsymbol{\upharpoonright} #2} %35.02
-\newcommand{\pmrlf}[3]{#1 \boldsymbol{\upharpoonleft} #2 \boldsymbol{\upharpoonright} #3} %35.03
+\newcommand{\pmrldcd}[3]{#1 \boldsymbol{\upharpoonleft} #2 \boldsymbol{\upharpoonright} #3} %35.03
 \newcommand{\pmrl}[2]{#1 \boldsymbol{\uparrow} #2} %35.04
-\newcommand{\pmrlF}[2]{#1 \mathbin{\ooalign{$\upharpoonright$\cr\hidewidth\rotatebox[origin=c]{180}{\text{$\upharpoonleft$}}\hidewidth\cr}} #2} %36.01
+\newcommand{\pmrlf}[2]{#1 \mathbin{\ooalign{$\upharpoonright$\cr\hidewidth\rotatebox[origin=c]{180}{\text{$\upharpoonleft$}}\hidewidth\cr}} #2} %36.01
 \newcommand{\pmdscff}[2]{#1\textbf{`}\textbf{`}#2} %37.01
 \newcommand{\pmdscfr}[2]{#1_{\pmcin}\textbf{`}#2} %37.02
 \newcommand{\pmdscfR}[1]{#1_{\pmcin}} 
@@ -207,10 +207,10 @@
 \newcommand{\pmopc}[2]{#1 \mathop{\underset{\textbf{''}}{\text{\Female}}} #2} %38.03
 
 %Products and sums of classes of classes or relations
-\newcommand{\pmccsum}[1]{p\textbf{`}#1} %40.01
-\newcommand{\pmccprd}[1]{s\textbf{`}#1} %40.02
-\newcommand{\pmcrsum}[1]{\pmcirc{p}\textbf{`}#1} %41.01
-\newcommand{\pmcrprd}[1]{\pmcirc{s}\textbf{`}#1} %41.02
+\newcommand{\pmccprd}[1]{p\textbf{`}#1} %40.01
+\newcommand{\pmccsum}[1]{s\textbf{`}#1} %40.02
+\newcommand{\pmcrprd}[1]{\pmcirc{p}\textbf{`}#1} %41.01
+\newcommand{\pmcrsum}[1]{\pmcirc{s}\textbf{`}#1} %41.02
 \newcommand{\pmrprdd}[2]{{#1}\mathop{||}{#2}} %43.01
 \newcommand{\pmRprdd}{\mathop{||}} 
 
@@ -811,7 +811,7 @@ $\pmast35\pmcdot04$. & $\pmrl{\alpha}{\beta}$ \\
 $\pmast35\pmcdot05$. & $\pmrl{\pmdscf{R}{x}}{\beta}$ \\
 $\pmast35\pmcdot24$. & $\pmrld{\alpha}{\pmrprd{R}{S}}$ \\
 $\pmast35\pmcdot25$. & $\pmrlcd{\pmrprd{S}{R}}{\alpha}$ \\
-$\pmast36\pmcdot01$. & $\pmrlF{P}{\alpha}$ \\
+$\pmast36\pmcdot01$. & $\pmrlf{P}{\alpha}$ \\
 $\pmast37\pmcdot01$. & $\pmdscff{R}{\beta}$ \\
 $\pmast37\pmcdot02$. & $\pmdscfR{R}$ \\
 $\pmast37\pmcdot03$. & ${\pmdscfR{\pmcrel{R}}}$\\
@@ -820,10 +820,10 @@ $\pmast37\pmcdot05$. & $\pmdscfe{R}{\beta}$ \\
 $\pmast38\pmcdot01$. & $x \pmop$ \\
 $\pmast38\pmcdot02$. & $\pmop y$ \\
 $\pmast38\pmcdot03$. & $\pmopc{\alpha}{y}$\\
-$\pmast40\pmcdot01$. & $\pmccsum{\kappa}$ \\
-$\pmast40\pmcdot02$. & $\pmccprd{\kappa}$ \\
-$\pmast41\pmcdot01$. & $\pmcrsum{\lambda}$ \\
-$\pmast41\pmcdot02$. & $\pmcrprd{\lambda}$ \\
+$\pmast40\pmcdot01$. & $\pmccprd{\kappa}$ \\
+$\pmast40\pmcdot02$. & $\pmccsum{\kappa}$ \\
+$\pmast41\pmcdot01$. & $\pmcrprd{\lambda}$ \\
+$\pmast41\pmcdot02$. & $\pmcrsum{\lambda}$ \\
 $\pmast43\pmcdot01$. & $\pmrprdd{R}{S}$ \\
 $\pmast50\pmcdot01$. & $\pmrid$ \\
 $\pmast50\pmcdot02$. & $\pmrdiv$ \\

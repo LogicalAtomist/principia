@@ -1,14 +1,16 @@
 \documentclass[12pt]{article}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{principia}[2024/12/16 principia package version 3.0] %This is the principia package is for representing notations in Whitehead and Russell's ``Principia Mathematica" close to their appearance in the original.
+\ProvidesPackage{principia}[2025/01/30 principia package version 3.2] %This is the principia package is for representing notations in Whitehead and Russell's ``Principia Mathematica" close to their appearance in the original.
 %Version 1.0 (superseded by Version 1.1): Covers typesetting of notation through Volume I. 2020/10/24
 %Version 1.1 (superseded by Version 1.2) minor updates: fixed the spacing of scope dots around parentheses; fixed spacing of theorem sign; fixed spacing around primitive proposition and definition signs. 2020/10/25
 %Licensed under LaTeX Project Public License 1.3c. 
 %Version 1.2 (superseded by Version 2.0) (minor updates): boldfaced (`thickened') the truth-functional connectives, existential quantifier, set and relation symbols; added numerous commands for typesetting brackets and substitutions into theorems. 2021/02/25
 %Version 2.0 (major update): extends the package to cover typesetting of all notations in Volumes II and III; removes package dependency on marvosym. 2022/09/04
 %Version 3.0 (major update): adds command for typesetting Appendix B; removed boldfacing in \pmcnv command; edited \pmrrf, \pmrrl, \pmhat commands, changes to dot spacing. 2024/12/16
+%Version 3.1 (minor update): fixed notations from *40 and *41 (credit to Stephen Boyce). 2025/01/28
+%Version 3.2 (minor update): revised notations to *35 and *36 (credit to Gregory Landini). 2025/01/30
 %Licensed under LaTeX Project Public License 1.3c. 
-%Copyright Landon D. C. Elkind, 2024  (https://landonelkind.com/contact/).
+%Copyright Landon D. C. Elkind, 2025  (https://landonelkind.com/contact/).
 
 \usepackage{fullpage}
 \usepackage[T1]{fontenc}
@@ -106,9 +108,9 @@
 \newcommand{\pmSome}{\text{\raisebox{.5em}{\rotatebox{180}{\textbf{E}}}}}
 
 %Additional defined logic signs
-\newcommand{\pmhat}[1]{\hat{#1}}
-\newcommand{\pmbreve}[1]{\boldsymbol{\breve{#1}}}
-\newcommand{\pmcirc}[1]{\boldsymbol{\dot{\text{$#1$}}}}
+\newcommand{\pmhat}[1]{\mathbf{\hat{\text{$#1$}}}}
+\newcommand{\pmbreve}[1]{\mathbf{\breve{\text{$#1$}}}}
+\newcommand{\pmcirc}[1]{\mathbf{\dot{\text{$#1$}}}}
 \newcommand{\pmpf}[2]{#1#2} %for propositional functions of one variable
 \newcommand{\pmpff}[3]{#1(#2, #3)} %for propositional functions of two variables
 \newcommand{\pmpfff}[4]{#1(#2, #3, #4)} %for propositional functions of three variables
@@ -159,8 +161,8 @@
 \newcommand{\pmrnull}{\pmcirc{\Lambda}} %25.02
 \newcommand{\pmrexists}{\pmcirc{\mathop{\text{\raisebox{.5em}{\rotatebox{180}{E}}}}}\mathop{\pmshr}} %25.03
 \newcommand{\pmrinc}{\mathrel{\ooalign{$\hidewidth\boldsymbol{\cdot}\hidewidth$\cr$\boldsymbol{\pmcinc}$}}} %23.01
-\newcommand{\pmrcap}{\mathrel{\ooalign{$\hidewidth\raisebox{.3em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccap}$}}} %23.02
-\newcommand{\pmrcup}{\mathrel{\ooalign{$\hidewidth\raisebox{.1em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\boldsymbol{\pmccup}$}}} %23.03
+\newcommand{\pmrcap}{\mathrel{\ooalign{$\hidewidth\raisebox{.3em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\mathbf{\pmccap}$}}} %23.02
+\newcommand{\pmrcup}{\mathrel{\ooalign{$\hidewidth\raisebox{.1em}{$\boldsymbol{\cdot}$}\hidewidth$\cr$\mathbf{\pmccup}$}}} %23.03
 
 %Logic of Relations
 \newcommand{\pmdscf}[2]{#1\textbf{`}#2} %30.01
@@ -188,9 +190,9 @@
 \newcommand{\pmrprdn}[2]{#1^{#2}} %34.02, 34.03, etc.
 \newcommand{\pmrld}[2]{#1 \boldsymbol{\upharpoonleft} #2} %35.01
 \newcommand{\pmrlcd}[2]{#1 \boldsymbol{\upharpoonright} #2} %35.02
-\newcommand{\pmrlf}[3]{#1 \boldsymbol{\upharpoonleft} #2 \boldsymbol{\upharpoonright} #3} %35.03
+\newcommand{\pmrldcd}[3]{#1 \boldsymbol{\upharpoonleft} #2 \boldsymbol{\upharpoonright} #3} %35.03
 \newcommand{\pmrl}[2]{#1 \boldsymbol{\uparrow} #2} %35.04
-\newcommand{\pmrlF}[2]{#1 \mathbin{\ooalign{$\upharpoonright$\cr\hidewidth\rotatebox[origin=c]{180}{\text{$\upharpoonleft$}}\hidewidth\cr}} #2} %36.01
+\newcommand{\pmrlf}[2]{#1 \mathbin{\ooalign{$\upharpoonright$\cr\hidewidth\rotatebox[origin=c]{180}{\text{$\upharpoonleft$}}\hidewidth\cr}} #2} %36.01
 \newcommand{\pmdscff}[2]{#1\textbf{`}\textbf{`}#2} %37.01
 \newcommand{\pmdscfr}[2]{#1_{\pmcin}\textbf{`}#2} %37.02
 \newcommand{\pmdscfR}[1]{#1_{\pmcin}} 
@@ -203,10 +205,10 @@
 \newcommand{\pmopc}[2]{#1 \mathop{\underset{\textbf{''}}{\text{\Female}}} #2} %38.03
 
 %Products and sums of classes of classes or relations
-\newcommand{\pmccsum}[1]{p\textbf{`}#1} %40.01
-\newcommand{\pmccprd}[1]{s\textbf{`}#1} %40.02
-\newcommand{\pmcrsum}[1]{\pmcirc{p}\textbf{`}#1} %41.01
-\newcommand{\pmcrprd}[1]{\pmcirc{s}\textbf{`}#1} %41.02
+\newcommand{\pmccprd}[1]{p\textbf{`}#1} %40.01
+\newcommand{\pmccsum}[1]{s\textbf{`}#1} %40.02
+\newcommand{\pmcrprd}[1]{\pmcirc{p}\textbf{`}#1} %41.01
+\newcommand{\pmcrsum}[1]{\pmcirc{s}\textbf{`}#1} %41.02
 \newcommand{\pmrprdd}[2]{{#1}\mathop{||}{#2}} %43.01
 \newcommand{\pmRprdd}{\mathop{||}} 
 
@@ -696,9 +698,9 @@
 \newcommand{\pmsmltid}[2]{(#1, #2)} %373.03
 \newcommand{\pmprrt}[3]{(#1 \rotatebox[origin=c]{10}{$\boldsymbol{/}$} #2)_{#3}} %375.01
 
-\title{\texttt{principia.sty}\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 3.0)}
+\title{\texttt{principia.sty}\\ A \LaTeXe \space Package for Typesetting Whitehead and Russell's \textit{Principia Mathematica} (Version 3.2)}
 \author{Landon D. C. Elkind \texttt{landon.elkind@wku.edu}}
-\date{December 16, 2024}
+\date{January 30, 2025}
 
 \begin{document}
 \maketitle
@@ -794,17 +796,17 @@ Version 2.0 of \texttt{principia} is adequate to typeset all notations throughou
 	$\pmrprd{R}{S}$, $\pmRprd$ & \verb|\pmrprd{R}{S}|, \verb|\pmrprd| &  The relative product of $R$ and $S$. \\
 	$\pmrprdn{R}{n}$ & \verb|\pmrprdn{R}{n}| & The $n$th relative product of $R$. \\
 	$\pmrprdd{R}{S}$, $\pmRprdd$ & \verb|\pmrprdd{R}{S}|, \verb|\pmrprdd| &  The double relative product of $R$ and $S$. \\
-	$\pmrlcd{\alpha}{R}$ & \verb|\pmrld{\alpha}{R}| & The limitation of $R$'s domain to $\alpha$. \\
+	$\pmrld{\alpha}{R}$ & \verb|\pmrld{\alpha}{R}| & The limitation of $R$'s domain to $\alpha$. \\
 	$\pmrlcd{R}{\beta}$ & \verb|\pmrld{R}{\beta}| & The limitation of $R$'s converse domain to $\beta$. \\
-	$\pmrlf{\alpha}{R}{\beta}$ & \verb|\pmrlf{\alpha}{R}{\beta}| & The limitation of $R$'s field to $\alpha$ and $\beta$, resp. \\ 
-	$\pmrlF{P}{\alpha}$ & \verb|\pmrlF{\alpha}{R}{\beta}| & The limitation of $P$'s field to $\alpha$. \\ 
+	$\pmrldcd{\alpha}{R}{\beta}$ & \verb|\pmrldcd{\alpha}| \verb|{R}{\beta}| & The limitation of $R$'s field to $\alpha$ and $\beta$, resp. \\ 
+	$\pmrlf{P}{\alpha}$ & \verb|\pmrlf{\alpha}{R}{\beta}| & The limitation of $P$'s field to $\alpha$. \\ 
 	$\pmrl{\alpha}{\beta}$ & \verb|\pmrl{\alpha}{\beta}| & The relation made of all $x$s in $\alpha$ and $y$s in $\beta$. \\
 	$\pmop$ & \verb|\pmop| & The operation symbol. \\
 	$\pmopc{\alpha}{y}$ & \verb|\pmopc{\alpha}{y}| & The relation of $x$s in $\alpha$ taken to $y$ by $\pmop$. \\
-	$\pmccsum{\alpha}$ & \verb|\pmccsum{\alpha}| & The sum of a class of classes. \\
 	$\pmccprd{\alpha}$ & \verb|\pmccprd{\alpha}| & The product of a class of classes. \\
-	$\pmcrsum{\alpha}$ & \verb|\pmcrsum{\alpha}| & The sum of a class of relations. \\
+	$\pmccsum{\alpha}$ & \verb|\pmccsum{\alpha}| & The sum of a class of classes. \\
 	$\pmcrprd{\alpha}$ & \verb|\pmcrprd{\alpha}| & The product of a class of relations. \\
+	$\pmcrsum{\alpha}$ & \verb|\pmcrsum{\alpha}| & The sum of a class of relations. \\
 	$\pmrid$, $\pmrdiv$ & \verb|\pmrid|, \verb|\pmrdiv| & The relations of identity and diversity. \\
 	$\pmcunit{x}$, $\pmcUnit$ & \verb|\pmcunit{x}|, \verb|\pmcUnit| & The unit class. \\
 	$\pmcunits{\alpha}$ & \verb|\pmcunits{\alpha}| & The sum of unit classes of $\alpha$'s elements. \\
